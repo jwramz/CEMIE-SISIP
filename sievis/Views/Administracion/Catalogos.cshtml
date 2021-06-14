@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Catálogos";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+@using (Html.BeginForm())
+{   <div class="container list-catalogo">
+        <div class="panel panel-default">
+            <div class="panel-heading app-panel-heading">
+                <!-- Título -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Catálogos</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body form-horizontal">
+                <div class="col-md-3">&nbsp</div>
+                <div class="col-md-6 app-pruebas-controls">
+                    <div class="list-group">
+                        @Html.ActionLink(" Gerencia", "Index", "Gerencias", new {  }, new { @class = "list-group-item" })
+                        @Html.ActionLink(" Zona", "Index", "Zonas", new {  }, new { @class = "list-group-item" })
+                        @Html.ActionLink(" Subestación", "Index", "Subestacion", new { }, new { @class = "list-group-item" })
+                        @Html.ActionLink(" Marca", "Index", "Marca", new { }, new { @class = "list-group-item" })
+                        @Html.ActionLink(" Modelo", "Index", "Modelos", new { }, new { @class = "list-group-item"})
+                        @Html.ActionLink(" Aplicación del Interruptor", "Index", "AplicacionInterruptor", new { }, new { @class = "list-group-item" })
+                        @Html.ActionLink(" Mecanismo", "Index", "Mecanismo", new { }, new { @class = "list-group-item" })                       
+                        @if (User.IsInRole("AD"))
+                        {
+                           @Html.ActionLink(" Parametros Fabricante", "Index", "ParametrosFabricante", new { }, new { @class = "list-group-item" })
+                           @Html.ActionLink(" Cuentas de Usuario", "Index", "Usuarios", new { }, new { @class = "list-group-item" })
+                        }
+                        
+                    </div>
+                </div>
+                <div class="col-md-3">&nbsp</div>
+            </div>
+        </div>
+    </div>
+}

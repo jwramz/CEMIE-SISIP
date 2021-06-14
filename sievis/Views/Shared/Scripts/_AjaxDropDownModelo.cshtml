@@ -1,0 +1,52 @@
+﻿@using Resources;
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#Marca_id").change(function () {
+            $("#Modelo_id").empty();
+            var Marca_id = $("#Marca_id").val();
+            if (!Marca_id) return;
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetModeloByMarcaId", "Equipo", null)',
+                dataType: 'json',
+                data: { Marca_id: Marca_id},
+                success: function (modelos) {
+                    $("#Modelo_id").append('<option value="">- Seleccionar Modelo -</option>');
+                    $.each(modelos, function (i, modelo) {
+                        $("#Modelo_id").append('<option value="' + modelo.id + '">' + modelo.nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+                }
+            });
+            return false;
+        });
+         $("#MarcaId").change(function () {
+            $("#ModeloId").empty();
+            var Marca_id = $("#MarcaId").val();
+            if (!Marca_id) return;
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetModeloByMarcaId", "Equipo", null)',
+                dataType: 'json',
+                data: { Marca_id: Marca_id},
+                success: function (modelos) {
+                    $("#ModeloId").append('<option value="">- Seleccionar Modelo -</option>');
+                    $.each(modelos, function (i, modelo) {
+                        $("#ModeloId").append('<option value="' + modelo.id + '">' + modelo.nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+                }
+            });
+            return false;
+        });
+
+    });
+</script>

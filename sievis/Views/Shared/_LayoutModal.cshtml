@@ -1,0 +1,34 @@
+﻿
+<!-- Modal:template -->
+<div id="modal-container" class="modal fade" tabindex="1" role="dialog" style="border: 5px solid green">
+    <div class="modal-dialog">
+        <div id="modal-content" class="modal-content">
+        </div> 
+    </div>
+</div>
+
+<!-- Modal:script -->
+<script type="text/javascript">    
+    $(function () {
+        $("body").on("click", ".modal-link", function (e) {
+            e.preventDefault();
+            $("#modal-content").empty();
+            $("#modal-container").data('bs.modal', null);
+
+            $(this).attr("data-target", "#modal-container");
+            $(this).attr("data-toggle", "modal");
+        });
+
+        $("body").on("click", ".modal-close-btn", function () {
+            $(this).attr("#modal-container").modal("hide");
+        });
+
+        $("#modal-container").on(".hidden.bs.modal", function () {
+            $(this).remoData("bs.modal");
+        });
+
+        $("#modalBtnSave").click(function () {
+            $("#modal-container").modal("hide");
+        });
+    });
+</script>

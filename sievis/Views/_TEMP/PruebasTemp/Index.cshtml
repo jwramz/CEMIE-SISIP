@@ -1,0 +1,76 @@
+﻿@model IEnumerable<sievis.Models.Prueba>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_prueba)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_inspeccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.instrumento_medicionSF6)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.existe_gabinete_centralizador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.existe_gabinetectrl_xfase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.evalBasica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.evalExtendida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipo.bahia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_prueba)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_inspeccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.instrumento_medicionSF6)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.existe_gabinete_centralizador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.existe_gabinetectrl_xfase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.evalBasica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.evalExtendida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Equipo.bahia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

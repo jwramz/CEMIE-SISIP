@@ -1,0 +1,94 @@
+﻿@{
+    var urlParts = HttpContext.Current.Request.Url.AbsolutePath.Split('/');
+    var action = urlParts.Length >= 1 ? urlParts[urlParts.Length-1] : "Datos";
+}
+
+<div class="collapse navbar-collapse" id="navbar-collapse">
+    <ul class="nav navbar-nav sider-navbar">
+        <li id="profile" >
+            <figure class="profile-userpic" >
+                <img src="~/Images/Pruebas.jpg" class="img-responsive" alt="Profile Picture" />
+            </figure>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-title">´Pruebas del Interruptor</div>
+            </div>
+        </li>
+        <li class="sider-menu">
+            <ul class="menu-left-pruebas">
+                @if (action.Equals("Datos"))
+                {
+                    <li id="_Prueba_li" class="">
+                        <a href="#" onclick="showContainerPrueba('#_Prueba', '#_Prueba_li');">
+                            <span class="fa fa-fw fa-id-card-o"></span> Datos de la Prueba
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li id="_Prueba_li" class="">
+                        <a href="@Url.Action("Datos", "Pruebas",  new { EquipoId = Request["EquipoId"], PruebaId = Request["pruebaId"] } )">
+                            <span class="fa fa-fw fa-id-card-o"></span> Datos de la Prueba
+                        </a>
+                    </li>
+                }
+                @if (action.Equals("Datos"))
+                {
+                    <li id="_InspeccionVisual_li" class="">
+                        <a href="#" onclick="showContainerPrueba('#_InspeccionVisual_A', '#_InspeccionVisual_li');">
+                            <span class="fa fa-fw fa-eye"></span> Inspección Visual
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li id="_InspeccionVisual_li" class="">
+                        <a href="@Url.Action("Datos", "Pruebas", new { EquipoId = Request["EquipoId"], PruebaId = Request["pruebaId"] } )">
+                            <span class="fa fa-fw fa-eye"></span> Inspección Visual
+                        </a>
+                    </li>
+                }
+                @if (action.Equals("Datos"))
+                {
+                    <li id="_PruebaDeRutina_li" class="">
+                        <a href="#" onclick="showContainerPrueba('#_PruebaDeRutina', '#_PruebaDeRutina_li');">
+                            <span class="fa fa-fw fa-thermometer-empty"></span> Pruebas de Rutina
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li id="_PruebaDeRutina_li" class="">
+                        <a href="@Url.Action("Datos", "Pruebas", new { EquipoId = Request["EquipoId"], PruebaId = Request["pruebaId"] } )">
+                            <span class="fa fa-fw fa-thermometer-empty"></span> Pruebas de Rutina
+                        </a>
+                    </li>
+                }
+                @if (action.Equals("Datos"))
+                {
+                    <li id="_PruebaEspecial_li" class="_PruebaEspecial_li">
+                        <a href="#" onclick="showContainerPrueba('#_PruebaEspecial', '#_PruebaEspecial_li');">
+                            <span class="fa fa-fw fa-thermometer-4"></span> Prueba Especial
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li id="_PruebaEspecial_li" class="_PruebaEspecial_li">
+                        <a href="@Url.Action("Datos", "Pruebas", new { EquipoId = Request["EquipoId"], PruebaId = Request["pruebaId"] } )">
+                            <span class="fa fa-fw fa-thermometer-4"></span> Prueba Especial
+                        </a>
+                    </li>
+                }
+
+                @if (Request["pruebaId"] != null && Convert.ToInt32(Request["pruebaId"]) > 0)
+                {
+                    <li class="@(action == "Archivos" ? "active" : "")">
+                        <a href="@Url.Action("Archivos", "Pruebas", new { EquipoId = Request["EquipoId"], PruebaId = Request["pruebaId"] })">
+                            <span class="fa fa-fw fa-folder"></span> Archivos
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>

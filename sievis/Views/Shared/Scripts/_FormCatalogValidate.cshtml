@@ -1,0 +1,28 @@
+﻿@using Resources;
+
+<script type="text/javascript">
+    $('#@ViewData["IdBtnSave"]').on("click", function (event) {
+        event.preventDefault();
+        var form = $('#@ViewData["IdForm"]');
+        var formData = form.serialize();
+        $.ajax({
+            type: "POST",
+            url: '@ViewData["ActionURL"]',
+            data: formData
+        }).done(function (response) {
+            console.log({ action: "IdBtnSave:done", response: response });
+            if (response.Success) {
+                document.getElementById('@ViewData["IdForm"]').submit();
+            } else {
+                var data = JSON.parse(response.Data), li = '<br/><ul>';
+                for (var i = 0; i < data.length; i++) li += '<li>' + data[i] + '</li>';
+                li += '</ul>'
+                bootbox.alert('<b style="color:red">' + response.Message + '</b>' + '<br/>' + li);
+            }
+        }).fail(function (response) {
+            console.log({ action: "IdBtnSave:fail", response: response, responseText: response.responseText });
+            bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+        });
+    });
+</script>
+

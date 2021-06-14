@@ -1,0 +1,236 @@
+﻿@model sievis.Models.Equipo
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+
+<div class="container g-top-margin">
+    <!-- Seccion 1 -->
+    <div class="text-center"><h2>¿Est&aacute; seguro de eliminar el Equipo?</h2></div>
+    <div class="row g-top-margin">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color:rgb(179, 213, 192)"><h4>Datos de placa del Interruptor</h4></div>
+            <div class="panel-body">
+
+                <div class="form-horizontal">
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        @Html.DisplayNameFor(model => model.Gerencia_id)
+                                    </label>
+                                    <label class="form-control">
+                                        @Html.DisplayFor(model => model.Subestacion.Zona.Gerencia.nombre)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        @Html.DisplayNameFor(model => model.Subestacion.nombre)
+                                    </label>
+                                    <label class="form-control">
+                                        @Html.DisplayFor(model => model.Subestacion.nombre)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right">
+                           
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Eliminar" class="btn btn-danger btn-lg" /> |
+                                    @Html.ActionLink("Listado", "Index", null, new { @class = "btn btn-success btn-lg" })
+                                    
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="row g-top-margin ">
+                        <fieldset>
+                            <div class="form-horizontal">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Marca
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.Modelo.Marca.nombre)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Modelo/Tipo
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.Modelo.nombre)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            No. de Serie
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.ns)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Año de Fabricación
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.anio_fabricacion)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Tensión Nominal (kV)
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.tension_nominal)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Corriente Nominal (A)
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.corriente_nominal)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Corriente de Corto Circuito (A)
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.corriente_cc)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Nivel de Aislamiento al Impulso del Rato (BIL)
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.bil)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Bahía
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.bahia)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Presión del SF6 20°C (bar o MPa)
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.presionSF6)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Altitud de Operación (msnm)
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.altitud_operacion)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Tipo de Mecanismo
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.Mecanismo.descripcion)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Diseño Estructural
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.dis_estructural)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Configuración de Cámaras
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.conf_camaras)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label col-md-4">
+                                            Resistencia estática de contactos (µΩ)
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label class="form-control">
+                                                @Html.DisplayFor(model => model.res_estatica_contactos)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                @*<div class="col-md-4">
+                                    <img src="~/Images/tanque_vivo_tipo_y.jpg" class="img-rounded" width="350" />
+                                </div>*@
+                            </div>
+                        </fieldset>
+                    </div>
+
+
+                </div>  <!-- Seccion Form -->
+            </div>
+        </div>
+    </div>
+</div>
+
+

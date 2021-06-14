@@ -1,0 +1,98 @@
+﻿@model sievis.Models.Prueba
+
+@{
+    ViewBag.Title = "Agregar Pruebas";
+    Layout = "~/Views/Shared/_LayoutMLP.cshtml";
+}
+
+@using (Html.BeginForm("Archivos", "Pruebas",  
+        new { EquipoId = Request["EquipoId"], PruebaId = Request["PruebaId"]}, 
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading app-panel-heading">
+            <!-- Título-Guardar -->
+            <div class="row">
+                <div class="col-md-9">
+                    <h4>Archivos de la Prueba</h4>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group col-md-12">
+                        <div class="app-url-action-bold">
+                            <a href="@Url.Action("Index", "Pruebas", new { EquipoId = Request["EquipoId"], PruebaId = 0 } )"><span class="fa fa-fw fa-list-alt"></span> Ir a Lista de Pruebas</a>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body form-horizontal">
+
+            <div class="col-md-1">&nbsp</div>
+            <div class="col-md-9 app-pruebas-controls">
+
+                <!-- Cargar Archivo -->
+                <div class="row">
+                    <h4>Seleccionar Archivo</h4>
+                    
+                    <div class="col-md-12">
+                        <input id="file" name="file" type="file" class="file" multiple="multiple">
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-2", @id= "nombre_prueba" })
+                        <div class="col-md-10">
+                            @Html.Editor("nombre_prueba", new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.ValidationMessageFor(model => model.fecha_inspeccion, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md-12" style="text-align:right"> &nbsp;
+                        <button class="btn btn-success" value="Archivos" type="submit">
+                            Enviar Archivo <span class="fa fa-upload"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid Archivos  -->
+                <div class="row g-top-margin">
+                    <table id="grid" class="gridKendo">
+                        <colgroup>
+                            <col />
+                        </colgroup>
+                        <tr>
+                            <th>Nombre Archivo</th>
+                            <th>Descripción</th>
+                            <th>Fecha Archivo</th>
+                            <th>Acciones</th>
+                        </tr>
+                        @foreach (var archivo in ViewBag.Archivos)
+                        {
+                            <tr>
+                                <td>
+                                    <span>@archivo.nombre_archivo</span>
+                                </td>
+                                <td>
+                                    <span>@archivo.nombre_prueba</span>
+                                </td>
+                                <td>
+                                    <span>@archivo.fecha</span>                                    
+                                </td>
+                                <td>
+                                    @Html.ActionLink(" ", "DescargarArchivo", new { ArchivoId = archivo.id }, new { @class = "glyphicon glyphicon-download", @title = "Descargar Archivo", @target= "_self" })                                    
+                                    @Html.ActionLink(" ", "EliminarArchivo", new { ArchivoId = archivo.id }, new { @class = "glyphicon glyphicon-trash", @title = "Eliminar Archivo", @target = "_self" })
+                                    
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-3">&nbsp</div>
+        </div>
+    </div>
+}
+
+@Html.Partial("_initKendoGrid")

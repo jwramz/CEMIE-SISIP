@@ -1,0 +1,63 @@
+﻿@using Resources;
+
+<script type="text/javascript">
+
+
+     $(document).ready(function () {
+
+         $("#ns").change(function () {
+
+            var numero_serie = $("#ns").val();
+            if (!numero_serie) return;
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetNumSerieDuplicado", "Equipo", null)',
+                dataType: 'json',
+                data: { ns: numero_serie},
+                success: function (serie) {
+
+                    if (serie > 0) {
+                        bootbox.alert('<b style="color:red">' + 'Debe ingresar nuevamente el número de serie,  ' +  'Ya existe el ' + numero_serie +   '</b>' + '<br/>' );
+                        $("#ns").focus();
+                    }
+                },
+                error: function (ex) {
+                    bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+     $(document).ready(function () {
+
+         $("#Id_EquipoSAP").change(function () {
+
+             var Id_EquipoSAP = $("#Id_EquipoSAP").val();
+          
+             if (!Id_EquipoSAP) return;
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetIdEquipoSAPDuplicado", "Equipo", null)',
+                dataType: 'json',
+                data: { Id_EquipoSAP: Id_EquipoSAP},
+                success: function (valor) {
+
+                    if (valor > 0) {
+                        bootbox.alert('<b style="color:red">' + 'Debe ingresar nuevamente el Id Equipo de SAP, ' + 'Ya existe el ' + Id_EquipoSAP +  '</b>' + '<br/>' );
+                        $("#Id_EquipoSAP").focus();
+                    }
+                },
+                error: function (ex) {
+                    bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+                }
+            });
+            return false;
+        });
+
+    });
+
+</script>

@@ -1,0 +1,156 @@
+﻿@model IEnumerable<sievis.Models.Equipo>
+
+@{
+    ViewBag.Title = "Listado de Equipos";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<div class="container-fluid header-top-margin">
+    <div class="text-center"><h2>Interruptores de Potencia</h2></div>
+    <div class="text-right">
+        <span class="fa fa-plus-square fa-lg" aria-hidden="true"></span>
+        @Html.ActionLink(" Registrar un Equipo Nuevo", "Create")
+    </div>
+
+
+    <div id="ListaEquipos">
+        <div id="grid"></div>
+        <br />
+        <div id="grid2"></div>
+        <script>
+            function links(EquipoId) {
+
+                var comandos = "<div> <a href='Equipo/Edit/" + EquipoId + "'><i class = 'fa fa-pencil-square-o'></i> | </a>"
+                    + "<a href='Equipo/Details/" + EquipoId + "'><i class='glyphicon glyphicon-list-alt'></i> | </a>"
+                    + "<a href='Equipo/Delete/" + EquipoId + "'><i class='glyphicon glyphicon-trash'></i> | </a>"
+                    + "<a href='pruebas/Index/?EquipoId=" + EquipoId + "'><i class='fa fa-thermometer-empty'></i> </a>"
+                    + " </div>";
+
+                return comandos;
+            };
+
+            $(document).ready(function () {
+
+
+
+                $("#grid").kendoGrid({
+                    dataSource: {
+                        //serverPaging: true,
+                        //serverFiltering: true,
+                        //serverSorting: true,
+                        //pageSize: 20,
+                        type: "json",
+                        transport: {
+                            read: "@Url.Content("~/Equipo/ListaInterruptores")"
+                        },
+                        schema: {
+                            data: "data",
+                            total: "total" // total is returned in the "total" field of the response
+                        },
+                        parameterMap: function (options) {
+                            return JSON.stringify(options);
+                        }
+                    },
+
+                    height: 550,
+                    groupable: true,
+                    sortable: true,
+                    pageable: {
+                        refresh: true,
+                        pageSizes: true,
+                        buttonCount: 5
+                    }, filterable: true,
+                    filterable: {
+
+                        extra: false,
+
+                        operators: {
+                            string: {
+                                contains: "Contiene"
+                            }
+                        },
+                        messages: {
+                            info: "Filtrar por:",
+                            clear: "Limpiar",
+                            filter: "Filtrar"
+                        }
+                    },
+                    pageable: {
+                        buttonCount: 5,
+                        pageSize: 20,
+                        pageSizes: ["All",5, 10, 15, 20],
+                        messages: {
+                            display: "Página {0}-{1} de {2} registros",
+                            empty: "Sin datos",
+                            page: "Página",
+                            of: "de {0}",
+                            itemsPerPage: "registros por página"
+                        }
+                    },
+                    groupable: {
+                        messages: {
+                            empty: "Arrastre una columna para agrupar"
+                        }
+                    },
+                    columns: [{
+                        field: "gerencia",
+                        title: "Gerencia",
+                        width: 100
+                    },
+                    {
+                        field: "zona",
+                        title: "Zona",
+                        width: 150
+                    },
+                    {
+                        field: "subestacion",
+                        title: "Subestación"
+                    }, {
+                        field: "bahia",
+                        title: "Bahia"
+                    },
+                    {
+                        field: "ns",
+                        title: "Número Serie",
+                        width: 150
+                    },
+                    {
+                        field: "modelo",
+                        title: "Modelo",
+                        width: 150
+                    },
+                    {
+                        field: "afabricacion",
+                        title: "Año Fabricación",
+                        width: 150
+                    },
+                    {
+                        field: "tension_nominal",
+                        title: "Tensión Nominal",
+                        width: 150
+                    },
+                    {
+                        field: "corriente_nominal",
+                        title: "Corriente Nominal",
+                        width: 150
+                    },                    
+                    {
+                        template: "#=links(id)#",
+                        title: "Acciones"
+                    }
+
+                    ]
+
+
+                });
+
+
+            });
+
+
+        </script>
+    </div>
+   
+</div>
+
+

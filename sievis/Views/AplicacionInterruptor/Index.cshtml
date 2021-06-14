@@ -1,0 +1,44 @@
+﻿@model IEnumerable<sievis.Models.AplicacionInterruptor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<div class="gridCatalogContainer container">
+    <h2>Aplicación Interruptor</h2>
+    <div class="text-right">
+        <span class="fa fa-plus-square fa-lg" aria-hidden="true"></span>
+        @Html.ActionLink(" Agregar Aplicación Interruptor", "Agregar", "AplicacionInterruptor", new { }, new { @class = "modal-link" })
+        
+        <span class="fa fa-home fa-lg" aria-hidden="true"></span>
+        @Html.ActionLink(" Ir a Catálogos", "Catalogos", "Administracion", new { }, new { @class = "" })
+    </div>
+    <table id="gridCatalog" class="gridKendo">
+        <colgroup>
+            <col />
+        </colgroup>
+        <tr>
+            <th>ID </th>
+            <th>Aplicación Interruptor </th>
+            <th>Acciones </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Editar", new { id = item.id }, new { @class = "modal-link fa fa-pencil-square-o", @title = "Editar" }) |
+                    @Html.ActionLink(" ", "Detalle", new { id = item.id }, new { @class = "modal-link glyphicon glyphicon-list-alt", @title = "Detalles" }) |
+                    @Html.ActionLink(" ", "Eliminar", new { id = item.id }, new { @class = "modal-link glyphicon glyphicon-trash", @title = "Eliminar" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@Html.Partial("_initKendoGrid")

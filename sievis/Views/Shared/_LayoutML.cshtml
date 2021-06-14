@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SIEVIS</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+   
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Scripts/kendo/2017.1.223/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="~/Scripts/kendo/2017.1.223/styles/kendo.blueopal.min.css" />
+    <link rel="stylesheet" href="~/Scripts/kendo/2017.1.223/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="~/Scripts/kendo/2017.1.223/styles/kendo.mobile.all.min.css" />
+    <link rel="stylesheet" href="~/Scripts/kendo/2017.1.223/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.min.css" />
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/kendo/2017.1.223/kendo.all.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1.js"></script>
+   @* <link href="~/Content/Site.css" rel="stylesheet" />*@
+
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/appjs")
+   
+</head>
+<body>
+
+    <div class="app-form">
+        <div class="navbar navbar-default  navbar-fixed-top">
+            <a href="~/Home/Index"><img src="~/Images/logo-cfe-sievis.png" alt="CFE" class="app-logo" /></a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mnuNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="mnuNavbar">                   
+                    @Html.Partial("_AppMenu")
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row app-pruebas-content">
+                @RenderBody()
+            </div>
+        </div>
+
+        <!--<footer class="modal-footer">-->
+        <footer class="container-fluid" style="background-color: rgb(50, 50, 50); color: rgb(255, 255, 255); padding-top: 1.75rem; padding-bottom: 1.75rem; margin-top:1rem;">
+            <div class="text-center">
+                <p>
+                    INEEL / Todos los derechos reservados &copy; @DateTime.Now.Year
+                    <br />
+                    Direcci&oacute;n de Sistemas El&eacute;ctricos
+                    <br />
+                    Gerencia de Equipos El&eacute;ctricos
+                </p>
+            </div>
+        </footer>
+    </div>
+    @Html.Partial("_LayoutModal")    
+    @RenderSection("scripts", required: false)
+    <script>
+             /******** Load jQuery if not present *********/
+             if (window.jQuery === undefined || window.jQuery.fn.jquery !== '3.1.1') {
+                 console.log("jQuery LOADED");
+                 var script_tag = document.createElement('script');
+                 script_tag.setAttribute("type", "text/javascript");
+                 script_tag.setAttribute("src", "http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
+
+                 // Try to find the head, otherwise default to the documentElement
+                 (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
+
+                 if (script_tag.readyState) {
+                     script_tag.onreadystatechange = function () { // For old versions of IE
+                         if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                             console.log(window.jQuery.fn.jquery);
+                             scriptLoadHandler();
+                         }
+                     };
+                 } else {
+                     console.log("ONLOAD STATE");
+                     script_tag.onload = scriptLoadHandler;
+                 }
+             } else {
+                 // The jQuery version on the window is the one we want to use
+                 jQuery = window.jQuery;
+                 main();
+             }
+
+             function scriptLoadHandler() {
+                 // Restore $ and window.jQuery to their previous values and store the
+                 // new jQuery in our local jQuery variable
+                 jQuery = window.jQuery.noConflict(true);
+                 // Call our main function
+                 main();
+             }
+
+             function main() {
+                 jQuery(document).ready(function ($) {
+                     var bootstrap_script = document.createElement('script');
+                     bootstrap_script.setAttribute("type", "text/javascript");
+                     bootstrap_script.setAttribute("src",
+                         "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+
+                     (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(bootstrap_script);
+                 })
+             }
+    </script>
+</body>
+</html>

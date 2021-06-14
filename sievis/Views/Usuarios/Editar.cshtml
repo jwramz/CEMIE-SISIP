@@ -1,0 +1,88 @@
+﻿@using Resources;
+@using sievis.Models;
+
+@model sievis.Models.AppUsers
+
+<!-- modal -->
+@using (Html.BeginForm("Editar", "Usuarios", FormMethod.Post, new { @id = "FormCatalog" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="bootstrap-dialog.type-primary modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Editar Usuario</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.RoleId)
+            @Html.HiddenFor(model => model.Action)
+
+            <div class="form-group">
+                @Html.Label("Rol", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("RoleId", ViewBag.RoleList as List<SelectListItem>, "-- Seleccionar Rol --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Estatus, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    <div class="checkbox">
+                        @Html.DropDownList("Estatus", ViewBag.EstatusList as List<SelectListItem>, "-- Seleccionar Estatus --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreCompleto, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.NombreCompleto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NombreCompleto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Gerencia", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">                    
+                    @Html.DropDownList("Gerencia_id", null, "-- Seleccionar Gerencia --", htmlAttributes: new { @class = "form-control" })                    
+                    @Html.ValidationMessageFor(model => model.Gerencia_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Zona", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("Zona_id", null, "-- Seleccionar Zona --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Zona_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Subestacion", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("Subestacion_id", null, "-- Seleccionar Subestación --", htmlAttributes: new { @class = "form-control" })                    
+                    @Html.ValidationMessageFor(model => model.Subestacion_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="modalBtnSave">Guardar</button>
+        <button type="button" class="btn btn-info" id="modalBtnCancel" data-dismiss="modal">Cancelar</button>
+    </div>
+
+    @Html.Partial("~/Views/Shared/Scripts/_FormCatalogValidate.cshtml", null,
+        new ViewDataDictionary() { { "IdBtnSave", "modalBtnSave" }, { "IdForm", "FormCatalog" }, { "ActionURL", "Usuarios/Validate" } });
+
+    @Html.Partial("~/Views/Shared/Scripts/_AjaxDropDownZona.cshtml");
+    @Html.Partial("~/Views/Shared/Scripts/_AjaxDropDownSubestacion.cshtml");
+}
+
+
+

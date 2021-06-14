@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Tablero";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<h2>Tablero</h2>
+
+
+<div id="example">
+    <div id="grid"></div>
+    <script>
+
+        function getColor(indice) {
+            if (indice < 25) {
+                return "negro";
+            } else if (indice < 50){
+                return "rojo";
+            }else if (indice < 75) {
+                return "amarillo";
+            } else {
+                return "verde";
+            }
+        };
+        function semaforo(valor) {
+
+            if (valor > 0) {
+                var semaforoTemplate = "<div class='alarma'" +
+                    "style='background-image: url(../Images/" + getColor(valor) + ".png);'></div>" +
+                    "<div class='valor-alarma'>" + valor + "</div>";
+            } else {
+                var semaforoTemplate = "<div> </div>";
+            }
+
+            return semaforoTemplate;
+        };
+
+        function getColorIndice(indice) {
+            if (indice < 75) 
+                return "rojo";
+             else 
+                return "verde";
+                  
+        };
+
+        function semaforoIndices(valor, EquipoId, PruebaId) {
+
+            if (valor > 0) {
+                var semaforoTemplate = "<div class='alarma'" +
+                    "style='background-image: url(../Images/" + getColorIndice(valor) + ".png);'></div>" +
+                    "<div class='valor-alarma'>" + valor + "</div>" +
+                    "<div class='valor-alarma'> <a href='../Pruebas/Reporte?EquipoId=" + EquipoId.toString() + "&PruebaId=" + PruebaId.toString() + "'> | Reporte</a> </div>";
+            } else {
+                var semaforoTemplate = "<div> </div>";
+            }
+
+            return semaforoTemplate;
+        };
+
+        $(document).ready(function () {
+            
+           
+
+            $("#grid").kendoGrid({
+                dataSource: {
+                    type: "json",
+                    transport: {
+                        read: "@Url.Content("~/Equipo/ListaEquiposAlarmas")"
+                    },
+                    pageSize: 20
+                },
+                height: 550,
+                groupable: true,
+                sortable: true,
+                filterable: true,
+                filterable: {
+
+                    extra: false,
+
+                    operators: {
+                        string: {
+                            contains: "Contiene"
+                        }
+                    },
+                    messages: {
+                        info: "Filtrar por:",
+                        clear: "Limpiar",
+                        filter: "Filtrar"
+                    }
+                },
+                pageable: {
+                    buttonCount: 5,
+                    pageSize: 20,
+                    pageSizes: ["All", 5, 10, 15, 20],
+                    messages: {
+                        display: "Página {0}-{1} de {2} registros",
+                        empty: "Sin datos",
+                        page: "Página",
+                        of: "de {0}",
+                        itemsPerPage: "registros por página"
+                    }
+                },
+                groupable: {
+                    messages: {
+                        empty: "Arrastre una columna para agrupar"
+                    }
+                },            
+                columns: [{                   
+                    field: "gerencia",
+                    title: "Gerencia",
+                    width: 240
+                },
+                {
+                    field: "zona",
+                    title: "Zona"
+                },
+                {
+                    field: "subestacion",
+                    title: "Subestación"
+                }, {
+                    field: "bahia",
+                    title: "Bahia"
+                },
+                {
+                    field: "ns",
+                    width: 150
+                },                
+                {
+                    template: "#=semaforo(indiceSaludBasica)#",
+                    field: "indiceSaludBasica",
+                    title: "Indice Salud Básico"
+                },
+                {
+                    template: "#=semaforo(indiceSaludExtendida)#",
+                    field: "indiceSaludExtendida",
+                    title: "Indice Salud Extendido"
+                },
+                {
+                    template: "#=semaforoIndices(indiceConfiabilidad,equipoId,pruebaid)#",
+                    field: "indiceConfiabilidad",
+                    title: "Indice de Confiabilidad"
+                }
+                ]
+                
+                //dataBound: function (e) {
+                //    // get the index of the UnitsInStock cell
+                //    var columns = e.sender.columns;
+                //    var columnIndex = this.wrapper.find(".k-grid-header [data-field=" + "indiceSaludBasica" + "]").index();
+
+                //    // iterate the data items and apply row styles where necessary
+                //    var dataItems = e.sender.dataSource.view();
+                //    for (var j = 0; j < dataItems.length; j++) {
+                //        var indice = dataItems[j].get("indiceSaludBasica");
+                //        var row = e.sender.tbody.find("[data-uid='" + dataItems[j].uid + "']");
+
+                //        var cell = row.children().eq(columnIndex);
+                //        cell.addClass(getColor(indice));
+                //    }
+                //}
+            });
+
+
+        });
+    </script>
+</div>

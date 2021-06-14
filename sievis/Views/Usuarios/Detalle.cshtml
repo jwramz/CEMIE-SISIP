@@ -1,0 +1,47 @@
+﻿@model sievis.Models.AppUsers
+
+<!-- modal -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="bootstrap-dialog.type-primary modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Detalle del Usuario</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>Estatus</dt>
+            <dd>
+                @Html.DisplayFor(model => model.Estatus)
+            </dd>
+            <dt>Nombre Completo</dt>
+            <dd>
+                @Html.DisplayFor(model => model.NombreCompleto)
+            </dd>
+            <dt>Email</dt>
+            <dd>
+                @Html.DisplayFor(model => model.AspNetUsers.Email)
+            </dd>
+            <dt>Rol</dt>
+            <dd>
+                @Html.DisplayFor(model => model.AspNetRoles.Name)
+            </dd>
+            <dt>Gerencia</dt>
+            <dd>
+                @Html.DisplayFor(model => model.Gerencia.nombre)
+            </dd>
+            <dt>Zona</dt>
+            <dd>
+                @Html.DisplayFor(model => model.Zona.nombre)
+            </dd>
+            <dt>Subestacion</dt>
+            <dd>
+                @Html.DisplayFor(model => model.Subestacion.nombre)
+            </dd>
+        </dl>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" id="modalBtnCancel" data-dismiss="modal">Cerrar</button>
+    </div>
+}

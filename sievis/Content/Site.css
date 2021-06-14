@@ -1,0 +1,878 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0;
+    padding-right: 0px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"] {
+    background-color: rgba(179, 213, 192, 0.2);
+}
+
+/* Responsive: Portrait tablets and up */
+.panel-default panel-heading {
+    background-color: rgb(179, 213, 192);
+}
+.demo-section.k-content {
+     box-shadow: 0 1px 2px 1px rgba(0,0,0,.08), 0 3px 6px rgba(0,0,0,.08); 
+}
+.demo-section {
+    margin: 0 auto 4.5em;
+    padding: 3em;
+    border: 1px solid rgba(20,53,80,0.14);
+}
+#example {
+    position: relative;
+    padding-top: 1px;
+}
+
+#example {
+    display: block;
+}
+.wide {}
+/* LOGIN STYLES */
+
+.login-form {
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
+.login-form .checkbox {
+    margin-left: 10px;  
+    padding-left: 10px;
+}
+
+form[role=login] {
+    color: #5d5d5d;
+    background: #f2f2f2;
+    padding: 26px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+form[role=login] img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 35px;
+}
+
+form[role=login] input,
+form[role=login] button {
+    font-size: 18px;
+    margin: 16px 0;
+}
+
+form[role=login] > div {
+    text-align: center;
+}
+
+form[role=login] .form-links {
+        text-align: center;
+        margin-top: 1em;
+        margin-bottom: 50px;
+}
+
+form[role=login] .form-links a {
+    color: #fff;
+}
+
+
+/* APP STYLES */
+
+.app-footer {
+    display: block;
+    margin: auto;
+    width: 23em;
+}
+
+.g-top-margin {
+    margin-top: 40px;
+}
+
+.heder-top-margin {
+    margin-top: 10px;
+}
+
+
+.g-cell-vcenter {
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    border: 1px solid red;
+}
+
+.index-round-image {
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+
+.index-img-hcenter {
+    display: block;
+    margin: auto;
+    width: 20em;
+}
+
+.gestion-lbl-archivos {
+    color: aqua;
+}
+
+
+.gestion-img-archivos {
+    margin-top: -24px;
+}
+
+.gd-img-guardar-datos {
+    width: 80px;
+    margin-top: -34px;
+}
+
+.solicitud-img-guardar {
+    right: 0px;
+    position: absolute;
+    width: 100px;
+}
+
+.solicitud-datos-div {
+    padding-top: 100px;
+}
+
+.label-err {
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.label-success {
+    color: blue;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.app-logo {
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.body-content {
+    margin-top: 40px;
+}
+
+.app-form .navbar-default {
+    border-bottom: thick solid green;
+    border-bottom-width: 1px;
+}
+
+.app-form .navbar-brand {
+    margin-top: 18px;
+}
+
+.app-form .navbar-nav {
+    padding-top: 18px;
+}
+
+.app-form .navbar-inverse .navbar-nav > li > a {
+    color: black;
+}
+
+.app-form .navbar-inverse .navbar-brand {
+    color: black;
+}
+
+
+.master-page-3r1c-title {
+    color: black;
+}
+
+.app-pruebas-content {
+    margin-top: 80px;
+}
+
+.app-pruebas-controls {
+    margin-top: 10px;
+}
+
+.app-panel-heading {
+    background-color: rgb(179, 213, 192) !important;
+}
+
+.app-panel-heading .btn {
+    position: absolute;
+    margin-top: 4px;
+}
+
+.grid-files {
+    border-left-color: darkgrey;
+    border-left-style: dashed;
+    padding-left: 40px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.app-url-action-bold {
+    font-weight: 500;
+    font-size: medium;
+    margin-top: 10px;
+    position: absolute;
+}
+
+.app-menu {
+    padding-right: 40px;
+}
+
+.modal-header {
+    background-color: rgba(179, 213, 192, 1);
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav .app-nav > .active > a:focus {
+    background-color: rgba(231, 231, 231, 0.3);
+    border-bottom-style: solid;
+    border-bottom-color: lightgray;
+}
+
+.list-catalogo {
+    margin-bottom: 120px;
+}
+
+.list-catalogo .app-pruebas-controls {
+    text-align: center;
+}
+
+.list-catalogo .panel-body {
+    background-image: url(../Images/catalog-icon.png);
+    background-size: 80px;
+    background-repeat: no-repeat;
+    background-position:top right;
+}
+
+.container-prueba {
+    display: none;
+}
+
+.InfoText {
+    color: blue;
+}
+
+.text-danger {
+    color: red;
+}
+
+.centered-h {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+    margin-bottom: 120px;
+    margin-top: 100px;
+}
+
+
+/*
+ ASP.Net GridView-Paging */
+.pagination-ys {
+    /*display: inline-block;*/
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.pagination-ys table > tbody > tr > td {
+    display: inline;
+}
+
+    .pagination-ys table > tbody > tr > td > a,
+    .pagination-ys table > tbody > tr > td > span {
+        position: relative;
+        float: left;
+        padding: 8px 12px;
+        line-height: 1.42857143;
+        text-decoration: none;
+        color: #dd4814;
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        margin-left: -1px;
+    }
+
+    .pagination-ys table > tbody > tr > td > span {
+        position: relative;
+        float: left;
+        padding: 8px 12px;
+        line-height: 1.42857143;
+        text-decoration: none;
+        margin-left: -1px;
+        z-index: 2;
+        color: #aea79f;
+        background-color: #f5f5f5;
+        border-color: #dddddd;
+        cursor: default;
+    }
+
+    .pagination-ys table > tbody > tr > td:first-child > a,
+    .pagination-ys table > tbody > tr > td:first-child > span {
+        margin-left: 0;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+
+    .pagination-ys table > tbody > tr > td:last-child > a,
+    .pagination-ys table > tbody > tr > td:last-child > span {
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+
+    .pagination-ys table > tbody > tr > td > a:hover,
+    .pagination-ys table > tbody > tr > td > span:hover,
+    .pagination-ys table > tbody > tr > td > a:focus,
+    .pagination-ys table > tbody > tr > td > span:focus {
+        color: #97310e;
+        background-color: #eeeeee;
+        border-color: #dddddd;
+    }
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    height: 320px;
+    margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 320px;
+    background-color: #ff0000;
+}
+
+.carousel-inner {
+    height: 320px;
+}
+
+    .carousel-inner > .item > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        height: 320px;
+    }
+
+.navbar-nav {
+    font-size: 16px;
+}
+
+.inset {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.6), 0 1px 1px rgba(0,0,0,0.1);
+    background-color: transparent !important;
+    z-index: 999;
+}
+
+.empty-section {
+    height: 20px;
+}
+
+/*-------
+
+   Small footer
+
+-------*/
+.mbr-small-footer {
+    background: #323232;
+    color: #acacac;
+    font-size: 0.8125rem;
+    padding: 1.75rem 0;
+}
+
+    .mbr-small-footer p {
+        margin-bottom: 0;
+    }
+
+    .mbr-small-footer a {
+        color: #c0a375;
+    }
+
+        .mbr-small-footer a:hover {
+            text-decoration: none;
+        }
+
+/*-------
+
+   Footer
+
+-------*/
+.mbr-footer {
+    color: #fff;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+@media (min-width: 1280px) {
+    .mbr-footer {
+        padding-left: 6.25rem;
+        padding-right: 6.25rem;
+    }
+}
+
+.mbr-footer > .row, .mbr-footer > .container > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+    .mbr-footer > .row > div, .mbr-footer > .container > .row > div {
+        padding-bottom: 40px;
+    }
+
+        .mbr-footer > .row > div:last-child, .mbr-footer > .container > .row > div:last-child {
+            padding-bottom: 0;
+        }
+
+.mbr-footer > .container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media (min-width: 768px) {
+    .mbr-footer > .row > div:nth-child(2n+1) {
+        clear: left;
+    }
+
+    .mbr-footer > .row > div:nth-last-child(-1n+2) {
+        padding-bottom: 0;
+    }
+
+    .mbr-footer > .container > .row > div {
+        clear: none !important;
+        padding-bottom: 0 !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .mbr-footer > .row > div {
+        clear: none !important;
+        padding-bottom: 0 !important;
+    }
+}
+
+.mbr-footer p a, .mbr-footer ul a {
+    color: #c0a375;
+}
+
+    .mbr-footer p a:hover, .mbr-footer ul a:hover {
+        text-decoration: none;
+    }
+
+.mbr-footer .btn-black {
+    background-color: #242424;
+    border-color: #242424;
+}
+
+    .mbr-footer .btn-black.disabled, .mbr-footer .btn-black[disabled], .mbr-footer .btn-black:hover {
+        background-color: #1a1a1a !important;
+        border-color: #1a1a1a !important;
+    }
+
+.mbr-footer .mbr-map {
+    height: 18.75rem;
+}
+
+.mbr-footer form .form-control-label {
+    font-size: 0.875rem;
+    position: relative;
+}
+
+.mbr-footer form .form-control {
+    background: none;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 0.875rem;
+    min-height: 3.2em;
+    padding: 0.5em 1em 0.5em;
+}
+
+.mbr-footer-content h1, .mbr-footer-content h2, .mbr-footer-content h3, .mbr-footer-content h4,
+.mbr-footer-content p strong, .mbr-footer-content strong, .mbr-footer .mbr-contacts h1, .mbr-footer .mbr-contacts h2, .mbr-footer .mbr-contacts h3, .mbr-footer .mbr-contacts h4,
+.mbr-footer .mbr-contacts p strong, .mbr-footer .mbr-contacts strong {
+    color: #7c7c7c;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.3;
+    margin-bottom: 1.875em;
+}
+
+.mbr-footer-content p strong, .mbr-footer-content strong, .mbr-footer .mbr-contacts p strong, .mbr-footer .mbr-contacts strong {
+    display: inline-block;
+}
+
+.mbr-footer-content p, .mbr-footer .mbr-contacts p {
+    color: #fff;
+    font-size: 0.875rem;
+    margin-bottom: 0;
+}
+
+.mbr-footer-content ul, .mbr-footer .mbr-contacts ul {
+    line-height: 1.8;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mbr-footer-content li, .mbr-footer .mbr-contacts li {
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+    color: #bcbcbc;
+    display: block;
+    font-family: "Raleway";
+    font-size: 0.875rem;
+    line-height: 1.8;
+    overflow: hidden;
+    padding: 0.72em 0;
+    padding-left: 1.8em;
+    position: relative;
+    width: 100%;
+}
+
+    .mbr-footer-content li:last-child, .mbr-footer .mbr-contacts li:last-child {
+        border-bottom: 0;
+    }
+
+    .mbr-footer-content li::before, .mbr-footer .mbr-contacts li::before {
+        background: #c0a375;
+        content: "";
+        height: 0.36em;
+        left: 0;
+        margin-top: -0.18em;
+        position: absolute;
+        top: 50%;
+        width: 0.36em;
+    }
+
+    .mbr-footer-content li a, .mbr-footer .mbr-contacts li a {
+        color: #fff;
+        -webkit-transition: color .3s ease;
+        -moz-transition: color .3s ease;
+        transition: color .3s ease;
+    }
+
+        .mbr-footer-content li a:hover, .mbr-footer .mbr-contacts li a:hover {
+            color: #c0a375;
+        }
+
+.footer1 ul {
+    margin-top: -13px;
+}
+
+.footer4 > .container > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+    .footer4 > .container > .row > div > .row > div:first-child {
+        padding-bottom: 40px;
+    }
+
+        .footer4 > .container > .row > div > .row > div:first-child:last-child {
+            padding-bottom: 0;
+        }
+
+@media (min-width: 544px) {
+    .footer4 > .container > .row > div, .footer4 > .container > .row > div > .row > div {
+        clear: none !important;
+        padding-bottom: 0 !important;
+    }
+}
+
+fieldset.form-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow: 0px 0px 0px 0px #000;
+    box-shadow: 0px 0px 0px 0px #000;
+}
+fieldset {
+    margin-bottom:10px;
+}
+
+legend.form-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
+/*--------------------------------------------------------------------------
+  Navbar Style
+--------------------------------------------------------------------------*/
+.navbar {
+    border-bottom-left-radius: 0; /*Change bootstrap default border-radius for menu*/
+}
+
+@media(min-width:768px) {
+    .navbar .navbar-brand {
+        width: 224px; /*Change the width of .navbar-brand to center text and align with .sider-navbar border-right*/
+        text-align: center;
+    }
+}
+/*--------------------------------------------------------------------------
+  Side Navigation
+--------------------------------------------------------------------------*/
+@media(min-width:768px) {
+    .sider-navbar {
+        position: fixed;
+        top: 71px; /*Change to reposition .sider-navbar from top*/
+        left: 225px;
+        width: 225px;
+        margin-left: -225px;
+        border-right: 1px solid #E7E7E7; /*Change for right side border color*/
+        border-radius: 0;
+        overflow-y: auto;
+        background: #F8F8F8; /*Change for background color*/
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+    }
+
+        .sider-navbar li.sider-menu {
+        }
+
+            .sider-navbar li.sider-menu ul {
+                width: 225px;
+            }
+
+                .sider-navbar li.sider-menu > ul > li,
+                .sider-navbar li.sider-menu ul li ul li {
+                    border-top: 1px solid #E7E7E7; /*Change for .sider-menu border color*/
+                    -webkit-transition: all 0.3s ease-out;
+                    transition: all 0.3s ease-out;
+                }
+
+                    .sider-navbar li.sider-menu > ul > li:last-child {
+                        border-bottom: 1px solid #E7E7E7; /*Change for .sider-menu border color*/
+                    }
+
+                    .sider-navbar li.sider-menu > ul > li.active,
+                    .sider-navbar li.sider-menu > ul > li:hover,
+                    .sider-navbar li.sider-menu ul li ul li:hover {
+                        border-right: 6px solid #dddddd;
+                    }
+
+                    .sider-navbar li.sider-menu ul li ul li:hover {
+                        background: #FFFFFF; /*Change for .sider-menu border color*/
+                    }
+
+                .sider-navbar li.sider-menu ul li a {
+                    outline: none;
+                    padding: 15px;
+                }
+}
+
+.sider-navbar li.sider-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+    .sider-navbar li.sider-menu ul li a {
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+        color: #5E5E5E; /*Change for .sider-menu color*/
+    }
+
+    .sider-navbar li.sider-menu ul li ul {
+        background-color: #f3f3f3; /*Change for .sider-menu background-color*/
+    }
+/*--------------------------------------------------------------------------
+  Profile container
+  Thanks to keenthemes' bootstrap snippet for a starting point for the styles
+  http://bootsnipp.com/snippets/featured/user-profile-sidebar 
+--------------------------------------------------------------------------*/
+#profile {
+}
+
+.profile-userpic img {
+    float: none;
+    margin: 12px auto 0;
+    padding: 6px;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+    border-left: 4px solid #333333;
+    border-right: 4px solid #333333;
+}
+
+.profile-usertitle {
+    text-align: center;
+    margin-top: 16px;
+    color: #333333;
+}
+
+.profile-usertitle-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.profile-usertitle-title {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+/*Hide profile picture on smaller devices*/
+@media(max-width:768px) {
+    #profile {
+        display: none;
+    }
+}
+/*--------------------------------------------------------------------------
+  Page Keeper
+  Setup layout so the main content will be to the right of .sider-navbar
+--------------------------------------------------------------------------*/
+@media(min-width:768px) {
+    #page-keeper {
+        width: 100%;
+        padding: 10px 10px 10px 225px;
+    }
+}
+
+
+
+
+.container {
+    padding: 5%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+p,
+ul,
+ol,
+form,
+table,
+address {
+    margin-top: 0;
+    margin-bottom: 20px;
+    margin-bottom: 2rem;
+}
+@media print {
+
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+        float: left;
+    }
+
+    .col-sm-12 {
+        width: 100%;
+    }
+
+    .col-sm-11 {
+        width: 91.66666666666666%;
+    }
+
+    .col-sm-10 {
+        width: 83.33333333333334%;
+    }
+
+    .col-sm-9 {
+        width: 75%;
+    }
+
+    .col-sm-8 {
+        width: 66.66666666666666%;
+    }
+
+    .col-sm-7 {
+        width: 58.333333333333336%;
+    }
+
+    .col-sm-6 {
+        width: 50%;
+    }
+
+    .col-sm-5 {
+        width: 41.66666666666667%;
+    }
+
+    .col-sm-4 {
+        width: 33.33333333333333%;
+    }
+
+    .col-sm-3 {
+        width: 25%;
+    }
+
+    .col-sm-2 {
+        width: 16.666666666666664%;
+    }
+
+    .col-sm-1 {
+        width: 8.333333333333332%;
+    }
+}
+
+.alarma {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-size: 32px 35px;
+    background-position: center center;
+    vertical-align: middle;
+    line-height: 32px;
+    box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+    margin-left: 5px;
+}
+
+.valor-alarma {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+    padding-left: 3px;
+}

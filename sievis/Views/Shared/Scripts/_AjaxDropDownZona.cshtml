@@ -1,0 +1,31 @@
+﻿@using Resources;
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#Gerencia_id").change(function () {
+            $("#Zona_id").empty();
+            $("#Subestacion_id").empty();
+            var Gerencia_id = $("#Gerencia_id").val();
+            if (!Gerencia_id) return;
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetZonaByGerenciaId", "Equipo", null)',
+                dataType: 'json',
+                data: { Gerencia_id: Gerencia_id},
+                success: function (zonas) {
+                    $("#Zona_id").append('<option value="">- Seleccionar Zona -</option>');
+                    $.each(zonas, function (i, zona) {
+                        $("#Zona_id").append('<option value="' + zona.id + '">' + zona.nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+                }
+            });
+            return false;
+        });
+
+    });
+</script>

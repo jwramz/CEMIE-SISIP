@@ -1,0 +1,51 @@
+﻿@model sievis.Models.Prueba
+
+@{
+    ViewBag.Title = "Agregar Pruebas";
+    Layout = "~/Views/Shared/_LayoutMLP.cshtml";
+
+    //int _equipoId = Convert.ToInt32(Request["EquipoId"]);
+    //int _pruebaId = Convert.ToInt32(Request["PruebaId"]);
+}
+
+@*@using (Html.BeginForm("Datos", "Pruebas", new { _equipoId = _equipoId, _pruebaId = _pruebaId }, FormMethod.Post,
+    new { id = "frmPrueba", @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))*@
+
+@*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmPrueba" }))*@
+@using (Html.BeginForm())
+{
+
+    @*@Html.Hidden("_equipoId", _equipoId)
+    @Html.Hidden("_pruebaId", _pruebaId)*@
+    @Html.AntiForgeryToken()
+
+    <div id="_Prueba" class="container-prueba">
+        @Html.Partial("_Prueba", Model)
+    </div>
+    <div id="_InspeccionVisual_A" class="container-prueba">
+        @Html.Partial("_InspeccionVisual_A", Model)
+    </div>
+    <div id="_InspeccionVisual_B" class="container-prueba">
+        @Html.Partial("_InspeccionVisual_B", Model)
+    </div>
+    <div id="_InspeccionVisual_C" class="container-prueba">
+        @Html.Partial("_InspeccionVisual_C", Model)
+    </div>
+    <div id="_GabineteCentralizador" class="container-prueba">
+        @Html.Partial("_GabineteCentralizador", Model)
+    </div>
+    <div id="_PruebaDeRutina" class="container-prueba">
+        @Html.Partial("_PruebaDeRutina", Model)
+    </div>
+    <div id="_PruebaEspecial" class="container-prueba">
+        @Html.Partial("_PruebaEspecial", Model)
+    </div>
+}
+
+@Html.Partial("_initKendoGrid")
+
+<script type="text/javascript">
+    showContainerPrueba('#_Prueba', '#_Prueba_li');
+      
+</script>
+

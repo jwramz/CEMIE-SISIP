@@ -1,0 +1,1194 @@
+﻿@model sievis.Models.Prueba
+
+<div class="panel panel-default">
+    <div class="panel-heading app-panel-heading">
+        <!-- Título-Guardar -->
+        <div class="row">
+            <div class="col-md-10">
+                <h4>Inspección Visual</h4>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group col-md-5">
+                    <button type="submit" class="btn btn-success">
+                        Guardar <span class="fa fa-floppy-o"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--panel-body-->
+    <div class="panel-body">
+
+        <!-- Fases -->
+        <ul class="col-md-12 nav nav-tabs">
+            <li>
+                <a href="#" onclick="showInspeccionVisual('#_InspeccionVisual_A');">Fase A</a>
+            </li>
+            <li class="">
+                <a href="#" onclick="showInspeccionVisual('#_InspeccionVisual_B');">Fase B</a>
+            </li>
+            <li class="active">
+                <a href="#" onclick="showInspeccionVisual('#_InspeccionVisual_C');">Fase C</a>
+            </li>
+            <li class="gabinete_centralizador">
+                <a href="#" onclick="showInspeccionVisual('#_GabineteCentralizador');">Gabinete Centralizador</a>
+            </li>
+        </ul>
+
+        <!-- Campos -->
+        <div id="formInspeccionVisual" class="form g-top-margin">
+            @Html.Partial("_ValidationSummary")
+
+            @Html.HiddenFor(model => model.IVC.id)
+            @Html.HiddenFor(model => model.IVC.Prueba_id)
+            @Html.HiddenFor(model => model.IVC.ca.id)
+            @Html.HiddenFor(model => model.IVC.gc.id)
+            @Html.HiddenFor(model => model.GCE.id)
+            @Html.HiddenFor(model => model.IVC.coc.id)
+            @Html.HiddenFor(model => model.IVC.cv.id)
+            @Html.HiddenFor(model => model.IVC.d.id)
+            @Html.HiddenFor(model => model.IVC.mh.id)
+            @Html.HiddenFor(model => model.IVC.mn.id)
+            @Html.HiddenFor(model => model.IVC.mr.id)
+            @Html.HiddenFor(model => model.IVC.p.id)
+
+            <div class="row" style="margin-top:80px">
+                <div class="col-md-4">
+                    @*<div class="form-group">
+                    @Html.LabelFor(model => model.IVC.fecha_inspeccion, "Fecha de Inspección", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.IVC.fecha_inspeccion, new { htmlAttributes = new { @class = "form-control datefield", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.IVC.fecha_inspeccion, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IVC.num_operaciones, "Número de operaciones", htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.IVC.num_operaciones, new { htmlAttributes = new { @maxlength = "5", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IVC.num_operaciones, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                    @Html.LabelFor(model => model.IVC.existe_gabinete, "Existe Gabinete", htmlAttributes: new { @class = "control-label col-md-6 text-left" })
+                    <div class="col-md-6" >
+                        <div class="checkbox text-center">
+
+                            @Html.EditorFor(model => model.IVC.existe_gabinete)
+                            @Html.ValidationMessageFor(model => model.IVC.existe_gabinete, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>*@
+                </div>
+                <div class="col-md-8"></div>
+            </div>
+
+            @*<div class="form-group">
+            @Html.LabelFor(model => model.IVC.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IVC.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IVC.descripcion_ai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IVC.Inspeccion_visual_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IVC.Inspeccion_visual_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IVC.Inspeccion_visual_id, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+            <table class="table g-top-margin">
+                <caption class="table caption">Secci&oacute;n Inspecci&oacute;n Visual</caption>
+                <thead class="thead-default">
+                    <tr>
+                        <th width="10%" class="text-center">
+                            Par&aacute;metro de condici&oacute;n
+                        </th>
+                        <th width="30%" class="text-center">
+                            Par&aacute;metro de sub-condici&oacute;n<br /> (Variable)
+                        </th>
+                        <th width="10%" class="text-center">
+                            Verificaci&oacute;n <br />(Existe/No existe)
+                        </th>
+                        <th>
+                            Observaciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="6"><strong>Aisladores</strong></td>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.corrosion, htmlAttributes: new { @class = "control-label" })*@
+                            Corrosi&oacute;n
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.ca.corrosion)
+                                @Html.ValidationMessageFor(model => model.IVC.ca.corrosion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.ca.observaciones_corrosion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.ca.observaciones_corrosion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.roturas, htmlAttributes: new { @class = "control-label" })*@
+                            Roturas
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.ca.roturas)
+                                @Html.ValidationMessageFor(model => model.IVC.ca.roturas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.ca.observaciones_roturas, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.ca.observaciones_roturas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.grietas, htmlAttributes: new { @class = "control-label" })*@
+                            Grietas
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.ca.grietas)
+                                @Html.ValidationMessageFor(model => model.IVC.ca.grietas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.ca.observaciones_grietas, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.ca.observaciones_grietas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.flemeo, htmlAttributes: new { @class = "control-label" })*@
+                            Marcas de flameo
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.ca.flameo)
+                                @Html.ValidationMessageFor(model => model.IVC.ca.flameo, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.ca.observaciones_flameo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.ca.observaciones_flameo, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.danio_cementado, htmlAttributes: new { @class = "control-label" })*@
+                            Da&ntilde;os en el cementado
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.ca.danio_cementado)
+                                @Html.ValidationMessageFor(model => model.IVC.ca.danio_cementado, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.ca.observaciones_cementado, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.ca.observaciones_cementado, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.danio iezasfijacion, htmlAttributes: new { @class = "control-label" })*@
+                            Da&ntilde;os en piezas de fijaci&oacute;n
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.ca.danio_piezasfijacion)
+                                @Html.ValidationMessageFor(model => model.IVC.ca.danio_piezasfijacion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.ca.observaciones_piezasfijacion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.ca.observaciones_piezasfijacion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="gabinetectrl_xfase_section">
+                        <td rowspan="10"><strong>Gabinete de control</strong></td>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.humedad, htmlAttributes: new { @class = "control-label" })*@
+                            Rastros de humedad en el interior del gabinete
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.humedad)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.humedad, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_humedad, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_humedad, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.roturas, htmlAttributes: new { @class = "control-label" })*@
+                            Roturas en el gabinete
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.roturas)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.roturas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_roturas, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_roturas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.grietas_sello, htmlAttributes: new { @class = "control-label" })*@
+                            Grietas en el sello del gabinete
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.grietas_sello)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.grietas_sello, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_grietas, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_grietas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.insectos, htmlAttributes: new { @class = "control-label" })*@
+                            Insectos en el interior del gabinete
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.insectos)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.insectos, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_insectos, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_insectos, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.desprendimiento intura, htmlAttributes: new { @class = "control-label" })*@
+                            Desprendimiento de pintura
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.desprendimiento_pintura)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.desprendimiento_pintura, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_pintura, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_pintura, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.corrosion_interna, htmlAttributes: new { @class = "control-label" })*@
+                            Evidencia de corrosi&oacute;n <strong>interna</strong> en el gabinete
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.corrosion_interna)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.corrosion_interna, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_corrosioninterna, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_corrosioninterna, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.corrosion_externa, htmlAttributes: new { @class = "control-label" })*@
+                            Evidencia de corrosi&oacute;n <strong>externa</strong> en el gabinete
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.corrosion_externa)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.corrosion_externa, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_corrosionexterna, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_corrosionexterna, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.corrosion_ctierra , htmlAttributes: new { @class = "control-label" })*@
+                            Corrosi&oacute;n en conexi&oacute;n a tierra
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.corrosion_conex_tierra)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.corrosion_conex_tierra, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_corrconx_tierra, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_corrconx_tierra, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.disparo1, htmlAttributes: new { @class = "control-label" })*@
+                            Monitoreo de la bobina de disparo 1
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.disparo1)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.disparo1, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_disparo1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_disparo1, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.disparo2, htmlAttributes: new { @class = "control-label" })*@
+                            Monitoreo de la bobina de disparo 2
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.disparo2)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.disparo2, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_disparo2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_disparo2, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+                        <td>
+                            &nbsp;
+                        </td>
+
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.cierre, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            Monitoreo de la bobina de cierre
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.gc.cierre)
+                                @Html.ValidationMessageFor(model => model.IVC.gc.cierre, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_cierre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_cierre, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="gabinetectrl_xfase_section">
+                        <td></td>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.cierre, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            Funcionamiento de la resistencia calefactora (al tacto)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.IVC.gc.resistencia_calefactora, new SelectList(ViewBag.ListaFuncionaNoFunciona, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IVC.gc.resistencia_calefactora, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.gc.observaciones_rcalecfactora, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.gc.observaciones_rcalecfactora, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><strong>Varillaje</strong></td>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.resistencialefactora, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            Desalineaci&oacute;n
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.cv.alineacion)
+                                @Html.ValidationMessageFor(model => model.IVC.cv.alineacion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.cv.observaciones_alineacion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.cv.observaciones_alineacion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.lubricacion , htmlAttributes: new { @class = "control-label" })*@
+                            Piezas fracturadas o rotas
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.cv.pzas_fracturadas_rotas)
+                                @Html.ValidationMessageFor(model => model.IVC.cv.pzas_fracturadas_rotas, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.cv.observaciones_pzafracrot, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.cv.observaciones_pzafracrot, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.lubricacion , htmlAttributes: new { @class = "control-label" })*@
+                            Corrosi&oacute;n
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.cv.corrosion)
+                                @Html.ValidationMessageFor(model => model.IVC.cv.corrosion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.cv.observaciones_corrosion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.cv.observaciones_corrosion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.lubricacion , htmlAttributes: new { @class = "control-label" })*@
+                            Condici&oacute;n de pernos
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.IVC.cv.condision_pernos, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IVC.cv.condision_pernos, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.cv.observaciones_pernos, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.cv.observaciones_pernos, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.lubricacion , htmlAttributes: new { @class = "control-label" })*@
+                            Lubricaci&oacute;n en varillaje y resortes. Existe grasa endurecida
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.cv.lubricacion)
+                                @Html.ValidationMessageFor(model => model.IVC.cv.lubricacion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.cv.observaciones_lubricacion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.cv.observaciones_lubricacion, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="6"><strong>Otros componentes</strong></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.corrosion_tubing , htmlAttributes: new { @class = "control-label" })*@
+                            Corrosi&oacute;n en tubing SF<sub>6</sub>
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.coc.corrosion_tubing)
+                                @Html.ValidationMessageFor(model => model.IVC.coc.corrosion_tubing, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.coc.observaciones_ctubing, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.coc.observaciones_ctubing, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.corrosion_ctierra , htmlAttributes: new { @class = "control-label" })*@
+                            Corrosi&oacute;n en conexi&oacute;n a tierra
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.coc.corrosion_ctierra)
+                                @Html.ValidationMessageFor(model => model.IVC.coc.corrosion_ctierra, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.coc.observaciones_ctierra, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.coc.observaciones_ctierra, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.ruido_audible , htmlAttributes: new { @class = "control-label" })*@
+                            Ruido audible proveniente de alguna secci&oacute;n del interruptor
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.coc.ruido_audible)
+                                @Html.ValidationMessageFor(model => model.IVC.coc.ruido_audible, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.coc.observaciones_ruidoaudible, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.coc.observaciones_ruidoaudible, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.LabelFor(model => model.IVC.vibracion_audible , htmlAttributes: new { @class = "control-label" })*@
+                            Vibraciones audibles
+                        </td>
+                        <td>
+                            <div class="checkbox text-center">
+                                @Html.EditorFor(model => model.IVC.coc.vibracion_audible)
+                                @Html.ValidationMessageFor(model => model.IVC.coc.vibracion_audible, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.EditorFor(model => model.IVC.coc.observaciones_vibracionaudible, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IVC.coc.observaciones_vibracionaudible, "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div id="densimetro_c">
+                <table class="table">
+                    <caption>SECCI&Oacute;N DENS&Iacute;METRO</caption>
+                    <thead class="thead-default">
+                        <tr>
+                            <th width="10%" class="text-center">
+                                Par&aacute;metro de condici&oacute;n
+                            </th>
+                            <th width="30%" class="text-center">
+                                Par&aacute;metro de sub-condici&oacute;n<br /> (Variable)
+                            </th>
+                            <th width="13%" class="text-center">
+                                Condición
+                            </th>
+                            <th>
+                                Observaciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="6">Dens&iacute;metro</td>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.carcasa , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado de la carcasa del dens&iacute;metro
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.d.carcasa, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.d.carcasa, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.d.carcasa, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.d.observaciones_carcasa, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.d.observaciones_carcasa, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.caratula , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado de la car&aacute;tula del dens&iacute;metro
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.d.caratula, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.d.caratula, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.d.caratula, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.d.observaciones_caratula, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.d.observaciones_caratula, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Condici&oacute;n de Aguja
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.d.condicion_aguja, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.d.caratula, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.d.condicion_aguja, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.d.observaciones_cond_aguja, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.d.observaciones_cond_aguja, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.escala , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado de la escala del dens&iacute;metro (que se puedan distinguir correctamente los colores de la escala)
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.d.escala, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.d.escala, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.d.escala, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.d.observaciones_escala, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.d.observaciones_escala, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nivel de Glicerina
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.d.nivel_glicerina, new SelectList(ViewBag.ListaEstadoBMNA, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IVC.d.nivel_glicerina, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.d.observaciones_nglicerina, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.d.observaciones_nglicerina, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="presostato_c">
+                <table class="table">
+                    <caption>SECCI&Oacute;N PRESOSTATO</caption>
+                    <thead class="thead-default">
+                        <tr>
+                            <th width="10%" class="text-center">
+                                Par&aacute;metro de condici&oacute;n
+                            </th>
+                            <th width="30%" class="text-center">
+                                Par&aacute;metro de sub-condici&oacute;n<br /> (Variable)
+                            </th>
+                            <th width="13%" class="text-center">
+                                Condición
+                            </th>
+                            <th>
+                                Observaciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="6">Presostato</td>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.carcasa , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado de la carcasa del presostato
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.p.carcasa, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.p.carcasa, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.p.carcasa, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.p.observaciones_carcasa, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.p.observaciones_carcasa, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.caratula , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado de la car&aacute;tula del presostato
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.p.caratula, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.p.caratula, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.p.caratula, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.p.observaciones_caratula, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.p.observaciones_caratula, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Condici&oacute;n de Aguja
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.p.condicion_aguja, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IVC.p.condicion_aguja, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.p.observaciones_cond_aguja, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.p.observaciones_cond_aguja, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.escala , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado de la escala del presostato (que se puedan distinguir correctamente los colores de la escala)
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.p.escala, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.p.escala, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.p.escala, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.p.observaciones_escala, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.p.observaciones_escala, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nivel de Glicerina
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.p.nivel_glicerina, new SelectList(ViewBag.ListaEstadoBMNA, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IVC.p.nivel_glicerina, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.p.observaciones_nglicerina, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.p.observaciones_nglicerina, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="ME_c">
+                <table class="table">
+                    <caption>MECANISMO DE OPERACI&Oacute;N</caption>
+                    <thead class="thead-default">
+                        <tr>
+                            <th width="10%" class="text-center">
+                                Par&aacute;metro de condici&oacute;n
+                            </th>
+                            <th width="30%" class="text-center">
+                                Par&aacute;metro de sub-condici&oacute;n (Variable)
+                            </th>
+                            <th width="13%" class="text-center">
+                                Condición
+                            </th>
+                            <th>
+                                Observaciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr class="MR">
+                            <td rowspan="3">Mecanismo de resortes</td>
+                            <td>
+                                @* @Html.LabelFor(model => model.IVC.alineacion_resortes , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Desalineaci&oacute;n de resortes
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mr.alineacion_resortes, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.mr.alineacion_resortes, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.alineacion_resortes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mr.observaciones_alin_resortes, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.observaciones_alin_resortes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="MR">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.amortiguadores , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Amortiguadores (que no tengan fugas)
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mr.amortiguadores, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mr.amortiguadores, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.amortiguadores, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mr.observaciones_amortiguadores, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.observaciones_amortiguadores, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="MR">
+                            <td>
+                                Corrosi&oacute;n o desprendimiento de pintura <text class="alert-warning"><strong></strong></text>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mr.corros_desp_pintura, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.corros_desp_pintura, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mr.observaciones_cordesp_pintura, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.observaciones_cordesp_pintura, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="MR_c">
+                            <td>&nbsp;</td>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.motor , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado del motor <text class="alert-warning"><strong>*</strong></text>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mr.motor, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mr.motor, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.motor, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mr.observaciones_motor, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mr.observaciones_motor, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="MN">
+                            <td rowspan="4">Mecanismo neum&aacute;tico</td>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.presion_aire , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Presi&oacute;n de aire
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mn.presion_aire, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mn.presion_aire, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.presion_aire, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mn.observaciones_presionaire, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.observaciones_presionaire, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="MN">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.fuga_aire , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Fuga de aire audible
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mn.fuga_aire, new SelectList(ViewBag.ListaExisteNoExiste, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mn.fuga_aire, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.fuga_aire, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mn.observaciones_fugaaire, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.observaciones_fugaaire, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="MN">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.valvulas , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Revisi&oacute;n de v&aacute;lvulas
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mn.valvulas, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.mn.valvulas, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.valvulas, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mn.observaciones_valvulas, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.observaciones_valvulas, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MN">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.corrosion_mecanismo , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Corrosi&oacute;n del mecanismo
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mn.corrosion_mecanismo, new SelectList(ViewBag.ListaExisteNoExiste, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mn.corrosion_mecanismo, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.corrosion_mecanismo, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mn.observaciones_corrmecan, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mn.observaciones_corrmecan, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MH">
+                            <td rowspan="9">Mecanismo hidr&aacute;ulico</td>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.fuga_aceite , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Fugas de aceite (inspecci&oacute;n visual)
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mh.fuga_aceite, new SelectList(ViewBag.ListaExisteNoExiste, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mh.fuga_aceite, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.fuga_aceite, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mh.observaciones_fugaa, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.observaciones_fugaa, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MH">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.acumulador , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Corrosi&oacute;n en acumulador
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mh.acumulador, new SelectList(ViewBag.ListaExisteNoExiste, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mh.acumulador, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.acumulador, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mh.observaciones_acumulador, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.observaciones_acumulador, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MH">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.presion_aceite , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Presi&oacute;n aceite
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mh.presion_aceite, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.mh.presion_aceite, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.presion_aceite, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mh.observaciones_presiona, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.observaciones_presiona, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MH">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.unidad_control , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Inpecci&oacute;n visual de la unidad de control del mecanismo hidr&aacute;ulico
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mh.unidad_control, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.mh.unidad_control, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.unidad_control, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mh.observaciones_uctrl, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.observaciones_uctrl, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MH">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.valvulas , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Revisi&oacute;n de v&aacute;lvulas
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mh.valvulas, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mh.valvulas, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.valvulas, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mh.observaciones_valvulas, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.observaciones_valvulas, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="MH">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.burbujas_reservorio , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Existen burbujas en el reservorio de aceite
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mh.burbujas_reservorio, new SelectList(ViewBag.ListaExisteNoExiste, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.IVC.mh.burbujas_reservorio, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.burbujas_reservorio, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mh.observaciones_burbujasr, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.observaciones_burbujasr, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MH">
+                            <td>
+                                @*@Html.LabelFor(model => model.IVC.compresor , htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Estado del Compresor
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DropDownListFor(model => model.IVC.mh.compresor, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @* @Html.EditorFor(model => model.IVC.mh.compresor, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.compresor, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.IVC.mh.observaciones_compresor, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IVC.mh.observaciones_compresor, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <text class="alert-warning"><strong>*</strong> Se refiere a que no existan marcas de flameo y que no tenga oxidaci&oacute;n</text>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                </div>
+
+
+            </div>
+</div>
+
+@Html.Partial("_initJQueryDatePicker")
+

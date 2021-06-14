@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model sievis.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Cuenta de Usuario SIEVIS" ;
+}
+
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <div>
+        <h4>Configuración de la Cuenta del Usuario @User.Identity.GetUserName()</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Contraseña:</dt>
+            <dd>
+                [
+                @if (Model.HasPassword)
+            {
+                    @Html.ActionLink("Cambiar Tu Contraseña", "ChangePassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Create", "SetPassword")
+                }
+                ]
+            </dd>
+        </dl>
+    </div>
+</div>

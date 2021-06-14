@@ -1,0 +1,551 @@
+﻿@using Resources;
+@model sievis.Models.Equipo
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<div class="container">
+    <!-- Seccion 1 -->
+    <div class="text-center"><h2>Interruptor de Potencia</h2></div>
+    <div class="row g-top-margin">
+        <div class="panel panel-default">
+            <div class="panel-heading app-panel-heading"><h4>Datos de placa del Interruptor</h4></div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.id)
+
+                        <div class="row">
+                            <div class="col-md-8">
+
+                            </div>
+                            <div class="col-md-4 text-right">
+                                @Html.ActionLink("Pruebas", "Index", "Pruebas", new { EquipoId = Model.id }, new { @class = "btn btn-success btn-lg", @title = "Pruebas" })
+                                @Html.ActionLink("Listado", "Index", null, new { @class = "btn btn-success btn-lg" })
+                                <input type="submit" value="Guardar" class="btn btn-success btn-lg" />
+                            </div>
+                        </div>
+                        <fieldset>
+                            <legend>Datos del Equipo</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Gerencia_id, "Gerencia", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("Gerencia_id", null, "- Seleccionar Gerencia -", htmlAttributes: new { @class = "form-control btn-md" })
+                                            @Html.ValidationMessageFor(model => model.Gerencia_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Zona_id, "Zona", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("Zona_id", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Zona_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Subestacion_id, "Subestación", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("Subestacion_id", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Subestacion_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AplicacionInterruptor_id, "Aplicación del interruptor", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("AplicacionInterruptor_id", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.AplicacionInterruptor_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ns, "No. de Serie", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.ns, new { htmlAttributes = new { @maxlength = "20", @class = "form-control", id = "ns" } })
+                                            @Html.ValidationMessageFor(model => model.ns, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.anio_fabricacion, "Año de Fabricación", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(model => model.anio_fabricacion, new { @maxlength = "4", @class = "form-control", @type = "number" })
+                                            @Html.ValidationMessageFor(model => model.anio_fabricacion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <fieldset>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Marca_id, "Marca", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("Marca_id", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Marca_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Modelo_id, "Modelo/Tipo", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("Modelo_id", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Modelo_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Id_EquipoSAP, "ID Equipo SAP", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.Id_EquipoSAP, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Id_EquipoSAP, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.UbicaTecnica, "Ubicación Técnica", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.UbicaTecnica, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.UbicaTecnica, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.bahia, "Bahia", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.bahia, new { htmlAttributes = new { @maxlength = "5", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.bahia, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.fecha_puestaservicio, "Fecha de Puesta en Servicio", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.fecha_puestaservicio, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.fecha_puestaservicio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.fultimo_mantenimiento, "Fecha de Último Mantenimiento", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.fultimo_mantenimiento, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.fultimo_mantenimiento, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.tension_nominal, "Tensión Nominal", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                @*@Html.EditorFor(model => model.tension_nominal, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.DropDownList("tension_nominal", null, htmlAttributes: new { @class = "form-control" })
+                                                <span class="input-group-addon">kV</span>
+                                                @Html.ValidationMessageFor(model => model.tension_nominal, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.corriente_nominal, "Corriente Nominal", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                @*@Html.EditorFor(model => model.corriente_nominal, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.DropDownList("corriente_nominal", null, htmlAttributes: new { @class = "form-control" })
+                                                <span class="input-group-addon">A</span>
+                                                @Html.ValidationMessageFor(model => model.corriente_nominal, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.corriente_cc, "Corriente de Corto Circuito", htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                @*@Html.EditorFor(model => model.corriente_cc, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.DropDownList("corriente_cc", null, htmlAttributes: new { @class = "form-control" })
+                                                <span class="input-group-addon">kA</span>
+                                                @Html.ValidationMessageFor(model => model.corriente_cc, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.altitud_instalacion, "Altitud de instalación", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.altitud_instalacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                <span class="input-group-addon">msnm</span>
+                                                @Html.ValidationMessageFor(model => model.altitud_instalacion, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.nivel_contaminacion, "Nivel de contaminación", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("nivel_contaminacion", (List<SelectListItem>)(ViewBag.ListaNivelContaminacion), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.nivel_contaminacion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.distancia_fuga, "Distancia de fuga", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.distancia_fuga, new { htmlAttributes = new { @class = "form-control" } })
+                                                <span class="input-group-addon">mm/kV</span>
+                                                @Html.ValidationMessageFor(model => model.distancia_fuga, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group ">
+                                        @Html.LabelFor(model => model.tipo_disparo, "Tipo de disparo", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("tipo_disparo", (List<SelectListItem>)(ViewBag.ListaTipoDisparo), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.tipo_disparo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.comando_cierre, "Comando de cierre", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("comando_cierre", (List<SelectListItem>)(ViewBag.ListaComandoCierre), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.comando_cierre, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.altitud_operacion, "Altitud de Operación", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.altitud_operacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                <span class="input-group-addon">msnm</span>
+                                                @Html.ValidationMessageFor(model => model.altitud_operacion, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.dis_estructural, "Diseño Estructural", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("dis_estructural", (List<SelectListItem>)(ViewBag.ListaDisenioEstructural), htmlAttributes: new { @class = "form-control", @onchange = "OcultaConfCamaras(this.value)" })
+                                            @Html.ValidationMessageFor(model => model.dis_estructural, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Mecanismo_id, "Tipo de Mecanismo", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("Mecanismo_id", null, "- Seleccionar Mecanismo -", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Mecanismo_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.disponibilidad_refaccion_st, "Disponibilidad de Refacciones", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("disponibilidad_refaccion_st", (List<SelectListItem>)(ViewBag.ListaDisponibilidad), htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div>@Html.ValidationMessageFor(model => model.disponibilidad_refaccion_st, "", new { @class = "text-danger" })</div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.res_estatica_contactos, "Resistencia estática de contactos", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.res_estatica_contactos, new { htmlAttributes = new { @class = "form-control" } })
+                                                <span class="input-group-addon">µΩ</span>
+                                                @Html.ValidationMessageFor(model => model.res_estatica_contactos, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.bil, "Nivel de Aislamiento al Impulso por Rayo", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                @Html.DropDownList("bil", null, htmlAttributes: new { @class = "form-control" })
+                                                <span class="input-group-addon">NBAI</span>
+                                                @Html.ValidationMessageFor(model => model.bil, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.voltajeNominalBobina, "Voltaje Nominal de la Bobina Apertura", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                @Html.DropDownList("voltajeNominalBobina", (List<SelectListItem>)(ViewBag.ListaVoltajeNominalBobina), htmlAttributes: new { @class = "form-control" })
+                                                <span class="input-group-addon">VDC</span>
+                                            </div>
+                                            <div>@Html.ValidationMessageFor(model => model.voltajeNominalBobina, "", new { @class = "text-danger" })</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.presionSF6, "Presión de operación SF6 @20°C", htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.presionSF6, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.presionSF6, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.tipo_unidades_presion, "Unidad de presión", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("tipo_unidades_presion", (List<SelectListItem>)(ViewBag.ListaUnidadPresion), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.tipo_unidades_presion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.voltajeNominalBobinaCierre, "Voltaje Nominal de la Bobina Cierre", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(model => model.voltajeNominalBobinaCierre, (List<SelectListItem>)(ViewBag.ListaVoltajeNominalBobina), htmlAttributes: new { @class = "form-control" })
+                                                <span class="input-group-addon">VDC</span>
+                                            </div>
+                                            <div>@Html.ValidationMessageFor(model => model.voltajeNominalBobinaCierre, "", new { @class = "text-danger" })</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.presion_alarma, "Presión de Alarma SF6 @20°C", htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.presion_alarma, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                            <div>@Html.ValidationMessageFor(model => model.presion_alarma, "", new { @class = "text-danger" })</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.tipo_unidades_presion_alarma, "Unidad de presión", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("tipo_unidades_presion_alarma", (List<SelectListItem>)(ViewBag.ListaUnidadPresion), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.tipo_unidades_presion_alarma, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.instrumento_medicionSF6, "Instrumento de Medición SF6", htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(model => model.instrumento_medicionSF6, (List<SelectListItem>)(ViewBag.instrumento_medicionSF6_list), new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.instrumento_medicionSF6, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.existe_gabinete_centralizador, "¿Existe Gabinete Centralizador?", htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-6">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.existe_gabinete_centralizador)
+                                                @Html.ValidationMessageFor(model => model.existe_gabinete_centralizador, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.existe_gabinetectrl_xfase, "¿Existe Gabinete de Control por Fase?", htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-6">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.existe_gabinetectrl_xfase)
+                                                @Html.ValidationMessageFor(model => model.existe_gabinetectrl_xfase, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                        <div class="row" id="cuentaCon">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.interruptor_contiene, "Interruptor cuenta con", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("interruptor_contiene", (List<SelectListItem>)(ViewBag.ListaInterruptorContiene), htmlAttributes: new { @class = "form-control", @onchange = "OcultaSeccion(this.value)" })
+                                            @Html.ValidationMessageFor(model => model.interruptor_contiene, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="resistencia" class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.interruptor_resistencia, "Resistencia nominal", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.interruptor_resistencia, new { htmlAttributes = new { @class = "form-control" } })
+                                                <span class="input-group-addon">Ω</span>
+                                                @Html.ValidationMessageFor(model => model.interruptor_resistencia, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="capacitor" class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.interruptor_capacitor, "Capacitancia del capacitor", htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.interruptor_capacitor, new { htmlAttributes = new { @class = "form-control" } })
+                                                <span class="input-group-addon">pF</span>
+                                                @Html.ValidationMessageFor(model => model.interruptor_capacitor, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="col-md-4">
+                                    <div id="configCamaras" class="form-group">
+                                        @Html.LabelFor(model => model.conf_camaras, "Configuración de Cámaras", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("conf_camaras", (List<SelectListItem>)(ViewBag.ConfiguracionCamaras), htmlAttributes: new { @class = "form-control", onchange = "conf_camaras_change(event);" })
+                                            @Html.ValidationMessageFor(model => model.conf_camaras, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 text-center">
+                                    <img id="imgTanque" class="img-thumbnail" width="150" />
+                                </div>
+
+                            </fieldset>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("~/Views/Shared/Scripts/_AjaxDropDownZona.cshtml");
+@Html.Partial("~/Views/Shared/Scripts/_AjaxDropDownSubestacion.cshtml");
+@Html.Partial("~/Views/Shared/Scripts/_AjaxDropDownModelo.cshtml");
+@Html.Partial("~/Views/Shared/Scripts/_EquipoScript.cshtml");
+@Html.Partial("~/Views/Shared/Scripts/_AjaxDropDownNBAI.cshtml");
+@Html.Partial("~/Views/Shared/Scripts/_AjaxTextBox.cshtml");
+
+<script type="text/javascript">
+    /* startup */
+    (function () {
+        setTimeout(function () {
+            tanqueMuerto();
+            conf_camaras_change();
+            OcultaSeccion($('#interruptor_contiene').val());
+            OcultaConfCamaras($('#dis_estructural').val());
+
+        }, 200)
+    })();
+</script>

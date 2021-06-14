@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<!-- Carousel -->
+<div id="IndexCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#IndexCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#IndexCarousel" data-slide-to="1"></li>
+        <li data-target="#IndexCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img class="first-slide" src="~/Images/b01.jpg" alt="First slide">
+        </div>
+        <div class="item">
+            <img class="second-slide" src="~/Images/b02.jpg" alt="Second slide">
+        </div>
+        <div class="item">
+            <img class="third-slide" src="~/Images/b03.jpg" alt="Third slide">
+        </div>
+    </div>
+    <a class="left carousel-control" href="#IndexCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+    </a>
+    <a class="right carousel-control" href="#IndexCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+    </a>
+</div>
+
+<!-- Images -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="~/Images/competative.png" width="209" height="209"/>            
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="~/Images/Consulting.png" width="209" height="209" />
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="~/Images/images.png" width="209" height="209"/>
+        </div>
+    </div>
+</div>

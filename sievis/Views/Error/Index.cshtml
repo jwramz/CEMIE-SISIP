@@ -1,0 +1,33 @@
+﻿@model IEnumerable<sievis.Models.AppUsers>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+    string  actionName = ViewBag.actionName,
+            controllerName = ViewBag.controllerName;
+    List<string> ErrorList = ViewBag.ErrorList as List<string>;
+}
+
+<div class="gridCatalogContainer container">
+    <h2>Error List</h2>
+    <div class="text-right">
+        <span class="fa fa-home fa-lg" aria-hidden="true"></span>
+        @Html.ActionLink(" Regreasar", actionName, controllerName, new { }, new { @class = "" })
+    </div>
+
+    <table id="gridCatalog" class="gridKendo">
+        <tr>
+            <th>Error</th>
+        </tr>
+        @foreach (var item in ErrorList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item)
+                </td>
+            </tr>
+        }
+    </table>  
+</div>
+
+@Html.Partial("_initKendoGrid")

@@ -1,0 +1,777 @@
+﻿
+@using sievis.Models;
+@model sievis.Models.Prueba
+
+@{ 
+    Equipo equipo = (Equipo)ViewBag.Equipo;
+    var prueba = Model.PE;
+}
+
+<div class="panel panel-default" style="margin-bottom:300px;">
+    <div class="panel-heading app-panel-heading">
+        <!-- Título-Guardar -->
+        <div class="row">
+            <div class="col-md-9">
+                <h4>Datos de la Prueba</h4>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group col-md-4">
+                    @Html.ActionLink("Reporte", "Reporte", "Pruebas", new { EquipoId = Model.Equipo_id, PruebaId = Model.id }, new { @class = "btn btn-success" })
+                </div>                
+                <div class="form-group col-md-4">
+                    @Html.ActionLink("Pruebas", "Index", "Pruebas", new { EquipoId = Model.Equipo_id }, new { @class = "btn btn-success", @title = "Pruebas" })
+                </div>
+                <div class="form-group col-md-4">                    
+                    <button type="submit" class="btn btn-success">
+                        Guardar <span class="fa fa-floppy-o"></span>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body form-horizontal">
+        <div class="col-md-1">&nbsp</div>
+        <div class="col-md-6 app-pruebas-controls">
+            @Html.Partial("_ValidationSummary")
+
+            @Html.Hidden("id", Model.id)
+            @Html.Hidden("Equipo_id", Model.Equipo_id)            
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.Label("Gerencia", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <input id="vGerencias" class="form-control" disabled="disabled" value="@equipo.Subestacion.Zona.Gerencia.nombre" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Zona", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <input id="vZonas" class="form-control" disabled="disabled" value="@equipo.Subestacion.Zona.nombre" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Subestación", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <input id="vSubestaciones" class="form-control" disabled="disabled" value="@equipo.Subestacion.nombre" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Bahia", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <input id="vBahia" class="form-control" disabled="disabled" value="@equipo.bahia" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Número de Serie", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <input id="vNumSerie" class="form-control" disabled="disabled" value="@equipo.ns" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fecha_prueba, "Fecha de la Prueba", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.fecha_prueba, new { htmlAttributes = new { @class = "form-control datefield", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.fecha_prueba, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fecha_inspeccion, "Fecha de Inspección", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.fecha_inspeccion, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.fecha_inspeccion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.instrumento_medicionSF6, "Instrumento de Medición SF6", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @*@Html.DropDownListFor(model => model.instrumento_medicionSF6, (List<SelectListItem>)(ViewBag.instrumento_medicionSF6_list), new { @class = "form-control", disabled = "disabled",@Value = equipo.instrumento_medicionSF6 })*@
+                        <input id="instrumentoMedicionSF6" class="form-control" disabled="disabled" value=@(equipo.instrumento_medicionSF6 == "D" ? "Densimetro" : "Presostato") />
+                        @Html.ValidationMessageFor(model => model.instrumento_medicionSF6, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.instrumento_medicionSF6, new { @Value = equipo.instrumento_medicionSF6 })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.existe_gabinete_centralizador, "¿Existe Gabinete Centralizador?", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            <input @(Convert.ToBoolean(equipo.existe_gabinete_centralizador) == true ? "checked='checked'" : string.Empty) id="existe_gabinete_centralizador" name="existe_gabinete_centralizador" type="checkbox" value="true" disabled="disabled">
+                            @Html.ValidationMessageFor(model => model.existe_gabinete_centralizador, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.existe_gabinetectrl_xfase, "¿Existe Gabinete de Control por Fase?", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            <input @(Convert.ToBoolean(equipo.existe_gabinetectrl_xfase) == true ? "checked='checked'" : string.Empty) id="existe_gabinetectrl_xfase" name="existe_gabinetectrl_xfase" type="checkbox" value="true" disabled="disabled">
+                            @Html.ValidationMessageFor(model => model.existe_gabinetectrl_xfase, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.evalBasica, "¿Evaluación Básica?", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.evalBasica)
+                            @Html.ValidationMessageFor(model => model.evalBasica, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.evalExtendida, "¿Evaluación Extendida?", htmlAttributes: new { @class = "control-label col-md-6", @onchange = "setupPruebaEspecial();" })
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.evalExtendida)
+                            @Html.ValidationMessageFor(model => model.evalExtendida, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        <div class="col-md-5">&nbsp</div>
+    </div>
+</div>
+
+@Html.Partial("_initJQueryDatePicker")
+
+<script type="text/javascript">
+    $("#Submit").on("click", function () {
+        var validator = $("form").data('validator');
+        validator.settings.ignore = "input[type=hidden]";
+    });
+
+    $("form").submit(function () {
+        $('select').prop('disabled', false);
+        $('input').prop('disabled', false);
+        setupResistenciaCalefactora();
+        setupMedicionSF6();
+    });
+
+    $("#evalExtendida").on("click", function () {
+        var value = ($("#evalExtendida").is(":checked"));
+        if (value === true) {
+            $("._PruebaEspecial_li").show();
+        } else {
+            $("._PruebaEspecial_li").hide();
+        }
+    });
+    function setupInspeccionVisual()
+    {
+
+        var tipo_disparo = '@((equipo != null) ? equipo.tipo_disparo : "")';
+        //--[M,T]
+        var comando_cierre = '@((equipo != null) ? equipo.comando_cierre : "")';
+        $("#densimetro_a").hide();
+        $("#densimetro_b").hide();
+        $("#densimetro_c").hide();
+        $("#presostato_a").hide();
+        $("#presostato_b").hide();
+        $("#presostato_c").hide();
+        $(".gabinetectrl_xfase_section").hide();
+        $(".gabinete_centralizador").hide();
+
+        /* 1 Resorte | 2 Hidráulico | 3 Neumático */
+        $('.MR').hide();
+        $('.MN').hide();
+        $('.MH').hide();
+
+
+        var Mecanismo_id = @((equipo != null) ? equipo.Mecanismo_id : 0);
+
+        if (Mecanismo_id == 1) {
+            $('.MR').show();
+            $('#ParametrosMotor').show();
+            if (tipo_disparo === "T" && comando_cierre === "T") {
+                $('#ME_b').hide();
+                $('#ME_c').hide();
+                validaSecuencia_Tripolar();
+            }
+
+        } else $('#ParametrosMotor').hide();
+
+        if (Mecanismo_id == 2) {
+            $('.MH').show();
+            if (tipo_disparo === "T" && comando_cierre === "T") {
+                $('#ME_b').hide();
+                $('#ME_c').hide();
+                validaSecuencia_Tripolar();
+            }
+        }
+        else
+            validaSecuencia_MH();
+
+        if (Mecanismo_id == 3) {
+            $('.MN').show();
+            if (tipo_disparo === "T" && comando_cierre === "T") {
+                $('#ME_b').hide();
+                $('#ME_c').hide();
+                validaSecuencia_Tripolar();
+              }
+        }
+        else validaSecuencia_MN();
+
+        if (Mecanismo_id == 11) {
+            $('#ME_a').hide();
+            $('#ME_b').hide();
+            $('#ME_c').hide();
+            validaSecuencia_MR();
+            validaSecuencia_MH();
+            validaSecuencia_MN();
+        }
+
+        if (Mecanismo_id != 1) validaSecuencia_MR();
+    }
+    function setupPruebaDeRutina() {
+        //--[C,T,Y]
+        var conf_camaras = '@((equipo != null) ? equipo.conf_camaras : "")';
+        //--[M,T]
+        var tipo_disparo = '@((equipo != null) ? equipo.tipo_disparo : "")';
+        //--[M,T]
+        var comando_cierre = '@((equipo != null) ? equipo.comando_cierre : "")';
+        //--[R,C,A]
+        var interruptor_contiene = '@((equipo != null) ? equipo.interruptor_contiene : "")';
+
+        if(conf_camaras === "C") {
+            $(".camara2").hide();
+        }
+
+        if (tipo_disparo === "T" && comando_cierre === "T") {
+            $(".DiscrepanciaPolos").hide();
+            $("#PR_discrepancia_polos").val('SD').change();
+            $("#PR_discrepancia_polos").attr('disabled', false);
+        }
+        else if (comando_cierre === "T") {
+            $(".DiscrepanciaPolos").hide();
+            $("#PR_discrepancia_polos").val('SD').change();
+            $("#PR_discrepancia_polos").attr('disabled', false);
+        }
+
+        console.log(interruptor_contiene);
+        if(interruptor_contiene === "C") {
+            $(".CAPACITCONDENSADORES").show();
+            $(".RESPREINSERCION").hide();
+        }
+
+        if (interruptor_contiene === "R") {
+            $(".RESPREINSERCION").show();
+            $(".CAPACITCONDENSADORES").hide();
+        }
+
+        if (interruptor_contiene === "A") {
+            $(".RESPREINSERCION").show();
+            $(".CAPACITCONDENSADORES").show();
+        }
+        if (interruptor_contiene === "N") {
+            $(".RESPREINSERCION").hide();
+            $(".CAPACITCONDENSADORES").hide();
+        }
+
+    }
+
+
+
+    function setupPruebaEspecial() {
+        //--[M,T]
+        var comando_cierre = '@((equipo != null) ? equipo.comando_cierre : "")';
+        if(comando_cierre === "T") {
+            $(".TIB_C").hide();
+        }
+
+       var numero_motor = '@((prueba != null) ? prueba.numero_motores.ToString() : "")';
+       if (numero_motor === "1") {
+            $(".motor_bc").hide();
+       }
+
+       var value = ($("#evalExtendida").is(":checked"));
+       if (value === true) {
+           $("._PruebaEspecial_li").show();
+       } else {
+           $("._PruebaEspecial_li").hide();
+       }
+    }
+
+    function setupMedicionSF6() {
+        var value = $("#instrumento_medicionSF6").val();
+        var tipo_disparo = '@((equipo != null) ? equipo.tipo_disparo : "")';
+         var Mecanismo_id = @((equipo != null) ? equipo.Mecanismo_id : 0);
+        //--[M,T]
+        var comando_cierre = '@((equipo != null) ? equipo.comando_cierre : "")';
+        $("#densimetro_a").hide();
+        $("#densimetro_b").hide();
+        $("#densimetro_c").hide();
+        $("#presostato_a").hide();
+        $("#presostato_b").hide();
+        $("#presostato_c").hide();
+        if (value && value === "D")
+        {
+            if (Mecanismo_id != 11) {
+                $("#densimetro_a").show();
+                if (tipo_disparo === "T" && comando_cierre === "T") {
+                    $("#densimetro_b").hide();
+                    $("#densimetro_c").hide();
+                    validaDensimetroTripolar();
+                } else {
+                    $("#densimetro_b").show();
+                    $("#densimetro_c").show();
+
+                }
+            } else {
+                $("#densimetro_a").show();
+                $("#densimetro_b").show();
+                $("#densimetro_c").show(); }
+            validaPresostato();
+        }
+        if (value && value === "P")
+        {
+            if (Mecanismo_id != 11)
+            {
+                $("#presostato_a").show();
+            if (tipo_disparo === "T" && comando_cierre === "T")
+            {
+                $("#presostato_b").hide();
+                $("#presostato_c").hide();
+                validaPresostatoTripolar();
+
+            } else {
+                $("#presostato_b").show();
+                $("#presostato_c").show();
+
+            }
+        }
+        else {
+            $("#presostato_a").show();
+            $("#presostato_b").show();
+            $("#presostato_c").show();
+        }
+            validaDensimetro();
+
+        }
+    }
+
+    function setupGabineteCtrlxFase() {
+        var value = ($("#existe_gabinetectrl_xfase").is(":checked"));
+        if (value === true) {
+            $(".gabinetectrl_xfase_section").show();
+        } else {
+            $(".gabinetectrl_xfase_section").hide();
+        }
+    }
+
+    function setupGabineteCentralizador() {
+        var value = ($("#existe_gabinete_centralizador").is(":checked"));
+        if (value === true) {
+            $(".gabinete_centralizador").show();
+        } else {
+            $(".gabinete_centralizador").hide();
+            //Set value default
+            $("#GCE_tablillas").val('BE').change();
+            $("#GCE_contactores").val('BE').change();
+            $("#GCE_relevadores").val('BE').change();
+            $("#GCE_elementos_ctrl").val('BE').change();
+            $("#GCE_funciona_resis_calefactora").val('SF').change();
+        }
+    }
+
+    function validaSecuencias() {
+        var value = $("#PR_seccuencia_displibre").val();
+        if (value != "CU") {
+            $("#PR_DetFA_tcierreapertura_c1").prop("readonly", true);
+            $("#PR_DetFB_tcierreapertura_c1").prop("readonly", true);
+            $("#PR_DetFC_tcierreapertura_c1").prop("readonly", true);
+            $("#PR_DetFA_tcierreapertura_c2").prop("readonly", true);
+            $("#PR_DetFB_tcierreapertura_c2").prop("readonly", true);
+            $("#PR_DetFC_tcierreapertura_c2").prop("readonly", true);
+        } else {
+            $("#PR_DetFA_tcierreapertura_c1").prop("readonly", false);
+            $("#PR_DetFB_tcierreapertura_c1").prop("readonly", false);
+            $("#PR_DetFC_tcierreapertura_c1").prop("readonly", false);
+            $("#PR_DetFA_tcierreapertura_c2").prop("readonly", false);
+            $("#PR_DetFB_tcierreapertura_c2").prop("readonly", false);
+            $("#PR_DetFC_tcierreapertura_c2").prop("readonly", false);
+        }
+
+        var valueDP = $("#PR_discrepancia_polos").val();
+        if (valueDP != "CU") {
+            $("#PR_ttotal_discrepancia").prop("readonly", true);
+        } else {
+            $("#PR_ttotal_discrepancia").prop("readonly", false);
+
+        }
+
+
+    }
+
+    function validaSecuenciasPE() {
+        var value = $("#PE_sec_nominal_operacion").val();
+        var estado = false;
+        if (value == "false")  estado = true;
+
+        $("#PE_DetFA_tapertura_c1").prop("readonly", estado);
+        $("#PE_DetFB_tapertura_c1").prop("readonly", estado);
+        $("#PE_DetFC_tapertura_c1").prop("readonly", estado);
+        $("#PE_DetFA_tapertura_c2").prop("readonly", estado);
+        $("#PE_DetFB_tapertura_c2").prop("readonly", estado);
+        $("#PE_DetFC_tapertura_c2").prop("readonly", estado);
+
+        $("#PE_DetFA_tapertura_cierre_c1").prop("readonly", estado);
+        $("#PE_DetFB_tapertura_cierre_c1").prop("readonly", estado);
+        $("#PE_DetFC_tapertura_cierre_c1").prop("readonly", estado);
+        $("#PE_DetFA_tapertura_cierre_c2").prop("readonly", estado);
+        $("#PE_DetFB_tapertura_cierre_c2").prop("readonly", estado);
+        $("#PE_DetFC_tapertura_cierre_c2").prop("readonly", estado);
+
+        $("#PE_DetFA_tcierre_apertura1_c1").prop("readonly", estado);
+        $("#PE_DetFB_tcierre_apertura1_c1").prop("readonly", estado);
+        $("#PE_DetFC_tcierre_apertura1_c1").prop("readonly", estado);
+        $("#PE_DetFA_tcierre_apertura1_c2").prop("readonly", estado);
+        $("#PE_DetFB_tcierre_apertura1_c2").prop("readonly", estado);
+        $("#PE_DetFC_tcierre_apertura1_c2").prop("readonly", estado);
+
+        $("#PE_DetFA_tcierre_apertura2_c1").prop("readonly", estado);
+        $("#PE_DetFB_tcierre_apertura2_c1").prop("readonly", estado);
+        $("#PE_DetFC_tcierre_apertura2_c1").prop("readonly", estado);
+        $("#PE_DetFA_tcierre_apertura2_c2").prop("readonly", estado);
+        $("#PE_DetFB_tcierre_apertura2_c2").prop("readonly", estado);
+        $("#PE_DetFC_tcierre_apertura2_c2").prop("readonly", estado);
+
+    }
+
+
+    function PrepareCheckbox() {
+
+        if (document.getElementById("evalExtendida").checked == false)
+            document.getElementById("evalBasica").checked = true;
+        else
+            document.getElementById("evalBasica").checked = false;
+    }
+    //Valida Gabinete de control las resistencia que no sean obligatorias
+
+    function setupResistenciaCalefactora() {
+        var value = $("#IVA_gc_resistencia_calefactora").val();
+        var valueCtrl = ($("#existe_gabinetectrl_xfase").is(":checked"));
+        if (valueCtrl === false) {
+            $("#IVB_gc_resistencia_calefactora").val('SF').change();
+            $("#IVC_gc_resistencia_calefactora").val('SF').change();
+        }
+    }
+
+    function validaSecuencia_MR() {
+        $("#IVA_mr_alineacion_resortes").val('BE').change();
+        $("#IVA_mr_alineacion_resortes").attr('disabled', false);
+        $("#IVB_mr_alineacion_resortes").val('BE').change();
+        $("#IVB_mr_alineacion_resortes").attr('disabled', false);
+        $("#IVC_mr_alineacion_resortes").val('BE').change();
+        $("#IVC_mr_alineacion_resortes").attr('disabled', false);
+
+        $("#IVA_mr_amortiguadores").val('BE').change();
+        $("#IVA_mr_amortiguadores").attr('disabled', false);
+        $("#IVB_mr_amortiguadores").val('BE').change();
+        $("#IVB_mr_amortiguadores").attr('disabled', false);
+        $("#IVC_mr_amortiguadores").val('BE').change();
+        $("#IVC_mr_amortiguadores").attr('disabled', false);
+        $("#IVA_mr_motor").val('BE').change();
+        $("#IVA_mr_motor").attr('disabled', false);
+        $("#IVB_mr_motor").val('BE').change();
+        $("#IVB_mr_motor").attr('disabled', false);
+        $("#IVC_mr_motor").val('BE').change();
+        $("#IVC_mr_motor").attr('disabled', false);
+    }
+
+      function validaSecuencia_Tripolar() {
+          //MR
+          if ($("#IVA_mr_alineacion_resortes").val() == '') $("#IVB_mr_alineacion_resortes").val('BE'); else $("#IVB_mr_alineacion_resortes").val($("#IVA_mr_alineacion_resortes").val()).change();
+          if ($("#IVA_mr_alineacion_resortes").val() == '') $("#IVC_mr_alineacion_resortes").val('BE'); else $("#IVC_mr_alineacion_resortes").val($("#IVA_mr_alineacion_resortes").val()).change();
+
+          if ($("#IVA_mr_amortiguadores").val() == '') $("#IVB_mr_amortiguadores").val('BE').change(); else $("#IVB_mr_amortiguadores").val($("#IVA_mr_amortiguadores").val()).change();
+          if ($("#IVA_mr_amortiguadores").val() == '') $("#IVC_mr_amortiguadores").val('BE').change(); else $("#IVC_mr_amortiguadores").val($("#IVA_mr_amortiguadores").val()).change();
+
+          if ($("#IVA_mr_motor").val() == '') $("#IVB_mr_motor").val('BE').change(); else $("#IVB_mr_motor").val($("#IVA_mr_motor").val()).change();
+          if ($("#IVA_mr_motor").val() == '') $("#IVC_mr_motor").val('BE').change(); else $("#IVC_mr_motor").val($("#IVA_mr_motor").val()).change();
+
+          //MN
+
+          if ($("#IVA_mn_fuga_aire").val() == '') $("#IVB_mn_fuga_aire").val('1').change(); else $("#IVB_mn_fuga_aire").val($("#IVA_mn_fuga_aire").val()).change();
+          if ($("#IVA_mn_fuga_aire").val() == '') $("#IVC_mn_fuga_aire").val('1').change(); else $("#IVC_mn_fuga_aire").val($("#IVA_mn_fuga_aire").val()).change();
+
+          if ($("#IVA_mn_presion_aire").val() == '') $("#IVB_mn_presion_aire").val('BE').change(); else $("#IVB_mn_presion_aire").val($("#IVA_mn_presion_aire").val()).change();
+          if ($("#IVA_mn_presion_aire").val() == '') $("#IVC_mn_presion_aire").val('BE').change(); else $("#IVC_mn_presion_aire").val($("#IVA_mn_presion_aire").val()).change();
+
+
+          if ($("#IVA_mn_valvulas").val() == '') $("#IVB_mn_valvulas").val('BE').change(); else $("#IVB_mn_valvulas").val($("#IVA_mn_valvulas").val()).change();
+          if ($("#IVA_mn_valvulas").val() == '') $("#IVC_mn_valvulas").val('BE').change(); else $("#IVC_mn_valvulas").val($("#IVA_mn_valvulas").val()).change();
+
+          if ($("#IVA_mn_corrosion_mecanismo").val() == '') $("#IVB_mn_corrosion_mecanismo").val('1').change(); else $("#IVB_mn_corrosion_mecanismo").val($("#IVA_mn_corrosion_mecanismo").val()).change();
+          if ($("#IVA_mn_corrosion_mecanismo").val() == '') $("#IVC_mn_corrosion_mecanismo").val('1').change(); else $("#IVC_mn_corrosion_mecanismo").val($("#IVA_mn_corrosion_mecanismo").val()).change();
+
+          //MH
+
+          if ($("#IVA_mh_fuga_aceite").val() == '') $("#IVB_mh_fuga_aceite").val('1').change(); else $("#IVB_mh_fuga_aceite").val($("#IVA_mh_fuga_aceite").val()).change();
+          if ($("#IVA_mh_fuga_aceite").val() == '') $("#IVC_mh_fuga_aceite").val('1').change(); else $("#IVC_mh_fuga_aceite").val($("#IVA_mh_fuga_aceite").val()).change();
+
+
+          if ($("#IVA_mh_acumulador").val() == '') $("#IVB_mh_acumulador").val('1').change(); else $("#IVB_mh_acumulador").val($("#IVA_mh_acumulador").val()).change();
+          if ($("#IVA_mh_acumulador").val() == '') $("#IVC_mh_acumulador").val('1').change(); else $("#IVC_mh_acumulador").val($("#IVA_mh_acumulador").val()).change();
+
+
+          if ($("#IVA_mh_presion_aceite").val() == '') $("#IVB_mh_presion_aceite").val('BE').change(); else $("#IVB_mh_presion_aceite").val($("#IVA_mh_presion_aceite").val()).change();
+          if ($("#IVA_mh_presion_aceite").val() == '') $("#IVC_mh_presion_aceite").val('BE').change(); else $("#IVC_mh_presion_aceite").val($("#IVA_mh_presion_aceite").val()).change();
+
+          if ($("#IVA_mh_unidad_control").val() == '') $("#IVB_mh_unidad_control").val('BE').change(); else $("#IVB_mh_unidad_control").val($("#IVA_mh_unidad_control").val()).change();
+          if ($("#IVA_mh_unidad_control").val() == '') $("#IVC_mh_unidad_control").val('BE').change(); else $("#IVC_mh_unidad_control").val($("#IVA_mh_unidad_control").val()).change();
+
+          if ($("#IVA_mh_valvulas").val() == '') $("#IVB_mh_valvulas").val('BE').change(); else $("#IVB_mh_valvulas").val($("#IVA_mh_valvulas").val()).change();
+          if ($("#IVA_mh_valvulas").val() == '') $("#IVC_mh_valvulas").val('BE').change(); else $("#IVC_mh_valvulas").val($("#IVA_mh_valvulas").val()).change();
+
+
+          if ($("#IVA_mh_burbujas_reservorio").val() == '') $("#IVB_mh_burbujas_reservorio").val('1').change(); else $("#IVB_mh_burbujas_reservorio").val($("#IVA_mh_burbujas_reservorio").val()).change();
+          if ($("#IVA_mh_burbujas_reservorio").val() == '') $("#IVC_mh_burbujas_reservorio").val('1').change(); else $("#IVC_mh_burbujas_reservorio").val($("#IVA_mh_burbujas_reservorio").val()).change();
+
+
+          if ($("#IVA_mh_compresor").val() == '') $("#IVB_mh_compresor").val('BE').change(); else $("#IVB_mh_compresor").val($("#IVA_mh_compresor").val()).change();
+          if ($("#IVA_mh_compresor").val() == '') $("#IVC_mh_compresor").val('BE').change(); else $("#IVC_mh_compresor").val($("#IVA_mh_compresor").val()).change();
+
+      }
+
+
+
+
+
+    function validaSecuencia_MN() {
+        $("#IVA_mn_presion_aire").val('BE').change();
+        $("#IVA_mn_presion_aire").attr('disabled', false);
+        $("#IVB_mn_presion_aire").val('BE').change();
+        $("#IVB_mn_presion_aire").attr('disabled', false);
+        $("#IVC_mn_presion_aire").val('BE').change();
+        $("#IVC_mn_presion_aire").attr('disabled', false);
+
+        $("#IVA_mn_fuga_aire").val('1').change();
+        $("#IVA_mn_fuga_aire").attr('disabled', false);
+        $("#IVB_mn_fuga_aire").val('1').change();
+        $("#IVB_mn_fuga_aire").attr('disabled', false);
+        $("#IVC_mn_fuga_aire").val('1').change();
+        $("#IVC_mn_fuga_aire").attr('disabled', false);
+
+        $("#IVA_mn_valvulas").val('BE').change();
+        $("#IVA_mn_valvulas").attr('disabled', false);
+        $("#IVB_mn_valvulas").val('BE').change();
+        $("#IVB_mn_valvulas").attr('disabled', false);
+        $("#IVC_mn_valvulas").val('BE').change();
+        $("#IVC_mn_valvulas").attr('disabled', false);
+
+        $("#IVA_mn_corrosion_mecanismo").val('1').change();
+        $("#IVA_mn_corrosion_mecanismo").attr('disabled', false);
+        $("#IVB_mn_corrosion_mecanismo").val('1').change();
+        $("#IVB_mn_corrosion_mecanismo").attr('disabled', false);
+        $("#IVC_mn_corrosion_mecanismo").val('1').change();
+        $("#IVC_mn_corrosion_mecanismo").attr('disabled', false);
+
+
+    }
+
+    function validaSecuencia_MH() {
+
+        $("#IVA_mh_fuga_aceite").val('1').change();
+        $("#IVA_mh_fuga_aceite").attr('disabled', false);
+        $("#IVB_mh_fuga_aceite").val('1').change();
+        $("#IVB_mh_fuga_aceite").attr('disabled', false);
+        $("#IVC_mh_fuga_aceite").val('1').change();
+        $("#IVC_mh_fuga_aceite").attr('disabled', false);
+
+
+        $("#IVA_mh_acumulador").val('1').change();
+        $("#IVA_mh_acumulador").attr('disabled', false);
+        $("#IVB_mh_acumulador").val('1').change();
+        $("#IVB_mh_acumulador").attr('disabled', false);
+        $("#IVC_mh_acumulador").val('1').change();
+        $("#IVC_mh_acumulador").attr('disabled', false);
+
+        $("#IVA_mh_presion_aceite").val('BE').change();
+        $("#IVA_mh_presion_aceite").attr('disabled', false);
+        $("#IVB_mh_presion_aceite").val('BE').change();
+        $("#IVB_mh_presion_aceite").attr('disabled', false);
+        $("#IVC_mh_presion_aceite").val('BE').change();
+        $("#IVC_mh_presion_aceite").attr('disabled', false);
+
+        $("#IVA_mh_unidad_control").val('BE').change();
+        $("#IVA_mh_unidad_control").attr('disabled', false);
+        $("#IVB_mh_unidad_control").val('BE').change();
+        $("#IVB_mh_unidad_control").attr('disabled', false);
+        $("#IVC_mh_unidad_control").val('BE').change();
+        $("#IVC_mh_unidad_control").attr('disabled', false);
+
+        $("#IVA_mh_valvulas").val('BE').change();
+        $("#IVA_mh_valvulas").attr('disabled', false);
+        $("#IVB_mh_valvulas").val('BE').change();
+        $("#IVB_mh_valvulas").attr('disabled', false);
+        $("#IVC_mh_valvulas").val('BE').change();
+        $("#IVC_mh_valvulas").attr('disabled', false);
+
+
+        $("#IVA_mh_burbujas_reservorio").val('1').change();
+        $("#IVA_mh_burbujas_reservorio").attr('disabled', false);
+        $("#IVB_mh_burbujas_reservorio").val('1').change();
+        $("#IVB_mh_burbujas_reservorio").attr('disabled', false);
+        $("#IVC_mh_burbujas_reservorio").val('1').change();
+        $("#IVC_mh_burbujas_reservorio").attr('disabled', false);
+
+        $("#IVA_mh_compresor").val('BE').change();
+        $("#IVA_mh_compresor").attr('disabled', false);
+        $("#IVB_mh_compresor").val('BE').change();
+        $("#IVB_mh_compresor").attr('disabled', false);
+        $("#IVC_mh_compresor").val('BE').change();
+        $("#IVC_mh_compresor").attr('disabled', false);
+
+    }
+
+    function validaDensimetro() {
+
+        $("#IVA_d_carcasa").val('BE').change();
+        $("#IVA_d_carcasa").attr("disable", true);
+        $("#IVA_d_caratula").val('BE').change();
+        $("#IVA_d_caratula").attr("disable", true);
+        $("#IVA_d_condicion_aguja").val('BE').change();
+        $("#IVA_d_condicion_aguja").attr("disable", true);
+        $("#IVA_d_escala").val('BE').change();
+        $("#IVA_d_escala").attr("disable", true);
+        $("#IVA_d_nivel_glicerina").val('BE').change();
+        $("#IVA_d_nivel_glicerina").attr("disable", true);
+
+
+        $("#IVB_d_carcasa").val('BE').change();
+        $("#IVB_d_carcasa").attr("disable", true);
+        $("#IVB_d_caratula").val('BE').change();
+        $("#IVB_d_caratula").attr("disable", true);
+        $("#IVB_d_condicion_aguja").val('BE').change();
+        $("#IVB_d_condicion_aguja").attr("disable", true);
+        $("#IVB_d_escala").val('BE').change();
+        $("#IVB_d_escala").attr("disable", true);
+        $("#IVB_d_nivel_glicerina").val('BE').change();
+        $("#IVB_d_nivel_glicerina").attr("disable", true);
+
+        $("#IVC_d_carcasa").val('BE').change();
+        $("#IVC_d_carcasa").attr("disable", true);
+        $("#IVC_d_caratula").val('BE').change();
+        $("#IVC_d_caratula").attr("disable", true);
+        $("#IVC_d_condicion_aguja").val('BE').change();
+        $("#IVC_d_condicion_aguja").attr("disable", true);
+        $("#IVC_d_escala").val('BE').change();
+        $("#IVC_d_escala").attr("disable", true);
+        $("#IVC_d_nivel_glicerina").val('BE').change();
+        $("#IVC_d_nivel_glicerina").attr("disable", true);
+
+
+    }
+
+    function validaPresostato() {
+
+        $("#IVA_p_carcasa").val('BE').change();
+        $("#IVA_p_carcasa").attr("disable", true);
+        $("#IVA_p_caratula").val('BE').change();
+        $("#IVA_p_caratula").attr("disable", true);
+        $("#IVA_p_condicion_aguja").val('BE').change();
+        $("#IVA_p_condicion_aguja").attr("disable", true);
+        $("#IVA_p_escala").val('BE').change();
+        $("#IVA_p_escala").attr("disable", true);
+        $("#IVA_p_nivel_glicerina").val('BE').change();
+        $("#IVA_p_nivel_glicerina").attr("disable", true);
+
+
+        $("#IVB_p_carcasa").val('BE').change();
+        $("#IVB_p_carcasa").attr("disable", true);
+        $("#IVB_p_caratula").val('BE').change();
+        $("#IVB_p_caratula").attr("disable", true);
+        $("#IVB_p_condicion_aguja").val('BE').change();
+        $("#IVB_p_condicion_aguja").attr("disable", true);
+        $("#IVB_p_escala").val('BE').change();
+        $("#IVB_p_escala").attr("disable", true);
+        $("#IVB_p_nivel_glicerina").val('BE').change();
+        $("#IVB_p_nivel_glicerina").attr("disable", true);
+
+        $("#IVC_p_carcasa").val('BE').change();
+        $("#IVC_p_carcasa").attr("disable", true);
+        $("#IVC_p_caratula").val('BE').change();
+        $("#IVC_p_caratula").attr("disable", true);
+        $("#IVC_p_condicion_aguja").val('BE').change();
+        $("#IVC_p_condicion_aguja").attr("disable", true);
+        $("#IVC_p_escala").val('BE').change();
+        $("#IVC_p_escala").attr("disable", true);
+        $("#IVC_p_nivel_glicerina").val('BE').change();
+        $("#IVC_p_nivel_glicerina").attr("disable", true);
+
+
+    }
+
+    function validaPresostatoTripolar ()
+{
+        if ($("#IVA_p_carcasa").val() == '')  $("#IVB_p_carcasa").val('BE'); else $("#IVB_p_carcasa").val($("#IVA_p_carcasa").val()).change();
+        if ($("#IVA_p_caratula").val() == '') $("#IVB_p_caratula").val('BE'); else $("#IVB_p_caratula").val($("#IVA_p_caratula").val()).change();
+        if ($("#IVA_p_condicion_aguja").val() == '') $("#IVB_p_condicion_aguja").val('BE'); else $("#IVB_p_condicion_aguja").val($("#IVA_p_condicion_aguja").val()).change();
+        if ($("#IVA_p_escala").val() == '') $("#IVB_p_escala").val('BE'); else $("#IVB_p_escala").val($("#IVA_p_escala").val()).change();
+        if ($("#IVA_p_nivel_glicerina").val() == '') $("#IVB_p_nivel_glicerina").val('BE'); else $("#IVB_p_nivel_glicerina").val($("#IVA_p_nivel_glicerina").val()).change();
+
+        if ($("#IVA_p_carcasa").val() == '') $("#IVC_p_carcasa").val('BE'); else $("#IVC_p_carcasa").val($("#IVA_p_carcasa").val()).change();
+        if ($("#IVA_p_caratula").val() == '') $("#IVC_p_caratula").val(); else $("#IVC_p_caratula").val($("#IVA_p_caratula").val()).change();
+        if ($("#IVA_p_condicion_aguja").val() == '') $("#IVC_p_condicion_aguja").val('BE'); else $("#IVC_p_condicion_aguja").val($("#IVA_p_condicion_aguja").val()).change();
+        if ($("#IVA_p_escala").val() == '') $("#IVC_p_escala").val('BE'); else $("#IVC_p_escala").val($("#IVA_p_escala").val()).change();
+        if ($("#IVA_p_nivel_glicerina").val() == '') $("#IVC_p_nivel_glicerina").val('BE'); else $("#IVC_p_nivel_glicerina").val($("#IVA_p_nivel_glicerina").val()).change();
+
+    }
+
+    function validaDensimetroTripolar()
+    {
+        if ($("#IVA_d_carcasa").val() == '') $("#IVB_d_carcasa").val('BE');else  $("#IVB_d_carcasa").val($("#IVA_d_carcasa").val()).change();
+        if ($("#IVA_d_caratula").val() == '') $("#IVB_d_caratula").val('BE'); else  $("#IVB_d_caratula").val($("#IVA_d_caratula").val()).change();
+        if ($("#IVA_d_condicion_aguja").val() == '') $("#IVB_d_condicion_aguja").val('BE'); else  $("#IVB_d_condicion_aguja").val($("#IVA_d_condicion_aguja").val()).change();
+        if ($("#IVA_d_escala").val() == '') $("#IVB_d_escala").val('BE'); else $("#IVB_d_escala").val($("#IVA_d_escala").val()).change();
+        if ($("#IVA_d_nivel_glicerina").val() == '') $("#IVB_d_nivel_glicerina").val('BE');  else $("#IVB_d_nivel_glicerina").val($("#IVA_d_nivel_glicerina").val()).change();
+
+
+        if ($("#IVA_d_carcasa").val() == '') $("#IVC_d_carcasa").val('BE'); else $("#IVC_d_carcasa").val($("#IVA_d_carcasa").val()).change();
+        if ($("#IVA_d_caratula").val() == '') $("#IVC_d_caratula").val('BE'); else $("#IVC_d_caratula").val($("#IVA_d_caratula").val()).change();
+        if ($("#IVA_d_condicion_aguja").val() == '') $("#IVC_d_condicion_aguja").val('BE'); else  $("#IVC_d_condicion_aguja").val($("#IVA_d_condicion_aguja").val()).change();
+        if ($("#IVA_d_escala").val() == '') $("#IVC_d_escala").val('BE'); else $("#IVC_d_escala").val($("#IVA_d_escala").val()).change();
+        if ($("#IVA_d_nivel_glicerina").val() == '') $("#IVC_d_nivel_glicerina").val('BE'); else $("#IVC_d_nivel_glicerina").val($("#IVA_d_nivel_glicerina").val()).change();
+
+    }
+
+
+
+    //-- startup
+    $(document).ready(function () {
+        PrepareCheckbox();
+        setTimeout(function () {
+            setupInspeccionVisual();
+            setupPruebaDeRutina();
+            setupPruebaEspecial();
+            setupMedicionSF6();
+            setupGabineteCtrlxFase();
+            setupGabineteCentralizador();
+            validaSecuencias();
+            validaSecuenciasPE();
+        }, 500);
+    });
+
+    $("#instrumento_medicionSF6").on("change", function () {
+        setupMedicionSF6();
+    });
+
+    $("#existe_gabinetectrl_xfase").on("change", function () {
+        setupGabineteCtrlxFase();
+    });
+
+    $("#existe_gabinete_centralizador").on("change", function () {
+        setupGabineteCentralizador();
+    });
+    $("#IVA_gc_resistencia_calefactora").on("change", function () {
+        setupResistenciaCalefactora();
+    });
+
+</script>

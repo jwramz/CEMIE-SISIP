@@ -1,0 +1,232 @@
+﻿@model IEnumerable<sievis.Models.ParametrosFabricantePE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<div class="gridParametrosContainer container-fluid">
+    <h2>Parametros Fabricante</h2>
+
+    <p>
+        @Html.ActionLink("Crear Parametros Fabicante", "Create")
+    </p>
+    <table class="gridKendo">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTAperturaD1LimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTAperturaD1LimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTAperturaD2LimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTAperturaD2LimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTCierreLimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTCierreLimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTCierreApeCALimInf)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.toTCierreApeCALimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTEntResPreLimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toTEntResPreLimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pdCarrTotalLimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pdCarrTotalLimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pdAnguloGiro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pdFactoConversion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.daVelocidadLimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.daVelocidadLimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.daSobreviaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.daRebote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dcVelocidadLimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dcVelocidadLimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dcSobreviaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dcRebote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dcPenetracionLimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dcPenetracionLimSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.boTensionNominal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.boAperturaIPico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.boCierreIPico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mtrTensionNominal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mtrCorrienteArranque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mtrTCargaResorteLimInf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mtrTCargaResorteLimSup)
+            </th>
+            *@
+            <th>Acciones</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo.Marca.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTAperturaD1LimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTAperturaD1LimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTAperturaD2LimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTAperturaD2LimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTCierreLimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTCierreLimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTCierreApeCALimInf)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.toTCierreApeCALimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTEntResPreLimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toTEntResPreLimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pdCarrTotalLimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pdCarrTotalLimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pdAnguloGiro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pdFactoConversion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.daVelocidadLimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.daVelocidadLimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.daSobreviaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.daRebote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dcVelocidadLimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dcVelocidadLimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dcSobreviaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dcRebote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dcPenetracionLimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dcPenetracionLimSup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.boTensionNominal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.boAperturaIPico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.boCierreIPico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mtrTensionNominal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mtrCorrienteArranque)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mtrTCargaResorteLimInf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mtrTCargaResorteLimSup)
+                </td>
+                *@
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "fa fa-pencil-square-o", @title = "Editar" }) |
+                    @Html.ActionLink(" ", "Details", new { id = item.id }, new { @class = "glyphicon glyphicon-list-alt", @title = "Editar" }) |
+                    @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", @title = "Editar" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    @Html.Partial("_initKendoGrid")

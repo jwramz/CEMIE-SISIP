@@ -1,0 +1,20 @@
+﻿
+<script type="text/javascript">
+
+
+
+    /* Init jQuery Calendar */
+    console.log({ modernizer: Modernizr, support_date: Modernizr.inputtypes.date });
+    $(function () {
+        (function () {
+            if ($("input[type='date']")[0]) {
+                $("input[type='date']")
+                    .datepicker({
+                        dateFormat: 'dd/mm/yyyy'
+                    })
+                    .get(0)
+                    .setAttribute("type", "text");
+            }
+        })();
+    });
+</script>

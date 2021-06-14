@@ -1,0 +1,32 @@
+﻿@using Resources;
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#tension_nominal").change(function () {
+            $("#bil").empty();
+
+         
+            var tension_nominal = $("#tension_nominal").val();
+            if (!tension_nominal) return;
+            
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetbilByTensionNominal", "Equipo", null)',
+                dataType: 'json',
+                data: { tension_nominal: tension_nominal},
+                success: function (bil) {
+                    $("#bil").append('<option value="">- Seleccionar Nivel -</option>');
+                    $.each(bil, function (i, bil) {
+                    $("#bil").append('<option value="' + bil.descripcion + '">' + bil.abreviatura + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+                }
+            });
+            return false;
+        });
+
+    });
+</script>

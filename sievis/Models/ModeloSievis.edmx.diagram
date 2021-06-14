@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="53d051a4cc7b42b78e174c030c5e6d52" Name="Diagram1">
+        <EntityTypeShape EntityType="ModeloSievis.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.AplicacionInterruptor" Width="1.5" PointX="8.25" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.AppParameters" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.AppUsers" Width="1.5" PointX="7.5" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Archivo" Width="1.5" PointX="15" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.AspNetRoles" Width="1.5" PointX="5.25" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.AspNetUserClaims" Width="1.5" PointX="7.5" PointY="51.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.AspNetUserLogins" Width="1.5" PointX="7.5" PointY="57.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.AspNetUsers" Width="1.5" PointX="5.25" PointY="49.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Catalogo" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.CondicionAislador" Width="1.5" PointX="17.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.CondicionGabineteCentralizador" Width="1.5" PointX="15" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.CondicionGabineteControl" Width="1.5" PointX="17.25" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.CondicionOtrosComponentes" Width="1.5" PointX="17.25" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.CondicionVarillaje" Width="1.5" PointX="17.25" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Densimetro" Width="1.5" PointX="17.25" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.DetalleCatalogo" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Equipo" Width="1.5" PointX="10.5" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Eventos" Width="1.5" PointX="19.5" PointY="69.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Gerencia" Width="1.5" PointX="0.75" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.indiceSaludPrueba" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Inspeccion_visual" Width="1.5" PointX="15" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Marca" Width="1.5" PointX="6" PointY="54.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Mecanismo" Width="1.5" PointX="8.25" PointY="47.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.MecanismoHidraulico" Width="1.5" PointX="17.25" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.MecanismoNeumatico" Width="1.5" PointX="17.25" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.MecanismoResortes" Width="1.5" PointX="17.25" PointY="56.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Modelo" Width="1.5" PointX="8.25" PointY="54.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.ParametroCondicion" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.ParametrosFabricantePE" Width="1.5" PointX="10.5" PointY="57.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.ParametrosFabricantePR" Width="1.5" PointX="10.5" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Presostato" Width="1.5" PointX="17.25" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Prueba" Width="1.5" PointX="12.75" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.PruebaEspecial" Width="1.5" PointX="15" PointY="69.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.PruebaEspecialDetalle" Width="1.5" PointX="17.25" PointY="65.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.PruebaRutina" Width="1.5" PointX="15" PointY="78.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.PruebaRutinaDetalle" Width="1.5" PointX="17.25" PointY="77.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Rangos" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Subestacion" Width="1.5" PointX="5.25" PointY="45.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Variables" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.Zona" Width="1.5" PointX="3" PointY="46" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.ParametrosFabricantePE_OLD" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vCatalogoPuntuaciones" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vCatParamVarRango" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vDatosEquipo" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vDatosPrueba" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vdPrConfInterruptor" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vdPrMecOperacion" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vdPrSecVerifProtecciones" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vdPrUnidadRuptora" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondAislador" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondDensimetro" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondGabCentralizador" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondGabControl" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondGabControlMonitoreo" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondOtrosComp" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondPresostato" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVcondVarillaje" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVCPCms" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVIndiceSalud" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVmecHidraulico" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVmecNeumatico" Width="1.5" PointX="4.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vIVmecResortes" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vParametrosVariablesPeso" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPeCondAislamientoUR" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPeMecanismoOperacion" Width="1.5" PointX="17.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPruebasEquipoIndice" Width="1.5" PointX="10.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionCondAislador" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionDensimetro" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionGabCentralizador" Width="1.5" PointX="18.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionGabControl" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionGabCtrlMonitoreo" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionMHidraulico" Width="1.5" PointX="2.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionMNeumatico" Width="1.5" PointX="19.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionMResortes" Width="1.5" PointX="19.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionOtrosComp" Width="1.5" PointX="19.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionPresostato" Width="1.5" PointX="19.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloSievis.vPuntuacionVarillaje" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="ModeloSievis.AplicacionInterruptor_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.FK_Gerencia_AppUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.FK_Role_AppUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.FK_Subestacion_AppUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.FK_Usuario_AppUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.FK_Zona_AppUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Prueba_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Catalogo_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Catalogo_FKv1" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Prueba_FKv1" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv8" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv9" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv1" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv2" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Equipo_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Mecanismo_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Modelo_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Subestacion_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.PruebaEspecialDetalle_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Gerencia_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv3" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv4" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv5" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Inspeccion_visual_FKv6" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Prueba_FKv2" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Marca_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Modelo_ParametrosFabricantePE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Modelo_ParametrosFabricantePR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.ParametroCondicion_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Prueba_FKv3" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Prueba_PbaRutina_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.PruebaEspecial_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.PruebaRutina_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Variables_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.Zona_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloSievis.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

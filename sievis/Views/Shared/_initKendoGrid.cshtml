@@ -1,0 +1,66 @@
+﻿@using System;
+
+@{ 
+    string width = (ViewData != null && ViewData.ContainsKey("width") ? ViewData["width"].ToString() : "600");
+}
+
+<script type="text/javascript">
+    /* Init KendoUI Grid */
+    $(function () {
+        addExtraStylingToGrid = function () {
+            $("table.k-focusable tbody tr").hover(
+                function () {
+                    $(this).toggleClass("k-state-hover");
+                }
+            );
+        };
+
+        $(".gridKendo").kendoGrid({
+            width: '@width',
+            height: 600,
+            sortable: true,
+            resizable: true,
+            reorderable: true,
+            //columnMenu: false,
+            filterable: true,
+            filterable: {
+                
+                extra: false,
+                
+                operators: {                   
+                    string: {                       
+                        contains: "Contiene"                        
+                    }
+                },
+                messages: {
+                    info: "Filtrar por:",
+                    clear: "Limpiar",                    
+                    filter: "Filtrar"
+                }
+            },
+            groupable: true,
+            groupable: {
+                messages: {
+                    empty: "Arrastre una columna para agrupar"
+                }
+            },            
+            pageable: {
+                buttonCount: 5,
+                pageSize: 20,
+                pageSizes: [5, 10, 15, 20, "All"],
+                messages: {
+                    display: "Página {0}-{1} de {2} registros",
+                    empty: "Sin datos",
+                    page: "Página",
+                    of: "de {0}",
+                    itemsPerPage: "registros por página"
+                }
+            },
+            scrollable: {
+                virtual: true
+            },
+            dataBound: addExtraStylingToGrid
+        });
+    });
+
+</script>

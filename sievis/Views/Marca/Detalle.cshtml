@@ -1,0 +1,25 @@
+﻿@model sievis.Models.Marca
+
+<!-- modal -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="bootstrap-dialog.type-primary modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Detalle Marca</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>
+                Marca
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+        </dl>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" id="modalBtnCancel" data-dismiss="modal">Cerrar</button>
+    </div>
+}
+

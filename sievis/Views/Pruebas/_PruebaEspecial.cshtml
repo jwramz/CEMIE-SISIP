@@ -1,0 +1,650 @@
+﻿@model sievis.Models.Prueba
+@using System.Web.UI.WebControls;
+
+@{
+    var lista_cumple_no_cumple = new List<ListItem> {
+        new ListItem { Text = "CUMPLE", Value = "CU" }, new ListItem { Text = "NO CUMPLE", Value = "NC" } };
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading app-panel-heading">
+        <!-- Título-Guardar -->
+        <div class="row">
+            <div class="col-md-10">
+                <h4>Prueba Especial</h4>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group col-md-5">
+                    <button type="submit" class="btn btn-success">
+                        Guardar <span class="fa fa-floppy-o"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body form-vertical">
+
+        <!-- Campos -->
+
+        <div class="col-md-12 app-pruebas-controls">
+            @Html.Partial("_ValidationSummary")
+
+
+            @Html.HiddenFor(model => model.PE.Id)
+            @Html.HiddenFor(model => model.PE.Prueba_id)
+            @Html.HiddenFor(model => model.PE.DetFA.id)
+            @Html.HiddenFor(model => model.PE.DetFA.PruebaEspecial_id)
+            @Html.HiddenFor(model => model.PE.DetFB.id)
+            @Html.HiddenFor(model => model.PE.DetFB.PruebaEspecial_id)
+            @Html.HiddenFor(model => model.PE.DetFC.id)
+            @Html.HiddenFor(model => model.PE.DetFC.PruebaEspecial_id)
+
+            <div class="row">
+
+                <br />
+                <!-- TABLA: Longitud de Contactos de Arqueo (Por Fase) -->
+                <div class="row">
+                    <div class="form-group">
+                        <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Longitud de Contactos de Arqueo</h4>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table style="width:60%;">
+                                <tr>
+                                    <th width="40%">&nbsp;</th>
+                                    <th width="20%">Fase A</th>
+                                    <th width="20%">Fase B</th>
+                                    <th width="20%">Fase C</th>
+                                </tr>
+                                <tr>
+                                    <td><label>C&aacute;mara 1 (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.long_contac_arqueo_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.long_contac_arqueo_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.long_contac_arqueo_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>C&aacute;mara 2 (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.long_contac_arqueo_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.long_contac_arqueo_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.long_contac_arqueo_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <!-- TABLA: Termografía (Por Fase) -->
+                <div class="row">
+                    <div class="form-group">
+                        <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Termografía</h4>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table style="width:60%;">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.PE.temperatura_ambiente, "Temperatura Ambiente (°C)", htmlAttributes: new { @class = "control-label" })</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.PE.temperatura_ambiente, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PE.temperatura_ambiente, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%">&nbsp;</th>
+                                    <th width="20%">Fase A</th>
+                                    <th width="20%">Fase B</th>
+                                    <th width="20%">Fase C</th>
+                                </tr>
+                                <tr>
+                                    <td><br /><h4>Temperatura Máxima en terminales superiores</h4></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Camara 1 (°C)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.temMaxTermSuperior_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.temMaxTermSuperior_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.temMaxTermSuperior_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>Camara 2 (°C)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.temMaxTermSuperior_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.temMaxTermSuperior_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.temMaxTermSuperior_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><br /><h4>Temperatura Máxima en terminales inferiores</h4></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Camara 1 (°C)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.temMaxTermInferior_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.temMaxTermInferior_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.temMaxTermInferior_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>Camara 2 (°C)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.temMaxTermInferior_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.temMaxTermInferior_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.temMaxTermInferior_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><br /><label>Ubicación de la Temperatura Máxima</label></td>
+                                    <td>@Html.DropDownListFor(model => model.PE.DetFA.ubicacion_tempmax, new SelectList(ViewBag.ListaUbicaTempMax, "Value", "Text"), htmlAttributes: new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(model => model.PE.DetFB.ubicacion_tempmax, new SelectList(ViewBag.ListaUbicaTempMax, "Value", "Text"), htmlAttributes: new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(model => model.PE.DetFC.ubicacion_tempmax, new SelectList(ViewBag.ListaUbicaTempMax, "Value", "Text"), htmlAttributes: new { @class = "form-control" })</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <!-- TABLA: Termografía (Por Fase) -->
+                <div class="row">
+                    <div class="form-group">
+                        <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Subproductos del gas SF<sub>6</sub></h4>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table style="width:60%;">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%">&nbsp;</th>
+                                    <th width="20%">Fase A</th>
+                                    <th width="20%">Fase B</th>
+                                    <th width="20%">Fase C</th>
+                                </tr>
+                                <tr>
+                                    <td><label>Dióxido de Azufre,SO<sub>2</sub> (ppmv)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.subprodsf6_so2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.subprodsf6_so2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.subprodsf6_so2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Ácido Fluorhídrico,HF (ppmv)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.subprodsf6_hf, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.subprodsf6_hf, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.subprodsf6_hf, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Tetrafloruro de Carbono CF<sub>4</sub> (ppmv)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.subprodsf6_cf4, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.subprodsf6_cf4, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.subprodsf6_cf4, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <br /> <hr />
+                <!-- TABLA: Tiempos de Patrón de Corriente de Bobina Disparo 1, 2 y Cierre (Por Fase) -->
+                <div class="row">
+                    <div class="form-group">
+                        <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Parámetros de  bobinas</h4>
+                    </div><br />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table style="width:85%;">
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td colspan="4" class="table-subtitle"><label>Disparo 1</label></td>
+                                    <td colspan="4" class="table-subtitle"><label>Disparo 2</label></td>
+                                    <td colspan="3" class="table-subtitle"><label>Cierre</label></td>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th width="80">Fase A</th>
+                                    <th width="80">Fase B</th>
+                                    <th width="80">Fase C</th>
+
+
+                                    <th width="20">&nbsp;</th>
+                                    <th width="80">Fase A</th>
+                                    <th width="80">Fase B</th>
+                                    <th width="80">Fase C</th>
+
+                                    <th width="20">&nbsp;</th>
+                                    <th width="80">Fase A</th>
+                                    <th width="80">Fase B</th>
+                                    <th width="80">Fase C</th>
+                                </tr>
+                                <tr>
+                                    <td><label>Corriente Pico de la Bobina (A)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.ipd1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.ipd1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.ipd1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.ipd2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.ipd2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.ipd2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.ip_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFB.ip_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFC.ip_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Tiempo de Liberación del Trinquete, t<sub>1</sub> (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.t1d1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.t1d1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.t1d1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.t1d2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.t1d2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.t1d2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.t1_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFB.t1_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFC.t1_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Tiempo en que los Contactos Auxiliares Cortan la Corriente, t<sub>2</sub> (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.t2d1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.t2d1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.t2d1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.t2d2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.t2d2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.t2d2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.t2_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFB.t2_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFC.t2_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Tiempo Total de la Bobina,  t<sub>T</sub>(ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.ttd1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.ttd1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.ttd1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.ttd2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.ttd2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.ttd2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tt_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFB.tt_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td class="TIB_C">@Html.EditorFor(model => model.PE.DetFC.tt_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Arranque minímo de Bobinas (V)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.arranque_minbobd1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.arranque_minbobd2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+                                    <td>@Html.EditorFor(model => model.PE.arranque_minbob_cierre, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>De apertura al 70% (Vn)</label></td>
+                                    <td colspan="2">
+                                        @Html.DropDownListFor(model => model.PE.func_bobina_aper70d1, new SelectList(ViewBag.ListaCumpleNoCumple, "Value", "Text"), htmlAttributes: new { @id = "PE_func_bobina_aper70d1", @class = "form-control" })
+                                        @*@Html.Editor("PE.func_bobina_aper70d1",new { @id = "PE_func_bobina_aper70d1", @class = "form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.PE.func_bobina_aper70d1, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+                                    <td colspan="2">
+                                        @Html.DropDownListFor(model => model.PE.func_bobina_aper70d2, new SelectList(ViewBag.ListaCumpleNoCumple, "Value", "Text"), htmlAttributes: new { @id = "PE_func_bobina_aper70d2", @class = "form-control" })
+                                        @*@Html.Editor("PE.func_bobina_aper70d2", new { @id = "PE_func_bobina_aper70d2", @class = "form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.PE.func_bobina_aper70d2, "", new { @class = "text-danger" })
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>De cierre al 85% (Vn)</label></td>
+                                    <td colspan="2">
+                                        @Html.DropDownListFor(model => model.PE.func_bobina_cierre85, new SelectList(ViewBag.ListaCumpleNoCumple, "Value", "Text"), htmlAttributes: new { @id = "PE_func_bobina_cierre85", @class = "form-control" })
+                                        @*@Html.Editor("PE.func_bobina_cierre85",new { @id = "PE_func_bobina_cierre85", @class = "form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.PE.func_bobina_cierre85, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <!-- TABLA: Termografía (Por Fase) -->
+                <div id="ParametrosMotor">
+                    <div class="row">
+                        <div class="form-group">
+                            <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Parámetros del motor</h4>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <table style="width:60%;">
+                                    <tr>
+                                        <td>Número de motores</td>
+                                        <td>
+                                            @Html.DropDownListFor(model => model.PE.numero_motores, new SelectList(ViewBag.ListaNumeroMotores, "Value", "Text"), htmlAttributes: new { @class = "form-control", @onchange = "motores(this.value);" })
+                                            @Html.ValidationMessageFor(model => model.PE.numero_motores, "", new { @class = "text-danger" })
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="40%">&nbsp;</th>
+                                        <th width="20%">Fase A</th>
+                                        <th width="20%">Fase B</th>
+                                        <th width="20%">Fase C</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Corriente de Energización del Motor (A)</label></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.PE.DetFA.imotor, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PE.DetFA.imotor, "", new { @class = "text-danger" })
+                                        </td>
+                                        <td class="motor_bc">
+                                            @Html.EditorFor(model => model.PE.DetFB.imotor, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PE.DetFB.imotor, "", new { @class = "text-danger" })
+                                        </td>
+                                        <td class="motor_bc">
+                                            @Html.EditorFor(model => model.PE.DetFC.imotor, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PE.DetFC.imotor, "", new { @class = "text-danger" })
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Tiempo de carga de resorte (s)</label></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.PE.DetFA.tcarga_resorte, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PE.DetFA.tcarga_resorte, "", new { @class = "text-danger" })
+                                        </td>
+                                        <td class="motor_bc">
+                                            @Html.EditorFor(model => model.PE.DetFB.tcarga_resorte, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PE.DetFB.tcarga_resorte, "", new { @class = "text-danger" })
+                                        </td>
+                                        <td class="motor_bc">
+                                            @Html.EditorFor(model => model.PE.DetFC.tcarga_resorte, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PE.DetFC.tcarga_resorte, "", new { @class = "text-danger" })
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br /> <hr />
+                <!-- TABLA: Parámetros de Desplazamiento a la Apertura (Por Fase) -->
+                <div class="row">
+                    <div class="form-group">
+                        <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Parámetros de Desplazamiento a la Apertura</h4>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table style="width:60%;">
+                                <tr>
+                                    <th width="40%">&nbsp;</th>
+                                    <th width="20%">Fase A</th>
+                                    <th width="20%">Fase B</th>
+                                    <th width="20%">Fase C</th>
+                                </tr>
+                                <tr>
+                                    <td><label>Velocidad (m/s)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pda_velocidad_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pda_velocidad_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pda_velocidad_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Carrera Total (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pda_carreratot_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pda_carreratot_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pda_carreratot_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Sobrerecorrido (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pda_sobrerecorrido_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pda_sobrerecorrido_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pda_sobrerecorrido_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Rebote (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pda_rebote_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pda_rebote_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pda_rebote_ap1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br /> <hr />
+                <!-- TABLA: Parámetros de Desplazamiento al Cierre (Por Fase) -->
+                <div class="row">
+                    <div class="form-group">
+                        <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Parámetros de Desplazamiento al Cierre</h4>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table style="width:60%;">
+                                <tr>
+                                    <th width="40%">&nbsp;</th>
+                                    <th width="20%">Fase A</th>
+                                    <th width="20%">Fase B</th>
+                                    <th width="20%">Fase C</th>
+                                </tr>
+                                <tr>
+                                    <td><label>Velocidad (m/s)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pardescierre_velocidad, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pardescierre_velocidad, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pardescierre_velocidad, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Carrera Total (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pardescierre_carreratot, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pardescierre_carreratot, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pardescierre_carreratot, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Sobrerecorrido (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pardescierre_sobrerecorrido, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pardescierre_sobrerecorrido, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pardescierre_sobrerecorrido, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Rebote (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pardescierre_rebote, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pardescierre_rebote, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pardescierre_rebote, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Penetración (mm)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pardescierre_penetracion, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pardescierre_penetracion, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pardescierre_penetracion, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>&nbsp;</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.pardescierre_penetracion_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.pardescierre_penetracion_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.pardescierre_penetracion_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- TABLA: Termografía (Por Fase) -->
+                <div class="row">
+                    <div class="form-group">
+                        <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Secuencia nominal de operación</h4>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table style="width:60%;">
+                                <tr>
+                                    <td>¿Realiza la secuencia?</td>
+                                    <td>
+                                        @Html.DropDownListFor(model => model.PE.sec_nominal_operacion, new SelectList(ViewBag.ListaSiNoSD, "Value", "Text"), htmlAttributes: new { @class = "form-control", @onchange = " validaSecuenciasPE();" })
+                                        @Html.ValidationMessageFor(model => model.PE.sec_nominal_operacion, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%"><h4>Tiempo de Apertura (ms)</h4></th>
+                                    <th width="20%">Fase A</th>
+                                    <th width="20%">Fase B</th>
+                                    <th width="20%">Fase C</th>
+                                </tr>
+                                <tr>
+                                    <td><label>Camara 1 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tapertura_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tapertura_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tapertura_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>Camara 2 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tapertura_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tapertura_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tapertura_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><br /><h4>Tiempo de Apertura-Cierre (ms)</h4></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Camara 1 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tapertura_cierre_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tapertura_cierre_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tapertura_cierre_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>Camara 2 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tapertura_cierre_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tapertura_cierre_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tapertura_cierre_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><br /><h4>Tiempo de Cierre-Apertura 1 (ms)</h4></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Camara 1 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tcierre_apertura1_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tcierre_apertura1_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tcierre_apertura1_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>Camara 2 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tcierre_apertura1_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tcierre_apertura1_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tcierre_apertura1_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr>
+                                    <td><br /><h4>Tiempo de Cierre-Apertura 2 (ms)</h4></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Camara 1 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tcierre_apertura2_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tcierre_apertura2_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tcierre_apertura2_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                                <tr class="camara2">
+                                    <td><label>Camara 2 (ms)</label></td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFA.tcierre_apertura2_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFB.tcierre_apertura2_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    <td>@Html.EditorFor(model => model.PE.DetFC.tcierre_apertura2_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    @Html.Partial("_initJQueryDatePicker")
+
+
+    <script>
+
+        function motores(val) {
+            if (val === "1") {
+                $(".motor_bc").hide();
+            } else { $(".motor_bc").show(); }
+        }
+    </script>

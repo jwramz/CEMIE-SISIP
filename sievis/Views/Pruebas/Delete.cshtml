@@ -1,0 +1,55 @@
+﻿@model sievis.Models.Prueba
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+@*<h2>Delete</h2>*@
+<div class="container">
+    <h3>¿Est&aacute; seguro de eliminar la prueba?</h3>
+    <div class="row">       
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Fecha de la Prueba")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fecha_prueba)
+            </dd>
+            <dt>
+                @Html.DisplayName("Número de Serie")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Equipo.ns)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Equipo.bahia)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Equipo.bahia)
+            </dd>
+            <dt>
+                @Html.DisplayName("Modelo")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Equipo.Modelo.nombre)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color text-right">
+                <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                @Html.ActionLink("Listado", "Index","Equipo",null,new {@class= "btn btn-success" })
+            </div>
+        }
+    </div>
+</div>

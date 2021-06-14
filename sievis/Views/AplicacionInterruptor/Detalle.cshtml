@@ -1,0 +1,25 @@
+﻿@model sievis.Models.AplicacionInterruptor
+
+<!-- modal -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="bootstrap-dialog.type-primary modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Detalle de una Aplicación de Interruptor</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>
+                Aplicación de Interruptor
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+        </dl>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" id="modalBtnCancel" data-dismiss="modal">Cerrar</button>
+    </div>
+}

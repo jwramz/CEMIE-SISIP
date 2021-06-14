@@ -1,0 +1,214 @@
+﻿@model IEnumerable<sievis.Models.Equipo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bahia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anio_fabricacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tesion_nominal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.corriente_nominal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.corriente_cc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.disponibilidad_refaccion_st)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.presionSF6)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.presion_alarma)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_unidades_presion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.altitud_operacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.altitud_instalacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dis_estructural)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.conf_camaras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.res_estatica_contactos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.interruptor_contiene)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.interruptor_resistencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.interruptor_capacitor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_puestaservicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fultimo_mantenimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nivel_contaminacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_disparo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comando_cierre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.distancia_fuga)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clase_interruptor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AplicacionInterruptor.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mecanismo.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subestacion.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bahia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.anio_fabricacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tesion_nominal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.corriente_nominal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.corriente_cc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.disponibilidad_refaccion_st)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.presionSF6)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.presion_alarma)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_unidades_presion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.altitud_operacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.altitud_instalacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dis_estructural)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.conf_camaras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.res_estatica_contactos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interruptor_contiene)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interruptor_resistencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interruptor_capacitor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_puestaservicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fultimo_mantenimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nivel_contaminacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_disparo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comando_cierre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.distancia_fuga)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clase_interruptor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AplicacionInterruptor.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mecanismo.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subestacion.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

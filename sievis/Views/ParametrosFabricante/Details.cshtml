@@ -1,0 +1,286 @@
+﻿@model sievis.Models.ParametrosFabricantePE
+
+@{
+    ViewBag.Title = "Detalle de Parámetros del Fabricante";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<div class="gridParametrosContainer container">
+
+    <h2>Detalle</h2>
+
+    <div>
+        <h4>Parámetros Fabricante</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Modelo.nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Modelo.Marca)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Modelo.Marca.nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.toTAperturaD1LimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTAperturaD1LimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTAperturaD1LimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTAperturaD1LimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTAperturaD2LimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTAperturaD2LimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTAperturaD2LimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTAperturaD2LimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTCierreLimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTCierreLimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTCierreLimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTCierreLimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTCierreApeCALimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTCierreApeCALimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTCierreApeCALimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTCierreApeCALimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTEntResPreLimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTEntResPreLimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.toTEntResPreLimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.toTEntResPreLimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pdCarrTotalLimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pdCarrTotalLimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pdCarrTotalLimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pdCarrTotalLimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pdAnguloGiro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pdAnguloGiro)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pdFactoConversion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pdFactoConversion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.daVelocidadLimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.daVelocidadLimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.daVelocidadLimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.daVelocidadLimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.daSobreviaje)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.daSobreviaje)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.daRebote)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.daRebote)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dcVelocidadLimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dcVelocidadLimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dcVelocidadLimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dcVelocidadLimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dcSobreviaje)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dcSobreviaje)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dcRebote)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dcRebote)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dcPenetracionLimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dcPenetracionLimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dcPenetracionLimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dcPenetracionLimSup)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.boTensionNominal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.boTensionNominal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.boAperturaIPico)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.boAperturaIPico)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.boCierreIPico)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.boCierreIPico)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mtrTensionNominal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mtrTensionNominal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mtrCorrienteArranque)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mtrCorrienteArranque)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mtrTCargaResorteLimInf)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mtrTCargaResorteLimInf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mtrTCargaResorteLimSup)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mtrTCargaResorteLimSup)
+            </dd>
+           
+
+        </dl>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </p>
+    </div>
+   
+</div>

@@ -1,0 +1,631 @@
+﻿@model sievis.Models.Prueba
+@using System.Web.UI.WebControls;
+
+<div class="panel panel-default">
+    <div class="panel-heading app-panel-heading">
+        <!-- Título-Guardar -->
+        <div class="row">
+            <div class="col-md-10">
+                <h4>Prueba de Rutina</h4>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group col-md-5">
+                    <button type="submit" class="btn btn-success">
+                        Guardar <span class="fa fa-floppy-o"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body form-horizontal">
+
+        <!-- Campos -->
+        <div class="col-md-12 app-pruebas-controls">
+            @Html.Partial("_ValidationSummary")
+
+            @Html.HiddenFor(model => model.PR.id)
+            @Html.HiddenFor(model => model.PR.Prueba_id)
+            @Html.HiddenFor(model => model.PR.DetFA.id)
+            @Html.HiddenFor(model => model.PR.DetFB.id)
+            @Html.HiddenFor(model => model.PR.DetFC.id)
+
+
+
+            <!-- TABLA: Tiempo de apertura Disparo 1 (Por Fase) -->
+            <div class="row">
+                <div class="form-group">
+                    <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Tiempos de operaci&oacute;n</h4>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="col-md-12">
+                        <table style="width:75%;">
+
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td colspan="4" class="table-subtitle"><label>Disparo 1</label></td>
+                                <td colspan="4" class="table-subtitle"><label>Disparo 2</label></td>
+                                <td colspan="3" class="table-subtitle"><label>Cierre</label></td>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th width="80">Fase A</th>
+                                <th width="80">Fase B</th>
+                                <th width="80">Fase C</th>
+
+
+                                <th width="20">&nbsp;</th>
+                                <th width="80">Fase A</th>
+                                <th width="80">Fase B</th>
+                                <th width="80">Fase C</th>
+
+                                <th width="20">&nbsp;</th>
+                                <th width="80">Fase A</th>
+                                <th width="80">Fase B</th>
+                                <th width="80">Fase C</th>
+                            </tr>
+                            <tr>
+                                <td><label>C&aacute;mara 1 (ms)</label></td>
+                                <td class="TA_DFA">@Html.EditorFor(model => model.PR.DetFA.tapertura_d1c1, new { htmlAttributes = new { @maxlength = "6", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFA.tapertura_d1c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFB">@Html.EditorFor(model => model.PR.DetFB.tapertura_d1c1, new { htmlAttributes = new { @maxlength = "6", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFB.tapertura_d1c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFC">@Html.EditorFor(model => model.PR.DetFC.tapertura_d1c1, new { htmlAttributes = new { @maxlength = "6", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFC.tapertura_d1c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td>&nbsp;</td>
+
+                                <td class="TA_DFA">@Html.EditorFor(model => model.PR.DetFA.tapertura_d2c1, new { htmlAttributes = new { @maxlength = "6", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFA.tapertura_d2c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFB">@Html.EditorFor(model => model.PR.DetFB.tapertura_d2c1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFB.tapertura_d2c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFC">@Html.EditorFor(model => model.PR.DetFC.tapertura_d2c1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFC.tapertura_d2c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td>&nbsp;</td>
+
+                                <td class="TA_CFA">@Html.EditorFor(model => model.PR.DetFA.tcierre_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFA.tcierre_c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_CFB">@Html.EditorFor(model => model.PR.DetFB.tcierre_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFB.tcierre_c1, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_CFC">@Html.EditorFor(model => model.PR.DetFC.tcierre_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFC.tcierre_c1, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr class="camara2">
+                                <td><label>C&aacute;mara 2 (ms)</label></td>
+                                <td class="TA_DFA">@Html.EditorFor(model => model.PR.DetFA.tapertura_d1c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFA.tapertura_d1c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFB">@Html.EditorFor(model => model.PR.DetFB.tapertura_d1c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFB.tapertura_d1c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFC">@Html.EditorFor(model => model.PR.DetFC.tapertura_d1c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFC.tapertura_d1c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td>&nbsp;</td>
+
+                                <td class="TA_DFA">@Html.EditorFor(model => model.PR.DetFA.tapertura_d2c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFA.tapertura_d2c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFB">@Html.EditorFor(model => model.PR.DetFB.tapertura_d2c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFB.tapertura_d2c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_DFC">@Html.EditorFor(model => model.PR.DetFC.tapertura_d2c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFC.tapertura_d2c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td>&nbsp;</td>
+
+                                <td class="TA_CFA">@Html.EditorFor(model => model.PR.DetFA.tcierre_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFA.tcierre_c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_CFB">@Html.EditorFor(model => model.PR.DetFB.tcierre_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFB.tcierre_c2, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="TA_CFC">@Html.EditorFor(model => model.PR.DetFC.tcierre_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.DetFC.tcierre_c2, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <!-- TABLA: Tiempo de entrada de la resistencia de preinserción (Por Fase) para los tipos "T" y "Y" -->
+            <div class="row RESPREINSERCION">
+                <div class="form-group">
+                    <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Tiempo de entrada de la resistencia de preinserción</h4>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table id="tipoyt_tresis_prein" style="width:60%;">
+                            <caption class="table-subtitle"></caption>
+                            <tr>
+                                <td width="40%">&nbsp;</td>
+                                <td width="20%">Fase A</td>
+                                <td width="20%">Fase B</td>
+                                <td width="20%">Fase C</td>
+                            </tr>
+                            <tr>
+                                <td><label>C&aacute;mara 1 (ms)</label></td>
+                                <td>@Html.EditorFor(model => model.PR.DetFA.tent_resprein_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFB.tent_resprein_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFC.tent_resprein_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                            <tr class="camara2">
+                                <td><label>C&aacute;mara 2 (ms)</label></td>
+                                <td>@Html.EditorFor(model => model.PR.DetFA.tent_resprein_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFB.tent_resprein_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFC.tent_resprein_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <!-- TABLA: Tiempo de entrada de cierre-apertura (Por Fase)-->
+            <div class="row">
+                <div class="form-group">
+                    <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Secuencias para verificación de protecciones</h4>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table style="width:60%;" cellspacing="10">
+                            <caption class="table-subtitle"></caption>
+                            <tr>
+                                <td><h4>Secuencia de Disparo Libre</h4></td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><label>¿Realiza la secuencia?</label></td>
+                                <td>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.PR.seccuencia_displibre, new SelectList(ViewBag.ListaCumpleNoCumplePR, "Value", "Text"), htmlAttributes: new { @class = "form-control", @onchange= " validaSecuencias();" })
+                                        @Html.ValidationMessageFor(model => model.PR.seccuencia_displibre, "", new { @class = "text-danger" })
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><br /><h4 class="list-group-item-text">Tiempo de cierre-apertura</h4></td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td width="40%">&nbsp;</td>
+                                <td width="20%">Fase A</td>
+                                <td width="20%">Fase B</td>
+                                <td width="20%">Fase C</td>
+                            </tr>
+
+                            <tr id="camara1" class="camara1">
+                                <td><label>C&aacute;mara 1 (ms)</label></td>
+                                <td>@Html.EditorFor(model => model.PR.DetFA.tcierreapertura_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFB.tcierreapertura_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFC.tcierreapertura_c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                            <tr id="tipoyt_tcierreapertura" class="camara2">
+                                <td><label>C&aacute;mara 2 (ms)</label></td>
+                                <td>@Html.EditorFor(model => model.PR.DetFA.tcierreapertura_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFB.tcierreapertura_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFC.tcierreapertura_c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><h4>Antibombeo</h4></td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.PR.pba_antibombeo, "¿Realiza la secuencia?", htmlAttributes: new { @class = "control-label" })
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(model => model.PR.pba_antibombeo, new SelectList(ViewBag.ListaCumpleNoCumplePR, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.PR.pba_antibombeo, "", new { @class = "text-danger" })
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="DiscrepanciaPolos">
+                                <td><br /><h4>Discrepancia entre Polos</h4></td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="DiscrepanciaPolos">
+                                <td>
+                                    @Html.LabelFor(model => model.PR.discrepancia_polos, "¿Realiza la secuencia?", htmlAttributes: new { @class = "control-label" })
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(model => model.PR.discrepancia_polos, new SelectList(ViewBag.ListaCumpleNoCumplePR, "Value", "Text"), htmlAttributes: new { @class = "form-control", @onchange = " validaSecuencias();" })
+                                    @Html.ValidationMessageFor(model => model.PR.discrepancia_polos, "", new { @class = "text-danger" })
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="DiscrepanciaPolos">
+                                <td><br />
+                                    @Html.LabelFor(model => model.PR.ttotal_discrepancia, "Tiempo Total de Discrepancia (s)", htmlAttributes: new { @class = "control-label" })
+                                </td>
+                                <td><br />
+                                    @Html.EditorFor(model => model.PR.ttotal_discrepancia, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PR.ttotal_discrepancia, "", new { @class = "text-danger" })
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <!-- TABLA: Resistencia estatica de contactos (Por Fase) -->
+            <div class="row RESECONTACTOS">
+                <div class="form-group">
+                    <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Resistencia est&aacute;tica de contactos</h4>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table style="width:60%;">
+                            <caption class="table-subtitle"></caption>
+                            <tr>
+                                <td width="40%">&nbsp;</td>
+                                <td width="20%">Fase A</td>
+                                <td width="20%">Fase B</td>
+                                <td width="20%">Fase C</td>
+                            </tr>
+                            <tr>
+                                <td><label>C&aacute;mara 1 (µΩ)</label></td>
+                                <td>@Html.EditorFor(model => model.PR.DetFA.res_estat_contactos_d1c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFB.res_estat_contactos_d1c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFC.res_estat_contactos_d1c1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                            <tr id="tipoyt_resis_estat_cont" class="camara2">
+                                <td><label>C&aacute;mara 2 (µΩ)</label></td>
+                                <td>@Html.EditorFor(model => model.PR.DetFA.res_estat_contactos_d1c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFB.res_estat_contactos_d1c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.PR.DetFC.res_estat_contactos_d1c2, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <!-- TABLA: Resistencia ohmica de la Resistencia de Preinsercion (Por Fase) -->
+            <div class="row RESPREINSERCION" style="display:none">
+                <div class="form-group">
+                    <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Resistencia ohmica de la Resistencia de Preinserción</h4>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table style="width:60%;">
+                            <caption class="table-subtitle"></caption>
+                            <tr>
+                                <td width="40%">&nbsp;</td>
+                                <td width="20%">Fase A</td>
+                                <td width="20%">Fase B</td>
+                                <td width="20%">Fase C</td>
+                            </tr>
+                            <tr>
+                                <td><label>Camara 1</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFA.resitencia_ohmica_rpi_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">Ω</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFB.resitencia_ohmica_rpi_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">Ω</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFC.resitencia_ohmica_rpi_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">Ω</span>
+                                    </div>
+                                </td>
+                             </tr>
+                            <tr>
+                                <td><label>Camara 2</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFA.resitencia_ohmica_rpi_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">Ω</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFB.resitencia_ohmica_rpi_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">Ω</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFC.resitencia_ohmica_rpi_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">Ω</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <!-- TABLA: Capacitacncia de condensadores (Por Fase) -->
+            <div class="row CAPACITCONDENSADORES" style="display:none">
+                <div class="form-group">
+                    <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Capacitancia de condensadores </h4>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table style="width:60%;">
+                            <caption class="table-subtitle"></caption>
+                            <tr>
+                                <td width="40%">&nbsp;</td>
+                                <td width="20%">Fase A</td>
+                                <td width="20%">Fase B</td>
+                                <td width="20%">Fase C</td>
+                            </tr>
+                            <tr>
+                                <td><label>Camara 1</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFA.capacitancia_condesadores_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">pF</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFB.capacitancia_condesadores_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">pF</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFC.capacitancia_condesadores_c1, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">pF</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Camara 2</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFA.capacitancia_condesadores_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">pF</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFB.capacitancia_condesadores_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">pF</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PR.DetFC.capacitancia_condesadores_c2, new { htmlAttributes = new { @class = "form-control" } })
+                                        <span class="input-group-addon">pF</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <!-- TABLA: Prueba de gases (Por Fase) -->
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <h4 style="background-color: rgb(179, 213, 192)" class="list-group-item-text">Análisis del Gas</h4>
+                        </div>
+
+                        <table style="width:60%;">
+                            <tr>
+                                <td>@Html.LabelFor(model => model.PR.fuga, "Existe Fuga", htmlAttributes: new { @class = "control-label" })</td>
+                                <td>
+                                    @Html.EditorFor(model => model.PR.fuga)
+                                    @Html.ValidationMessageFor(model => model.PR.fuga, "", new { @class = "text-danger" })
+                                </td>
+                                <td><label>Frecuencia de Llenado</label></td>
+                                <td>
+                                    @Html.DropDownListFor(model => model.PR.frecuencia_llenado_SF6, new SelectList(ViewBag.ListaFrecuenciaLlenado, "Value", "Text"), htmlAttributes: new { @class = "form-control", title = " (Se refiere al número de veces al año en q se recupera la presión del gas) " })
+                                    @Html.ValidationMessageFor(model => model.PR.frecuencia_llenado_SF6, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%">&nbsp;</td>
+                                <td width="20%">&nbsp;</td>
+                                <td width="20%">&nbsp;</td>
+                                <td width="20%">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="40%">&nbsp;</td>
+                                <td width="20%">Fase A</td>
+                                <td width="20%">Fase B</td>
+                                <td width="20%">Fase C</td>
+                            </tr>
+                            <tr>
+                                <td><label>Humedad</label></td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFA.humedad, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">°C</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFB.humedad, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">°C</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFC.humedad, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">°C</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Pureza SF<sub>6</sub></label></td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFA.purezasf6, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFB.purezasf6, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFC.purezasf6, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Aire</label></td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFA.aire, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFB.aire, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="input-group">
+                                                    @Html.EditorFor(model => model.PR.DetFC.aire, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Presi&oacute;n de SF<sub>6</sub>&alpha;20°C</label></td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>@Html.EditorFor(model => model.PR.DetFA.presion, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })</td>
+                                            <td>@Html.DropDownListFor(model => model.PR.DetFA.unidad_medicion_presion, new SelectList(ViewBag.UnidadPresion, "Value", "Text"), htmlAttributes: new { @class = "form-control", @style = "width:100px;" })</td>
+                                        </tr>
+                                    </table>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>@Html.EditorFor(model => model.PR.DetFB.presion, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })</td>
+                                            <td>@Html.DropDownListFor(model => model.PR.DetFB.unidad_medicion_presion, new SelectList(ViewBag.UnidadPresion, "Value", "Text"), htmlAttributes: new { @class = "form-control", @style = "width:100px;" })</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>@Html.EditorFor(model => model.PR.DetFC.presion, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;" } })</td>
+                                            <td>@Html.DropDownListFor(model => model.PR.DetFC.unidad_medicion_presion, new SelectList(ViewBag.UnidadPresion, "Value", "Text"), htmlAttributes: new { @class = "form-control", @style = "width:100px;" })</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_initJQueryDatePicker")
+

@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNet.Identity
+
+@{
+    var url = HttpContext.Current.Request.Url.AbsolutePath;
+    var urlParts = url.Split('/');
+    var action = urlParts.Length >= 1 ? urlParts[urlParts.Length - 1] : "Index";
+}
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right app-menu" }))
+    {
+    @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav app-nav">
+            <li class="@(url.Contains("Home/Index") || action == "Home" ? "active" : "")">
+                @Html.ActionLink("Inicio", "Index", "Home")
+            </li>
+            <li class="@(url.Contains("Home/Tablero") || action == "Tablero" ? "active" : "")">
+                @Html.ActionLink("Tablero de alarmas", "Tablero", "Home")
+            </li>
+            <li class="@(url.Contains("Equipo/Index") || action == "Equipo" || url.Contains("Pruebas/") ? "active" : "")">
+                @Html.ActionLink("Interruptores de potencia", "Index", "Equipo")
+            </li>
+            <li class="@(url.Contains("Home/Reportes") || action == "Reportes" ? "active" : "")">
+                @Html.ActionLink("Reportes", "Reportes", "Home")
+            </li>
+            @if(User.IsInRole("AD") || User.IsInRole("AZ")) { 
+            <li class="@(action == "Catalogos" ? "active" : "")">
+                @Html.ActionLink("Administración", "Catalogos", "Administracion")
+            </li>
+            }
+            <li class="@(action == "Contact" ? "active" : "")">
+                @Html.ActionLink("Ayuda", "Contact", "Home")
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <img src="~/Images/avatar.png" width="32" height="32" /><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Perfil" })</li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="fa fa-power-off"></span> Salir</a></li>
+                </ul>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a id="A1" runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
+    </ul>
+}

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<sievis.Models.AppUsers>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<div class="gridCatalogContainer container">
+    <h2>Administración de Usuarios</h2>
+    <div class="text-right">
+        <span class="fa fa-plus-square fa-lg" aria-hidden="true"></span>
+        @Html.ActionLink(" Agregar Usuario", "Agregar", "Usuarios", new { }, new { @class = "modal-link" })
+
+        <span class="fa fa-home fa-lg" aria-hidden="true"></span>
+        @Html.ActionLink(" Ir a Catálogos", "Catalogos", "Administracion", new { }, new { @class = "" })
+    </div>
+
+    <table id="gridCatalog" class="gridKendo">
+        <colgroup>
+            <col />
+        </colgroup>
+        <tr>
+            <th>Estatus</th>
+            <th>Nombre Completo</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Gerencia</th>
+            <th>Zona</th>
+            <th>Subestacion</th>
+            <th>Acciones</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetRoles.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gerencia.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zona.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subestacion.nombre)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Editar", new { id = @item.UserId }, new { @class = "modal-link fa fa-pencil-square-o", @title = "Editar" }) |
+                    @Html.ActionLink(" ", "Detalle", new { id = @item.UserId }, new { @class = "modal-link glyphicon glyphicon-list-alt", @title = "Detalles" }) |
+                    @Html.ActionLink(" ", "Eliminar", new { id = @item.UserId }, new { @class = "modal-link glyphicon glyphicon-trash", @title = "Eliminar" }) |
+                    @Html.ActionLink(" ","ResetPassword", "Account", new { email = @item.AspNetUsers.Email }, new { @class = "fa fa-user-circle", @title = "Cambiar Contraseña" })
+                </td>
+            </tr>
+        }
+    </table>  
+</div>
+
+@Html.Partial("_initKendoGrid", null, new ViewDataDictionary() { { "width", "100%" } })

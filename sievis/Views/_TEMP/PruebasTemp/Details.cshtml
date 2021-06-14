@@ -1,0 +1,83 @@
+﻿@model sievis.Models.Prueba
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prueba</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_prueba)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_prueba)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_inspeccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_inspeccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumento_medicionSF6)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumento_medicionSF6)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.existe_gabinete_centralizador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.existe_gabinete_centralizador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.existe_gabinetectrl_xfase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.existe_gabinetectrl_xfase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.evalBasica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.evalBasica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.evalExtendida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.evalExtendida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipo.bahia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipo.bahia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,522 @@
+﻿@using sievis.Models;
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+    var DatosEquipo = ViewBag.Equipo;
+    var DatosIndiceSaludPE = ViewBag.indiceSaludPE;
+    var DatosIndiceSaludPB = ViewBag.indiceSaludPB;
+
+    var DatosPrueba = ViewBag.Prueba;
+    var DatosInspeccionVisual = ViewBag.inspeccionVisual;
+    var DatosPbaRutina = ViewBag.PruebaRutina;
+    var DatosPbaEspecial = ViewBag.PruebaEspecial;
+
+    var IndiceConfiabilidadPE = " ";
+    var IndiceConfiabilidadPB = " ";
+
+    //Visualizaciones
+    string vlVisISPB = " ";
+    string vlVisISPE = " ";
+    bool vlVisPesoValor = false;//22_10_2018 Apetición Areli se activaron los campos debe estar en false
+
+
+    var MostrarPesosValores = ViewBag.MostrarPesoValor;
+    if (!DatosPrueba.evalExtendida)
+    {
+        vlVisISPB = String.Format("{0:00.00}", DatosIndiceSaludPB);
+        IndiceConfiabilidadPB = String.Format("{0:00.00}", ViewBag.indiceConfPB);
+      
+
+    }
+    else
+    {
+        vlVisISPB = String.Format("{0:00.00}", DatosIndiceSaludPB);
+        IndiceConfiabilidadPB = String.Format("{0:00.00}", ViewBag.indiceConfPB);
+        vlVisISPE = String.Format("{0:00.00}", DatosIndiceSaludPE);
+        IndiceConfiabilidadPE = String.Format("{0:00.00}", ViewBag.indiceConfPE);
+    }
+
+    var vlSemaforoISPB = "#ff9900";
+    var vlCondicionISPB = " ";
+    if (DatosIndiceSaludPB >= 0 && DatosIndiceSaludPB < 25)
+    {
+        vlSemaforoISPB = "#ff9900";
+        vlCondicionISPB = "Muy pobre";
+    }
+    else if (DatosIndiceSaludPB >= 25 && DatosIndiceSaludPB < 50)
+    {
+        vlSemaforoISPB = "#ff3333";
+        vlCondicionISPB = "Pobre";
+    }
+    else if (DatosIndiceSaludPB >= 50 && DatosIndiceSaludPB < 75)
+    {
+        vlSemaforoISPB = "#ffff66";
+        vlCondicionISPB = "Regular";
+    }
+    else if (DatosIndiceSaludPB >= 75 && DatosIndiceSaludPB < 85)
+    {
+        vlSemaforoISPB = "#00FF22";
+        vlCondicionISPB = "Bien";
+    }
+    else if (DatosIndiceSaludPB > 85)
+    {
+        vlSemaforoISPB = "#00cc00";
+        vlCondicionISPB = "Muy bien";
+    }
+
+    var vlSemaforoISPE = "#ff9900";
+    var vlCondicionISPE = " ";
+    if (DatosIndiceSaludPE >= 0 && DatosIndiceSaludPE < 25)
+    {
+        vlSemaforoISPE = "#ff9900";
+        vlCondicionISPE = "Muy pobre";
+    }
+    else if (DatosIndiceSaludPE >= 25 && DatosIndiceSaludPE < 50)
+    {
+        vlSemaforoISPE = "#ff3333";
+        vlCondicionISPE = "Pobre";
+    }
+    else if (DatosIndiceSaludPE >= 50 && DatosIndiceSaludPE < 75)
+    {
+        vlSemaforoISPE = "#ffff66";
+        vlCondicionISPE = "Regular";
+    }
+    else if (DatosIndiceSaludPE >= 75 && DatosIndiceSaludPE < 85)
+    {
+        vlSemaforoISPE = "#00FF22";
+        vlCondicionISPE = "Bien";
+    }
+    else if (DatosIndiceSaludPE > 85)
+    {
+        vlSemaforoISPE = "#00cc00";
+        vlCondicionISPE = "Muy bien";
+    }
+}
+
+<div class="container">
+    @Html.ActionLink("Ir a datos de prueba", "Datos", "Pruebas", new { EquipoId = DatosPrueba.Equipo_id, PruebaId = DatosPrueba.id }, new { @class = "text-right" })
+    <table class="table" width="100%">
+        <tr>
+            <td>
+                <img src="~/Images/cfe1.png" class="app-logo" align="left" width="120" alt="CFE" />
+            </td>
+            <td>
+                <h3 align="right">Sistema de &Iacute;ndices de Salud de Interruptores de Potencia (SISIP)</h3>
+                <h3 align="right">Reporte de la condici&oacute;n del Interruptor de Potencia</h3>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-right">
+                    Fecha de la evaluación: <span><b>@Html.Raw(String.Format("{0:yyyy/MM/dd}", DatosPrueba.fecha_prueba))</b></span>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-10 text-right">
+                    Gerencia Regional de Transmisi&oacute;n:
+                </div>
+                <div class="col-sm-2">
+                    @Html.Raw(DatosEquipo.gerencia)
+                </div>
+                <div class="col-sm-10 text-right">
+                    Zona de Transmisi&oacute;n:
+                </div>
+                <div class="col-sm-2">
+                    @Html.Raw(DatosEquipo.zona)
+                </div>
+                <div class="col-sm-10 text-right">
+                    Subestaci&oacute;n:
+                </div>
+                <div class="col-sm-2">
+                    @Html.Raw(DatosEquipo.subestacion)
+                </div>
+                <div class="col-sm-10 text-right">
+                    Bah&iacute;a:
+                </div>
+                <div class="col-sm-2">
+                    @Html.Raw(DatosEquipo.bahia)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-left">
+                    Datos del Interruptor de Potencia:
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-6">
+                            Marca:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.marca)
+                        </div>
+                        <div class="col-sm-6">
+                            Modelo:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.modelo)
+                        </div>
+                        <div class="col-sm-6">
+                            No. de Serie:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.ns)
+                        </div>
+                        <div class="col-sm-6">
+                            A&ntilde;o de fabricaci&oacute;n:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.afabricacion)
+                        </div>
+                        <div class="col-sm-6">
+                            Fecha de puesta en servicio:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(String.Format("{0:yyyy/MM/dd}", DatosEquipo.fecha_puestaservicio))
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="col-sm-6">
+                            Tensi&oacute;n nominal (kV):
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.tension_nominal)
+                        </div>
+                        <div class="col-sm-6">
+                            Corriente nominal (A):
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.corriente_nominal)
+                        </div>
+                        <div class="col-sm-6">
+                            Tipo de mecanismo:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.mecanismo)
+                        </div>
+                        <div class="col-sm-6">
+                            Dise&ntilde;o estructural:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.disestructural)
+                        </div>
+                        <div class="col-sm-6">
+                            Configuraci&oacute;n de c&aacute;maras:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.configuracioncamaras)
+                        </div>
+                        <div class="col-sm-6">
+                            Aplicaci&oacute;n del interruptor:
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Raw(DatosEquipo.aplicacion)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (float.Parse(@IndiceConfiabilidadPB) > 75.00)
+    {
+        <div class="well text-center">EVALUACI&Oacute;N DE LA CONDICI&Oacute;N DEL INTERRUPTOR</div>
+        <div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="text-center">
+                                        INDICE DE SALUD B&Aacute;SICO
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="text-center">
+                                        <h2><span class="label label-default" style="background: @Html.Raw(vlSemaforoISPB); color:black">@vlVisISPB %</span></h2>
+                                    </div>
+                                    <div class="text-center">
+                                        Condici&oacute;n: <b>@vlCondicionISPB</b>
+                                    </div>
+                                    <div class="text-center">
+                                        Confiabilidad: <b>@IndiceConfiabilidadPB</b>%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="text-center">
+                                        INDICE DE SALUD COMPLETO
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="text-center">
+                                        <h2><span class="label label-default" style="background: @Html.Raw(vlSemaforoISPE); color:black">@vlVisISPE %</span></h2>
+                                    </div>
+                                    <div class="text-center">
+                                        Condici&oacute;n: <b>@vlCondicionISPE</b>
+                                    </div>
+                                    <div class="text-center">
+                                        Confiabilidad: <b>@IndiceConfiabilidadPE</b>%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="well text-center">DESGLOSE DE VARIABLES FUERA DE L&Iacute;MITES RECOMENDADOS</div>
+        <div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div>
+                        M&oacute;dulo de Inspecci&oacute;n Visual
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-10">Variable </th>
+                                @if (vlVisPesoValor == true)
+                                {
+                                    <th class="col-md-1">Peso </th>
+                                }
+                                @*<th class="col-md-1">Valor </th>*@
+                                <th class="col-md-1">Puntuación </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PuntuacionFase item in DatosInspeccionVisual)
+                            {
+                                if (vlVisPesoValor == true)
+                                {
+                                    <tr>
+                                        <td> @Html.Raw(item.variable) </td>
+                                        <td style="text-align:center"> @Html.Raw(String.Format("{0:00}", item.peso)) </td>
+                                        @*<td> @Html.Raw(item.valorNumero) </td>*@
+                                        <td style="text-align:center"> @Html.Raw(String.Format("{0:n0}", item.puntuacionNumero)) </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    if (item.puntuacionNumero < 3)
+                                    {
+                                        <tr>
+                                            <td> @Html.Raw(item.variable) </td>
+                                            <td style="visibility:hidden;"> @Html.Raw(String.Format("{0:00}", item.peso)) </td>
+                                            @*<td> @Html.Raw(item.valorNumero) </td>*@
+                                            <td> @Html.Raw(String.Format("{0:00.00}", item.puntuacionNumero)) </td>
+                                        </tr>
+                                    }
+                                }
+
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div>
+                        M&oacute;dulo de Pruebas de Rutina
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-8">Nombre variable </th>
+                                @if (vlVisPesoValor == true)
+                                {
+                                    <th class="col-md-1" style="text-align:center">Peso </th>
+                                    <th class="col-md-2" style="text-align:center">Valor </th>
+                                }
+                                <th class="col-md-1">Puntuación </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PuntuacionFase item in DatosPbaRutina)
+                            {
+
+
+                                if (vlVisPesoValor == true)
+                                {
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="col-md-8"> @Html.Raw(item.variable) </div>
+                                            <div class="col-md-1"> @Html.Raw(String.Format("{0:00}", item.peso)) </div>
+                                            @if (item.puntuacionLetra != null && item.puntuacionLetra != "")
+                                            {
+                                                <div class="col-md-2"> [@Html.Raw(String.Format("{0:00.00}", item.valorNumero))],[@Html.Raw(String.Format("{0:00.00}", item.valorLetra))] </div>
+                                                <div class="col-md-1"> @Html.Raw(item.puntuacionLetra) = @Html.Raw(item.puntuacionNumero == 0 ? "0" : String.Format("{0:#}", item.puntuacionNumero)) </div>
+                                                if (item.recomendacion != null && item.recomendacion != "")
+                                                {
+                                                    <div class="col-md-11 col-md-offset-1 alert alert-warning">@Html.Raw(item.recomendacion)</div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-1"></div>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    if (item.puntuacionNumero < 3)
+                                    {
+                                        <tr>
+                                            <td colspan="4">
+                                                <div class="col-md-8"> @Html.Raw(item.variable) </div>
+                                                <div class="col-md-1" style="visibility:hidden;"> @Html.Raw(String.Format("{0:00}", item.peso)) </div>
+                                                @if (item.puntuacionLetra != null && item.puntuacionLetra != "")
+                                                {
+                                                    <div class="col-md-2" style="visibility:hidden;"> [@Html.Raw(String.Format("{0:00.00}", item.valorNumero))],[@Html.Raw(String.Format("{0:00.00}", item.valorLetra))] </div>
+                                                    <div class="col-md-1"> @Html.Raw(item.puntuacionLetra) = @Html.Raw(item.puntuacionNumero == 0 ? "0" : String.Format("{0:#}", item.puntuacionNumero)) </div>
+                                                    if (item.recomendacion != null && item.recomendacion != "")
+                                                    {
+                                                        <div class="col-md-11 col-md-offset-1 alert alert-warning">@Html.Raw(item.recomendacion)</div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-1"></div>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+
+
+
+
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div>
+                        M&oacute;dulo de Pruebas de Especiales
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-8">Nombre variable </th>
+                                @if (vlVisPesoValor == true)
+                                {
+                                    <th class="col-md-1" style="text-align:center">Peso </th>
+                                    <th class="col-md-2" style="text-align:center">Valor </th>
+                                }
+                                <th class="col-md-1">Puntuación </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PuntuacionFase item in DatosPbaEspecial)
+                            {
+                                if (vlVisPesoValor == true)
+                                {
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="col-md-8"> @Html.Raw(item.variable) </div>
+                                            <div class="col-md-1"> @Html.Raw(String.Format("{0:00}", item.peso)) </div>
+                                            @if (item.puntuacionLetra != null && item.puntuacionLetra != "")
+                                            {
+                                                <div class="col-md-2"> [@Html.Raw(String.Format("{0:00.00}", item.valorNumero))],[@Html.Raw(String.Format("{0:00.00}", item.valorLetra))] </div>
+                                                <div class="col-md-1"> @Html.Raw(item.puntuacionLetra) = @Html.Raw(item.puntuacionNumero == 0 ? "0" : String.Format("{0:#}", item.puntuacionNumero)) </div>
+                                                if (item.recomendacion != null && item.recomendacion != "")
+                                                {
+                                                    <div class="col-md-11 col-md-offset-1 alert alert-warning">@Html.Raw(item.recomendacion)</div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-1"></div>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    if (item.puntuacionNumero < 3 && item.variable != null)
+                                    {
+                                        <tr>
+                                            <td colspan="4">
+
+                                                <div class="col-md-8"> @Html.Raw(item.variable) </div>
+                                                <div class="col-md-1" style="visibility:hidden;"> @Html.Raw(String.Format("{0:00}", item.peso)) </div>
+                                                @if (item.puntuacionLetra != null && item.puntuacionLetra != "")
+                                                {
+                                                    <div class="col-md-2" style="visibility:hidden;"> [@Html.Raw(String.Format("{0:00.00}", item.valorNumero))],[@Html.Raw(String.Format("{0:00.00}", item.valorLetra))] </div>
+
+                                                    <div class="col-md-1"> @Html.Raw(item.puntuacionLetra) = @Html.Raw(item.puntuacionNumero == 0 ? "0" : String.Format("{0:#}", item.puntuacionNumero)) </div>
+                                                    if (item.recomendacion != null && item.recomendacion != "")
+                                                    {
+                                                        <div class="col-md-11 col-md-offset-1 alert alert-warning">@Html.Raw(item.recomendacion)</div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-1"></div>
+                                                }
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            No se generó reporte. Se requiere cargar más resultados de pruebas para alcanzar el 75% en el índice de confiabilidad.
+        </div>
+    }
+</div>

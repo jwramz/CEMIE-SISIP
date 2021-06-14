@@ -1,0 +1,143 @@
+﻿@model IEnumerable<sievis.Models.Prueba>
+
+@{
+    ViewBag.Title = "Pruebas del Equipo";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+   
+}
+
+<div class="container">
+    <h2 class="text-center">Lista de pruebas del Interruptor de Potencia</h2>
+    <p>
+        <div class="text-right">
+            @Html.ActionLink("Listado de Interruptores", "Index", "Equipo", new { EquipoId = Request["EquipoId"] }, new { @title = "Equipos" })
+            <span class="fa fa-plus-square fa-lg" aria-hidden="true"></span>
+            @Html.ActionLink(" Registrar Nueva Prueba", "Datos", "Pruebas", new { EquipoId = Request["EquipoId"], PruebaId = 0 }, new { })
+        </div>
+    </p>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Pruebas</a></li>
+        <li><a data-toggle="tab" href="#menu1">Gráfica</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+
+            <table id="gridPruebas" class="gridKendo table">
+                <tr>
+                    <th>Fecha de la prueba</th>
+                    <th>Equipo</th>
+                    <th>Bahia</th>
+                    <th>Modelo</th>
+                    <th>Acciones</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.fecha_prueba))
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Equipo.ns)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Equipo.bahia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Equipo.Modelo.nombre)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Datos", "Pruebas", new { EquipoId = item.Equipo_id, PruebaId = item.id }, new { }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }) |
+                            @Html.ActionLink("Reporte", "Reporte", "Pruebas", new { EquipoId = item.Equipo_id, PruebaId = item.id }, new { })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <div id="example">
+                <div class="demo-section k-content wide">
+                    <div id="chart"></div>
+                </div>
+                <script>
+
+
+                function createChart() {
+
+                    $("#chart").kendoChart({
+                        dataSource: {
+                            transport: {
+                                read: {
+                                    url: "Pruebas/PruebasIndices/?equipoId=" + @Request.QueryString["EquipoId"],
+                                    dataType: "json"
+                                }
+                            },
+                            sort: {
+                                field: "fecha",
+                                dir: "asc"
+                            }
+                        },
+
+                        title: {
+                            text: "Hitorial de Pruebas del Interruptor"
+                        },
+                        legend: {
+                            position: "top"
+                        },
+                        seriesDefaults: {
+                            type: "line"
+                        },
+                        series:
+                        [{
+                            field: "indiceSaludBasica",
+                            categoryField: "fecha",
+                            name: "Indice Salud Basica",
+                            format: "{0:0,00}"
+                        }, {
+                            field: "indiceSaludExtendida",
+                            categoryField: "fecha",
+                            name: "Indice Salud Extendida"
+                        }],
+                        categoryAxis: {
+                            labels: {
+                                rotation: -90
+                            },
+                            majorGridLines: {
+                                visible: true
+                            }
+                        },
+                        valueAxis: {
+                            name: "porcentaje",
+                            title: { text: "Porcentaje" },
+                            labels: {
+                                format: "{0}%"
+                            },
+                            min: 0,
+                            max: 100,
+                            majorUnit: 10,
+                            line: {
+                                visible: true
+                            }
+
+                        },
+                        tooltip: {
+                            visible: true,
+                            format: "{0}%",
+                            template: "#= series.name #: #= value #%"
+                        }
+                    });
+                }
+
+                $(document).ready(createChart);
+                $(document).bind("kendo:skinChange", createChart);
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_initKendoGrid")

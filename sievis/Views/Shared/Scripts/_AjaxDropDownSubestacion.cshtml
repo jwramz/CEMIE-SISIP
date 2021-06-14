@@ -1,0 +1,31 @@
+﻿@using Resources;
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#Zona_id").change(function () {
+            $("#Subestacion_id").empty();
+            var Gerencia_id = $("#Gerencia_id").val();
+            var Zona_id = $("#Zona_id").val();
+            if (!Gerencia_id && !Zona_id) return;
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSubestacionByGIdZId", "Equipo", null)',
+                dataType: 'json',
+                data: { Gerencia_id: Gerencia_id, Zona_id: Zona_id },
+                success: function (subestaciones) {
+                    $("#Subestacion_id").append('<option value="">- Seleccionar Subestación -</option>');
+                    $.each(subestaciones, function (i, subestacion) {
+                        $("#Subestacion_id").append('<option value="' + subestacion.id + '">' + subestacion.nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    bootbox.alert('<b style="color:red">@AppResources.FailAjaxMethod</b>');
+                }
+            });
+            return false;
+        });
+
+    });
+</script>

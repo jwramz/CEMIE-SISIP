@@ -1,0 +1,29 @@
+﻿@model sievis.Models.Subestacion
+
+<!-- modal -->
+@using (Html.BeginForm("Eliminar", "Subestacion", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="bootstrap-dialog.type-primary modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">¿Esta seguro que desea eliminar la Subestación?</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <dl class="dl-horizontal">
+                <dt>
+                    Subestación
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="modalBtnSave">Aceptar</button>
+        <button type="button" class="btn btn-info" id="modalBtnCancel" data-dismiss="modal">Cancelar</button>
+    </div>
+}
+

@@ -1,0 +1,324 @@
+﻿@using sievis.Models;
+@model sievis.Models.Prueba
+
+
+@{
+    Equipo equipo = (Equipo)ViewBag.Equipo;
+    var prueba = Model.PE;
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading app-panel-heading">
+        <!-- Título-Guardar -->
+        <div class="row">
+            <div class="col-md-10">
+                <h4>Inspección Visual</h4>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group col-md-5">
+                    <button type="submit" class="btn btn-success">
+                        Guardar <span class="fa fa-floppy-o"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--panel-body-->
+    <div class="panel-body">
+
+        <!-- Fases -->
+        <ul class="col-md-12 nav nav-tabs">
+            <li class="">
+                <a href="#" onclick="showInspeccionVisual('#_InspeccionVisual_A');">Fase A</a>
+            </li>
+                <li class="">
+                    <a href="#" onclick="showInspeccionVisual('#_InspeccionVisual_B');">Fase B</a>
+                </li>
+                <li class="">
+                    <a href="#" onclick="showInspeccionVisual('#_InspeccionVisual_C');">Fase C</a>
+                </li>
+              <li class="gabinete_centralizador active">
+                <a href="#" onclick="showInspeccionVisual('#_GabineteCentralizador');">Gabinete Centralizador</a>
+            </li>
+        </ul>
+
+        <!-- Campos -->
+        <div id="formInspeccionVisual" class="form g-top-margin">
+            @Html.Partial("_ValidationSummary")
+
+
+            <div class="row" style="margin-top:50px">
+                <table class="table">
+                    <thead class="thead-default">
+                        <tr>
+                            <th width="10%" class="text-center">
+                                @*Par&aacute;metro de condici&oacute;n*@
+                            </th>
+                            <th width="20%" class="text-left">
+                                Par&aacute;metro de sub-condici&oacute;n<br /> (Variable)
+                            </th>
+                            <th width="20%" class="text-center">
+                                Verificaci&oacute;n <br />(Existe/No existe)
+                            </th>
+                            <th width="50%">
+                                Observaciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="14">@*<strong>Gabinete centralizador</strong>*@</td>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.tablillas, htmlAttributes: new { @class = "control-label" })*@
+                                Tablillas
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.GCE.tablillas, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.GCE.tablillas, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_tablillas, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_tablillas, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.contactores, htmlAttributes: new { @class = "control-label" })*@
+                                Contactores
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.GCE.contactores, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.GCE.contactores, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_contactores, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_contactores, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.relevadores, htmlAttributes: new { @class = "control-label" })*@
+                                Relevadores
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.GCE.relevadores, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.GCE.relevadores, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_relevadores, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_relevadores, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.elementos_ctrl, htmlAttributes: new { @class = "control-label" })*@
+                                Elementos de control
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.GCE.elementos_ctrl, new SelectList(ViewBag.ListaEstadoCondicion, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.GCE.elementos_ctrl, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.obs_elementos_ctrl, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.obs_elementos_ctrl, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.funciona_resislefactora, htmlAttributes: new { @class = "control-label" })*@
+                                Funcionamiento de la resistencia calefactora (al tacto)
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.GCE.funciona_resis_calefactora, new SelectList(ViewBag.ListaFuncionaNoFunciona, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.GCE.funciona_resis_calefactora, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.obs_fun_resis_calef, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.obs_fun_resis_calef, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.humedad, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Rastros de humedad en el interior del gabinete
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.humedad)
+                                    @Html.ValidationMessageFor(model => model.GCE.humedad, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_humedad, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_humedad, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.roturas_internas, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Roturas internas del gabinete
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.roturas_internas)
+                                    @Html.ValidationMessageFor(model => model.GCE.roturas_internas, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_roturasint, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_roturasint, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.roturas_externas, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Roturas externas del gabinete
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.roturas_externas)
+                                    @Html.ValidationMessageFor(model => model.GCE.roturas_externas, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_roturasext, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_roturasext, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.grietas_sello, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Grietas en el sello del gabinete
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.grietas_sello)
+                                    @Html.ValidationMessageFor(model => model.GCE.grietas_sello, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_grietassello, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_grietassello, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.insectos, htmlAttributes: new { @class = "control-label" })*@
+                                Insectos al interior del gabinete
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.insectos)
+                                    @Html.ValidationMessageFor(model => model.GCE.insectos, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_insectos, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_insectos, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.desp intura_int, htmlAttributes: new { @class = "control-label" })*@
+                                Desprendimiento de pintura interna
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.desp_pintura_int)
+                                    @Html.ValidationMessageFor(model => model.GCE.desp_pintura_int, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_pinturaint, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_pinturaint, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.desp intura_ext, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Desprendimiento de pintura externa
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.desp_pintura_ext)
+                                    @Html.ValidationMessageFor(model => model.GCE.desp_pintura_ext, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_pinturaext, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_pinturaext, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.corrosion_interna, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                Evidencia de corrosi&oacute;n interna en el gabinete
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.corrosion_interna)
+                                    @Html.ValidationMessageFor(model => model.GCE.corrosion_interna, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_corrosionint, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_corrosionint, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(model => model.IVA.corrosion_externa, htmlAttributes: new { @class = "control-label" })*@
+                                Evidencia de corrosión externa en el gabinete
+                            </td>
+                            <td>
+                                <div class="checkbox text-center">
+                                    @Html.EditorFor(model => model.GCE.corrosion_externa)
+                                    @Html.ValidationMessageFor(model => model.GCE.corrosion_externa, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.EditorFor(model => model.GCE.observaciones_corrosionext, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GCE.observaciones_corrosionext, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_initJQueryDatePicker")
+
+

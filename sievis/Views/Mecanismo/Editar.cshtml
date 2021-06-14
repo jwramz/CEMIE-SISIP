@@ -1,0 +1,33 @@
+﻿@using Resources;
+@model sievis.Models.Mecanismo
+
+<!-- modal -->
+@using (Html.BeginForm("Editar", "Mecanismo", FormMethod.Post, new { @id = "FormCatalog" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="bootstrap-dialog.type-primary modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Editar Mecanismo</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                @Html.Label("Mecanismo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="modalBtnSave">Guardar</button>
+        <button type="button" class="btn btn-info" id="modalBtnCancel" data-dismiss="modal">Cancelar</button>
+    </div>
+
+    @Html.Partial("~/Views/Shared/Scripts/_FormCatalogValidate.cshtml", null,
+        new ViewDataDictionary() { { "IdBtnSave", "modalBtnSave" }, { "IdForm", "FormCatalog" }, { "ActionURL", "Mecanismo/Validate" } });
+}

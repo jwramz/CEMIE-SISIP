@@ -1,0 +1,273 @@
+﻿@model sievis.Models.Equipo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutML.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Equipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bahia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bahia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ns)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ns)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anio_fabricacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio_fabricacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tesion_nominal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tesion_nominal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.corriente_nominal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.corriente_nominal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.corriente_cc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.corriente_cc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.disponibilidad_refaccion_st)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.disponibilidad_refaccion_st)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.presionSF6)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.presionSF6)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.presion_alarma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.presion_alarma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_unidades_presion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_unidades_presion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.altitud_operacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.altitud_operacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.altitud_instalacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.altitud_instalacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dis_estructural)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dis_estructural)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.conf_camaras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.conf_camaras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.res_estatica_contactos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.res_estatica_contactos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interruptor_contiene)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interruptor_contiene)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interruptor_resistencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interruptor_resistencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interruptor_capacitor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interruptor_capacitor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_puestaservicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_puestaservicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fultimo_mantenimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fultimo_mantenimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nivel_contaminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nivel_contaminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_disparo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_disparo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comando_cierre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comando_cierre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.distancia_fuga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distancia_fuga)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.clase_interruptor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clase_interruptor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AplicacionInterruptor.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AplicacionInterruptor.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mecanismo.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mecanismo.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subestacion.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subestacion.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

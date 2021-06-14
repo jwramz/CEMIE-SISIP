@@ -1,0 +1,99 @@
+﻿@using Resources;
+
+<script type="text/javascript">
+
+    $("form").submit(function () {
+        $('select').prop('disabled', false);
+        $('input').prop('disabled', false);
+    });
+
+    function conf_camaras_change(evt) {
+        //console.log({ source: "conf_camaras_change", evt: evt });
+        var key = $('#dis_estructural').val();
+        if (key == 'TM')
+            key = 'M'
+        else
+            key = $('#conf_camaras').val();
+        if (key) {
+            var file = "tanque_" + key + ".jpg";
+            $("#imgTanque").attr("src", "@Url.Content("~/Images/Equipo/")" + file);
+        }
+    }
+
+
+    function OcultaSeccion(val) {
+        //console.log(val);
+        if (val == 'R') {
+            //id = "resistencia";
+            mostrarOcultarElemento("resistencia", 'ver');
+            mostrarOcultarElemento("capacitor", 'ocultar');
+            //mostrarOcultarElemento("RESPREINSERCION", 'ver');
+        }
+        else if (val == 'C') {
+            //id = "capacitor"
+            mostrarOcultarElemento("resistencia", 'ocultar');
+            mostrarOcultarElemento("capacitor", 'ver');
+            //mostrarOcultarElemento("RESPREINSERCION", 'ocultar');
+        }
+        else if (val == 'A') {
+            //id = "ambos"
+            mostrarOcultarElemento("resistencia", 'ver');
+            mostrarOcultarElemento("capacitor", 'ver');
+            //mostrarOcultarElemento("RESPREINSERCION", 'ver');
+        } else {
+            //id = "Primer vez ambos"
+            mostrarOcultarElemento("resistencia", 'ocultar');
+            mostrarOcultarElemento("capacitor", 'ocultar');
+            //mostrarOcultarElemento("RESPREINSERCION", 'ocultar');
+           
+        }
+    }
+
+    function OcultaConfCamaras(val) {
+        conf_camaras_change();
+        if (val == 'TV') {
+            mostrarOcultarElemento("configCamaras", 'ver');
+            $("#cuentaCon").show();
+            $("#Mecanismo_id").attr('disabled', false);
+            console.log(val);
+          
+        }
+        else if (val == 'TM') {
+            mostrarOcultarElemento("configCamaras", 'ocultar');
+            tanqueMuerto();
+          
+        } else {
+            //id = "Primer vez ambos"
+            mostrarOcultarElemento("configCamaras", 'ver');
+            $("#cuentaCon").show();
+            $("#Mecanismo_id").attr('disabled', false);
+          
+        }
+
+
+    }
+
+    function mostrarOcultarElemento(id, condicion) {
+        mostrado = 0;
+        if (condicion == 'ocultar') {
+            elem = document.getElementById(id);
+            elem.style.display = 'none';
+        } else {
+            elem = document.getElementById(id);
+            console.log(elem);
+            elem.style.display = 'block';
+        }
+    }
+
+    function tanqueMuerto() {
+
+        if ($('#dis_estructural').val() == "TM") {
+            $("#Mecanismo_id").val("1").change();
+            $("#interruptor_contiene").val("N").change();
+            $("#Mecanismo_id").attr('disabled', true);
+             $("#cuentaCon").hide();
+             $("#conf_camaras").val("C").change();
+        }
+    }
+
+</script>
