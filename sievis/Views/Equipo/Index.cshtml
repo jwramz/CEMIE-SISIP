@@ -20,10 +20,10 @@
         <script>
             function links(EquipoId) {
 
-                var comandos = "<div> <a href='Equipo/Edit/" + EquipoId + "'><i class = 'fa fa-pencil-square-o'></i> | </a>"
-                    + "<a href='Equipo/Details/" + EquipoId + "'><i class='glyphicon glyphicon-list-alt'></i> | </a>"
-                    + "<a href='Equipo/Delete/" + EquipoId + "'><i class='glyphicon glyphicon-trash'></i> | </a>"
-                    + "<a href='pruebas/Index/?EquipoId=" + EquipoId + "'><i class='fa fa-thermometer-empty'></i> </a>"
+                var comandos = "<div> <a href='Equipo/Edit/" + EquipoId + "' title='Editar'><i class = 'fa fa-pencil-square-o'></i> | </a>"
+                    + "<a href='Equipo/Details/" + EquipoId + "' title='Detalle de la placa'><i class='glyphicon glyphicon-list-alt'></i> | </a>"
+                    + "<a href='Equipo/Delete/" + EquipoId + "' title='Eliminar'><i class='glyphicon glyphicon-trash'></i> | </a>"
+                    + "<a href='pruebas/Index/?EquipoId=" + EquipoId + "' title='Listado de pruebas y gráfica'><i class='fa fa-thermometer-empty'></i> </a>"
                     + " </div>";
 
                 return comandos;
